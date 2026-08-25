@@ -8,12 +8,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
-        /* Same base styles */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a1a; color: #ffffff; overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
         .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
         #particles-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+
         .navbar { position: sticky; top: 0; z-index: 1000; background: rgba(10, 10, 26, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 215, 0, 0.15); padding: 14px 0; }
         .navbar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
         .navbar .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.2rem; color: #fff; }
@@ -24,27 +24,89 @@
         .navbar .social-icons { display: flex; gap: 14px; font-size: 1.15rem; }
         .navbar .social-icons a { color: #b0b8d0; transition: 0.25s; }
         .navbar .social-icons a:hover { color: #ffd700; transform: translateY(-2px); }
-        .hero { min-height: 40vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 0 60px; background: radial-gradient(circle at top, rgba(255,215,0,0.05), transparent 70%); }
+
+        .hero { min-height: 35vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 0 60px; background: radial-gradient(circle at top, rgba(255,215,0,0.05), transparent 70%); }
         .hero h1 { font-size: 3.5rem; font-weight: 800; background: linear-gradient(135deg, #ffffff 20%, #ffd700 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 60px rgba(255, 215, 0, 0.15); }
         .hero p { color: #a0aac0; font-size: 1.2rem; max-width: 640px; margin: 18px auto 28px; line-height: 1.6; }
         .hero .badge { display: inline-block; padding: 6px 22px; border-radius: 40px; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-size: 0.85rem; font-weight: 500; }
-        .section-title { font-size: 2.6rem; font-weight: 700; text-align: center; margin-bottom: 48px; }
+        .hero .badge i { margin-right: 6px; }
+
+        .section-title { font-size: 2.6rem; font-weight: 700; text-align: center; margin-bottom: 40px; }
         .section-title span { background: linear-gradient(135deg, #ffd700, #ff8c00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .section-title::after { content: ''; display: block; width: 72px; height: 4px; margin: 12px auto 0; background: linear-gradient(90deg, #ffd700, transparent); border-radius: 4px; }
-        .content-section { padding: 40px 0 60px; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 20px; }
-        .card-glass { background: rgba(18, 28, 50, 0.65); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 18px; padding: 30px 26px; transition: 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
-        .card-glass:hover { border-color: rgba(255, 215, 0, 0.3); transform: translateY(-6px); box-shadow: 0 12px 44px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255,215,0,0.05); }
-        .card-glass h3 { font-size: 1.4rem; font-weight: 700; color: #ffd700; margin-bottom: 14px; }
-        .card-glass h3 i { margin-right: 10px; }
-        .card-glass p { color: #b0bcc8; line-height: 1.7; }
-        .card-glass ul { list-style: none; padding: 0; margin-top: 10px; }
-        .card-glass ul li { padding: 8px 0; color: #b8c0d8; border-bottom: 1px solid rgba(255, 255, 255, 0.04); display: flex; align-items: center; gap: 12px; }
-        .card-glass ul li i { color: #ffd700; width: 22px; text-align: center; }
-        .card-glass a { color: #ffd700; transition: 0.2s; }
-        .card-glass a:hover { color: #ffffff; text-decoration: underline; }
-        .btn-fest { display: inline-block; padding: 8px 20px; border-radius: 30px; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-size: 0.85rem; transition: 0.3s; margin-top: 12px; }
-        .btn-fest:hover { background: #ffd700; color: #0a0a1a; transform: translateY(-2px); }
+
+        .content-section { padding: 30px 0 60px; }
+
+        .category-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 40px; }
+        .category-tab { padding: 8px 24px; border-radius: 40px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.08); color: #b0bcc8; font-size: 0.85rem; cursor: pointer; transition: 0.3s; }
+        .category-tab:hover { background: rgba(255, 215, 0, 0.1); border-color: rgba(255, 215, 0, 0.3); color: #ffd700; }
+        .category-tab.active { background: rgba(255, 215, 0, 0.15); border-color: #ffd700; color: #ffd700; }
+
+        .fests-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; margin-top: 10px; }
+
+        .fest-card {
+            background: rgba(18, 28, 50, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 28px 24px 24px;
+            transition: 0.35s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+        }
+        .fest-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ffd700, transparent);
+            opacity: 0;
+            transition: 0.4s;
+        }
+        .fest-card:hover::before { opacity: 1; }
+        .fest-card:hover {
+            border-color: rgba(255, 215, 0, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 16px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 215, 0, 0.05);
+        }
+
+        .fest-card .icon-wrapper {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: rgba(255, 215, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+            font-size: 1.6rem;
+            color: #ffd700;
+            transition: 0.3s;
+        }
+        .fest-card:hover .icon-wrapper { background: rgba(255, 215, 0, 0.2); transform: scale(1.05); }
+
+        .fest-card h3 { font-size: 1.15rem; font-weight: 700; color: #ffffff; margin-bottom: 4px; line-height: 1.3; }
+        .fest-card .fest-org { font-size: 0.8rem; color: #8899bb; margin-bottom: 8px; }
+        .fest-card .fest-org i { margin-right: 4px; color: #ffd700; }
+        .fest-card .fest-desc { font-size: 0.88rem; color: #b0bcc8; line-height: 1.6; margin-bottom: 14px; }
+        .fest-card .fest-tag { display: inline-block; padding: 3px 14px; border-radius: 20px; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.3px; margin-bottom: 12px; text-transform: uppercase; }
+        .fest-tag.major { background: rgba(255, 68, 68, 0.15); color: #ff6b6b; border: 1px solid rgba(255, 68, 68, 0.2); }
+        .fest-tag.summits { background: rgba(255, 180, 68, 0.15); color: #ffb86b; border: 1px solid rgba(255, 180, 68, 0.2); }
+        .fest-tag.interhall { background: rgba(68, 130, 255, 0.15); color: #6ba6ff; border: 1px solid rgba(68, 130, 255, 0.2); }
+        .fest-tag.departmental { background: rgba(68, 255, 130, 0.12); color: #6bff9e; border: 1px solid rgba(68, 255, 130, 0.2); }
+        .fest-tag.club { background: rgba(180, 68, 255, 0.15); color: #b86bff; border: 1px solid rgba(180, 68, 255, 0.2); }
+
+        .fest-card .btn-explore { display: inline-block; padding: 7px 22px; border-radius: 30px; background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-size: 0.8rem; font-weight: 500; transition: 0.3s; }
+        .fest-card .btn-explore:hover { background: #ffd700; color: #0a0a1a; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255, 215, 0, 0.2); }
+
+        .fest-card .card-number { position: absolute; top: 12px; right: 16px; font-size: 0.65rem; color: rgba(255, 255, 255, 0.08); font-weight: 700; letter-spacing: 0.5px; }
+
+        .stats { text-align: center; color: #556; font-size: 0.9rem; margin-top: 30px; }
+        .stats span { color: #ffd700; font-weight: 600; }
+
         .footer { background: rgba(5, 5, 18, 0.95); backdrop-filter: blur(8px); border-top: 1px solid rgba(255, 215, 0, 0.08); padding: 44px 0 24px; margin-top: 60px; }
         .footer .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 24px; margin: 16px 0 24px; }
         .footer .social-links a { color: #8899bb; font-size: 0.95rem; transition: 0.25s; display: flex; align-items: center; gap: 8px; }
@@ -52,7 +114,9 @@
         .footer .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; font-size: 0.85rem; color: #667; }
         .footer .footer-links a:hover { color: #ffd700; }
         .footer .copyright { text-align: center; color: #556; font-size: 0.8rem; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.04); }
-        @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } .grid-2 { grid-template-columns: 1fr; gap: 24px; } .navbar .nav-links { display: none; } }
+
+        @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } .fests-grid { grid-template-columns: 1fr 1fr; gap: 16px; } .navbar .nav-links { display: none; } }
+        @media (max-width: 480px) { .hero h1 { font-size: 1.8rem; } .section-title { font-size: 1.8rem; } .fests-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -71,6 +135,7 @@
             <li><a href="../councils/councils.html">Councils</a></li>
             <li><a href="../cells/cells.html">Cells</a></li>
             <li><a href="fests.html">Fests</a></li>
+            <li><a href="../branches/branches.html">Branches</a></li>
             <li><a href="../senate/senate.html">Senate</a></li>
             <li><a href="../gallery/gallery.html">Gallery</a></li>
             <li><a href="../contact/contact.html">Contact</a></li>
@@ -88,58 +153,31 @@
 
 <section class="hero">
     <div class="container">
-        <h1>Fests</h1>
-        <p>The Gymkhana annually organizes three inter-collegiate festivals for the students of the Institute.</p>
-        <div class="badge"><i class="fas fa-calendar-alt"></i> 3 Major Fests</div>
+        <h1>Fests &amp; Events</h1>
+        <p>Explore the vibrant festival culture of IIT Kanpur — from massive inter-college fests to intra-college championships and departmental celebrations.</p>
+        <div class="badge"><i class="fas fa-calendar-alt"></i> 14+ Major Events</div>
     </div>
 </section>
 
 <section class="content-section">
     <div class="container">
-        <h2 class="section-title">Our <span>Fests</span></h2>
-        <div class="grid-2">
-            <!-- Fest 1: Antaragni -->
-            <div class="card-glass">
-                <h3><i class="fas fa-fire"></i> Antaragni – Cultural Festival</h3>
-                <p><strong>Asia's one of the largest cultural festivals.</strong></p>
-                <ul>
-                    <li><i class="fas fa-check-circle"></i> <strong>Since:</strong> 1965</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Duration:</strong> 4 Days in October</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Attendance:</strong> 30,000+ from 300+ colleges</li>
-                    <li><i class="fas fa-check-circle"></i> Professional Shows & Competitions</li>
-                </ul>
-                <p style="margin-top:12px;"><strong>Official Website:</strong> <a href="https://antaragni.in" target="_blank">antaragni.in</a></p>
-                <a href="antaragni/antaragni.html" class="btn-fest">Learn More →</a>
-            </div>
 
-            <!-- Fest 2: Techkriti -->
-            <div class="card-glass">
-                <h3><i class="fas fa-microchip"></i> Techkriti – Technical & Entrepreneurial Festival</h3>
-                <p><strong>One of Asia's largest technical & entrepreneurial festivals.</strong></p>
-                <ul>
-                    <li><i class="fas fa-check-circle"></i> <strong>Since:</strong> 1995</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Duration:</strong> 4 Days in March</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Attendance:</strong> 40,000+ from India and abroad</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Patron:</strong> UNESCO</li>
-                </ul>
-                <p style="margin-top:12px;"><strong>Official Website:</strong> <a href="https://techkriti.org" target="_blank">techkriti.org</a></p>
-                <a href="techkriti/techkriti.html" class="btn-fest">Learn More →</a>
-            </div>
-
-            <!-- Fest 3: Udghosh - Now same size as others -->
-            <div class="card-glass">
-                <h3><i class="fas fa-trophy"></i> Udghosh – Sports Festival</h3>
-                <p><strong>One of India's largest sports festivals.</strong></p>
-                <ul>
-                    <li><i class="fas fa-check-circle"></i> <strong>Duration:</strong> 4 Days in October</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Participation:</strong> Students from 200+ colleges</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Footfall:</strong> 30,000+</li>
-                    <li><i class="fas fa-check-circle"></i> Multiple sports disciplines</li>
-                </ul>
-                <p style="margin-top:12px;"><strong>Official Website:</strong> <a href="http://www.udghosh.org" target="_blank">udghosh.org</a></p>
-                <a href="udghosh/udghosh.html" class="btn-fest">Learn More →</a>
-            </div>
+        <!-- Category Tabs -->
+        <div class="category-tabs" id="categoryTabs">
+            <span class="category-tab active" data-category="all" onclick="filterCategory('all', this)">All</span>
+            <span class="category-tab" data-category="major" onclick="filterCategory('major', this)">Major Fests</span>
+            <span class="category-tab" data-category="summits" onclick="filterCategory('summits', this)">Summits</span>
+            <span class="category-tab" data-category="interhall" onclick="filterCategory('interhall', this)">Inter-Hall</span>
+            <span class="category-tab" data-category="departmental" onclick="filterCategory('departmental', this)">Departmental</span>
+            <span class="category-tab" data-category="club" onclick="filterCategory('club', this)">Club Events</span>
         </div>
+
+        <!-- Fests Grid -->
+        <div class="fests-grid" id="festsGrid"></div>
+
+        <!-- Stats -->
+        <div class="stats">Showing <span id="visibleCount">0</span> of <span id="totalCount">0</span> events</div>
+
     </div>
 </section>
 
@@ -169,6 +207,7 @@
             <a href="../councils/councils.html">Councils</a>
             <a href="../cells/cells.html">Cells</a>
             <a href="fests.html">Fests</a>
+            <a href="../branches/branches.html">Branches</a>
             <a href="../senate/senate.html">Senate</a>
             <a href="../gallery/gallery.html">Gallery</a>
             <a href="../contact/contact.html">Contact</a>
@@ -178,6 +217,7 @@
 </footer>
 
 <script>
+    // ====== PARTICLES ======
     (function() {
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
@@ -232,6 +272,200 @@
         }
         animate();
     })();
+
+    // ====== FESTS DATA ======
+    const fests = [
+        // Major Fests (3)
+        {
+            name: "Antaragni",
+            icon: "fa-fire",
+            folder: "antaragni",
+            file: "antaragni.html",
+            org: "Cultural Council",
+            desc: "Asia's one of the largest cultural festivals with 30,000+ attendees from 300+ colleges.",
+            tag: "Major",
+            tagClass: "major"
+        },
+        {
+            name: "Techkriti",
+            icon: "fa-microchip",
+            folder: "techkriti",
+            file: "techkriti.html",
+            org: "SnT Council",
+            desc: "One of Asia's largest technical & entrepreneurial festivals with 40,000+ attendees and UNESCO patronage.",
+            tag: "Major",
+            tagClass: "major"
+        },
+        {
+            name: "Udghosh",
+            icon: "fa-trophy",
+            folder: "udghosh",
+            file: "udghosh.html",
+            org: "Games Council",
+            desc: "One of India's largest sports festivals with 30,000+ footfall from 200+ colleges.",
+            tag: "Major",
+            tagClass: "major"
+        },
+
+        // Summits & Conclaves (3)
+        {
+            name: "E-Summit",
+            icon: "fa-rocket",
+            folder: "Summits",
+            file: "e-summit.html",
+            org: "E-Cell",
+            desc: "Annual entrepreneurship summit featuring startups, investors, and business experts from across the country.",
+            tag: "Summit",
+            tagClass: "summits"
+        },
+        {
+            name: "Prabandhan",
+            icon: "fa-handshake",
+            folder: "Summits",
+            file: "prabandhan.html",
+            org: "DoMS",
+            desc: "National management fest with business quizzes, case-study competitions, and corporate interactions.",
+            tag: "Summit",
+            tagClass: "summits"
+        },
+        {
+            name: "Industry 4.0 Summit",
+            icon: "fa-industry",
+            folder: "Summits",
+            file: "industry-summit.html",
+            org: "Technical Council",
+            desc: "Special program discussing new technologies between corporate leaders and institute researchers.",
+            tag: "Summit",
+            tagClass: "summits"
+        },
+
+        // Inter-Hall Championships (4)
+        {
+            name: "Galaxy",
+            icon: "fa-stars",
+            folder: "InterHall",
+            file: "galaxy.html",
+            org: "Inter-Hall Cultural",
+            desc: "Biggest inter-hall cultural and literary championship between all hostels of the campus.",
+            tag: "Inter-Hall",
+            tagClass: "interhall"
+        },
+        {
+            name: "Takneek",
+            icon: "fa-robot",
+            folder: "InterHall",
+            file: "takneek.html",
+            org: "SnT Council",
+            desc: "Inter-hall technical fest where students compete with technical projects representing their hostels.",
+            tag: "Inter-Hall",
+            tagClass: "interhall"
+        },
+        {
+            name: "Inferno",
+            icon: "fa-running",
+            folder: "InterHall",
+            file: "inferno.html",
+            org: "Games Council",
+            desc: "Inter-hall sports championship for sports and athletics enthusiasts across all hostels.",
+            tag: "Inter-Hall",
+            tagClass: "interhall"
+        },
+        {
+            name: "Umang",
+            icon: "fa-film",
+            folder: "InterHall",
+            file: "umang.html",
+            org: "Film Club",
+            desc: "Week-long cinema festival featuring blockbusters and national/international award-winning films.",
+            tag: "Inter-Hall",
+            tagClass: "interhall"
+        },
+
+        // Departmental Fests (2)
+        {
+            name: "Megalith",
+            icon: "fa-mountain",
+            folder: "Departmental",
+            file: "megalith.html",
+            org: "Civil Engineering",
+            desc: "Annual technical festival of the Civil Engineering department.",
+            tag: "Departmental",
+            tagClass: "departmental"
+        },
+        {
+            name: "Artfest",
+            icon: "fa-palette",
+            folder: "Departmental",
+            file: "artfest.html",
+            org: "Fine Arts Club",
+            desc: "Campus-level art and painting festival organized by the Fine Arts Club (FAC).",
+            tag: "Departmental",
+            tagClass: "departmental"
+        },
+
+        // Club Events (2)
+        {
+            name: "Spandan",
+            icon: "fa-music",
+            folder: "Club",
+            file: "spandan.html",
+            org: "Music & Dance Clubs",
+            desc: "Special cultural evenings featuring Indian classical music and dance performances.",
+            tag: "Club",
+            tagClass: "club"
+        },
+        {
+            name: "LITfest",
+            icon: "fa-book",
+            folder: "Club",
+            file: "litfest.html",
+            org: "Literary Society",
+            desc: "Literature festival with debates, poetry recitations, and creative writing workshops.",
+            tag: "Club",
+            tagClass: "club"
+        }
+    ];
+
+    // ====== RENDER CARDS ======
+    const grid = document.getElementById('festsGrid');
+    let currentCategory = 'all';
+
+    function renderFests() {
+        const filtered = fests.filter(f => currentCategory === 'all' || f.tag.toLowerCase() === currentCategory);
+
+        grid.innerHTML = '';
+        filtered.forEach((f, index) => {
+            const card = document.createElement('div');
+            card.className = 'fest-card';
+            card.innerHTML = `
+                <span class="card-number">${String(index + 1).padStart(2, '0')}</span>
+                <div class="icon-wrapper"><i class="fas ${f.icon}"></i></div>
+                <h3>${f.name}</h3>
+                <div class="fest-org"><i class="fas fa-user-tie"></i> ${f.org}</div>
+                <span class="fest-tag ${f.tagClass}">${f.tag}</span>
+                <p class="fest-desc">${f.desc}</p>
+                <a href="${f.folder}/${f.file}" class="btn-explore">Learn More →</a>
+            `;
+            grid.appendChild(card);
+        });
+
+        document.getElementById('visibleCount').textContent = filtered.length;
+        document.getElementById('totalCount').textContent = fests.length;
+    }
+
+    // ====== FILTER FUNCTIONS ======
+    function filterCategory(category, el) {
+        currentCategory = category;
+        document.querySelectorAll('.category-tab').forEach(tab => tab.classList.remove('active'));
+        if (el) el.classList.add('active');
+        else {
+            document.querySelector('.category-tab[data-category="' + category + '"]')?.classList.add('active');
+        }
+        renderFests();
+    }
+
+    // ====== INIT ======
+    renderFests();
 </script>
 
 </body>
