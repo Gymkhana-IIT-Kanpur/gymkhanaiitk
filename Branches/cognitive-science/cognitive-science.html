@@ -3,21 +3,16 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Alumni Association – IIT Kanpur</title>
-    <link rel="icon" type="image/png" href="../assets/images/Alumni-AssociationTM.png" />
+    <title>Cognitive Science – IIT Kanpur</title>
+    <link rel="icon" type="image/png" href="../../assets/images/wuj.jpg" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
-        /* ====== GLOBAL STYLES ====== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a1a; color: #ffffff; overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
         .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
-
-        /* ====== PARTICLE BACKGROUND ====== */
         #particles-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-
-        /* ====== NAVBAR ====== */
         .navbar { position: sticky; top: 0; z-index: 1000; background: rgba(10, 10, 26, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 215, 0, 0.15); padding: 14px 0; }
         .navbar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
         .navbar .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.2rem; color: #fff; }
@@ -28,34 +23,28 @@
         .navbar .social-icons { display: flex; gap: 14px; font-size: 1.15rem; }
         .navbar .social-icons a { color: #b0b8d0; transition: 0.25s; }
         .navbar .social-icons a:hover { color: #ffd700; transform: translateY(-2px); }
-
-        /* ====== HERO SECTION ====== */
-        .hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 0 60px; background: radial-gradient(circle at top, rgba(255,215,0,0.05), transparent 70%); }
+        .hero { min-height: 40vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 0 60px; background: radial-gradient(circle at top, rgba(255,215,0,0.05), transparent 70%); }
         .hero h1 { font-size: 3.5rem; font-weight: 800; background: linear-gradient(135deg, #ffffff 20%, #ffd700 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 60px rgba(255, 215, 0, 0.15); }
         .hero p { color: #a0aac0; font-size: 1.2rem; max-width: 640px; margin: 18px auto 28px; line-height: 1.6; }
-        .hero .logo-big { width: 150px; height: 150px; object-fit: contain; border-radius: 20px; margin-bottom: 24px; filter: drop-shadow(0 0 40px rgba(255,215,0,0.25)); }
         .hero .badge { display: inline-block; padding: 6px 22px; border-radius: 40px; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-size: 0.85rem; font-weight: 500; }
-
-        /* ====== SECTION TITLE ====== */
         .section-title { font-size: 2.6rem; font-weight: 700; text-align: center; margin-bottom: 48px; }
         .section-title span { background: linear-gradient(135deg, #ffd700, #ff8c00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .section-title::after { content: ''; display: block; width: 72px; height: 4px; margin: 12px auto 0; background: linear-gradient(90deg, #ffd700, transparent); border-radius: 4px; }
-
-        /* ====== CONTENT CARDS (Glassmorphism) ====== */
         .content-section { padding: 40px 0 60px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 20px; }
         .card-glass { background: rgba(18, 28, 50, 0.65); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 18px; padding: 30px 26px; transition: 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
         .card-glass:hover { border-color: rgba(255, 215, 0, 0.3); transform: translateY(-6px); box-shadow: 0 12px 44px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255,215,0,0.05); }
-        .card-glass h3 { font-size: 1.4rem; font-weight: 700; color: #ffd700; margin-bottom: 14px; }
+        .card-glass h3 { font-size: 1.2rem; font-weight: 700; color: #ffd700; margin-bottom: 10px; }
         .card-glass h3 i { margin-right: 10px; }
-        .card-glass p { color: #b0bcc8; line-height: 1.7; }
+        .card-glass p { color: #b0bcc8; line-height: 1.7; font-size: 0.95rem; }
         .card-glass ul { list-style: none; padding: 0; margin-top: 10px; }
         .card-glass ul li { padding: 8px 0; color: #b8c0d8; border-bottom: 1px solid rgba(255, 255, 255, 0.04); display: flex; align-items: center; gap: 12px; }
         .card-glass ul li i { color: #ffd700; width: 22px; text-align: center; }
-        .card-glass a { color: #ffd700; transition: 0.2s; }
-        .card-glass a:hover { color: #ffffff; text-decoration: underline; }
-
-        /* ====== FOOTER ====== */
+        .card-glass .icon-large { font-size: 3rem; color: #ffd700; display: block; text-align: center; margin-bottom: 10px; }
+        .card-glass .btn-back { display: inline-block; padding: 8px 20px; border-radius: 30px; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-size: 0.85rem; transition: 0.3s; margin-top: 12px; }
+        .card-glass .btn-back:hover { background: #ffd700; color: #0a0a1a; transform: translateY(-2px); }
+        .card-glass .social-link { display: inline-block; padding: 6px 14px; border-radius: 20px; background: rgba(255, 255, 255, 0.05); color: #b0bcc8; font-size: 0.8rem; transition: 0.3s; margin: 4px; }
+        .card-glass .social-link:hover { background: rgba(255, 215, 0, 0.15); color: #ffd700; }
         .footer { background: rgba(5, 5, 18, 0.95); backdrop-filter: blur(8px); border-top: 1px solid rgba(255, 215, 0, 0.08); padding: 44px 0 24px; margin-top: 60px; }
         .footer .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 24px; margin: 16px 0 24px; }
         .footer .social-links a { color: #8899bb; font-size: 0.95rem; transition: 0.25s; display: flex; align-items: center; gap: 8px; }
@@ -63,8 +52,6 @@
         .footer .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; font-size: 0.85rem; color: #667; }
         .footer .footer-links a:hover { color: #ffd700; }
         .footer .copyright { text-align: center; color: #556; font-size: 0.8rem; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.04); }
-
-        /* ====== RESPONSIVE ====== */
         @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } .grid-2 { grid-template-columns: 1fr; gap: 24px; } .navbar .nav-links { display: none; } }
         @media (max-width: 480px) { .hero h1 { font-size: 1.8rem; } .section-title { font-size: 1.8rem; } }
     </style>
@@ -73,18 +60,22 @@
 
 <canvas id="particles-canvas"></canvas>
 
-<!-- ====== NAVBAR ====== -->
 <nav class="navbar">
     <div class="container">
-        <a href="../index.html" class="logo">
-            <img src="../assets/images/wuj.jpg" alt="Gymkhana IITK" />
+        <a href="../../index.html" class="logo">
+            <img src="../../assets/images/wuj.jpg" alt="Gymkhana IITK" />
             <span>Gymkhana IITK</span>
         </a>
         <ul class="nav-links">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../gymkhana/gymkhana.html">Gymkhana</a></li>
-            <li><a href="../gallery/gallery.html">Gallery</a></li>
-            <li><a href="../contact/contact.html">Contact</a></li>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../gymkhana/gymkhana.html">Gymkhana</a></li>
+            <li><a href="../../councils/councils.html">Councils</a></li>
+            <li><a href="../../cells/cells.html">Cells</a></li>
+            <li><a href="../../fests/fests.html">Fests</a></li>
+            <li><a href="../branches.html">Branches</a></li>
+            <li><a href="../../senate/senate.html">Senate</a></li>
+            <li><a href="../../gallery/gallery.html">Gallery</a></li>
+            <li><a href="../../contact/contact.html">Contact</a></li>
         </ul>
         <div class="social-icons">
             <a href="https://www.instagram.com/gymkhanaiitk" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -97,79 +88,68 @@
     </div>
 </nav>
 
-<!-- ====== HERO SECTION ====== -->
 <section class="hero">
     <div class="container">
-        <img src="../assets/images/Alumni-AssociationTM.png" alt="Alumni Association IITK" class="logo-big" />
-        <h1>Alumni Association IIT Kanpur</h1>
-        <p>Connecting 45,000+ alumni across the globe. Established in March 1967.</p>
-        <div class="badge"><i class="fas fa-calendar-alt"></i> Since 1967</div>
+        <h1>Cognitive Science</h1>
+        <p>Understanding the mind, brain, and intelligence through interdisciplinary research.</p>
+        <div class="badge"><i class="fas fa-brain"></i> Department of Cognitive Science</div>
     </div>
 </section>
 
-<!-- ====== CONTENT (Google Search से प्राप्त) ====== -->
 <section class="content-section">
     <div class="container">
-        <h2 class="section-title">About <span>Alumni Association</span></h2>
+        <h2 class="section-title">About <span>Cognitive Science</span></h2>
         <div class="grid-2">
             <div class="card-glass">
-                <h3><i class="fas fa-users"></i> Who We Are</h3>
-                <p>IIT Kanpur prides itself on the success of its alumni. Established in March 1967, Alumni Association of IITK is an independent registered body of more than 45,000 alumni spanning across the globe.</p>
-                <p style="margin-top:12px;">Our alumni have expanded their wings and reached new heights, be it as entrepreneurs, industrialists, academicians, researchers, social cause champions, bureaucrats etc.</p>
+                <span class="icon-large"><i class="fas fa-info-circle"></i></span>
+                <h3>Overview</h3>
+                <p>The Department of Cognitive Science at IIT Kanpur is dedicated to advancing research and education in the interdisciplinary study of the mind, brain, and intelligence. It is the first such department in the IIT system.</p>
+                <br>
+                <p><strong>Head of Department:</strong> Prof. Ark Verma</p>
+                <br>
+                <p><strong>Email:</strong> <a href="mailto:head_cgs@iitk.ac.in" style="color:#ffd700;">head_cgs@iitk.ac.in</a></p>
             </div>
             <div class="card-glass">
-                <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+                <span class="icon-large"><i class="fas fa-graduation-cap"></i></span>
+                <h3>Academic Programs</h3>
                 <ul>
-                    <li><i class="fas fa-check-circle"></i> To actively promote interaction & networking among its alumni.</li>
-                    <li><i class="fas fa-check-circle"></i> To be a pillar of support in their hour of need.</li>
-                    <li><i class="fas fa-check-circle"></i> To help realize the notion of Giving Back to the Alma mater.</li>
-                    <li><i class="fas fa-check-circle"></i> To contribute to the vision and strengthen the image of IIT Kanpur.</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Ph.D:</strong> Cognitive Science</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>M.A.</strong> Cognitive Science</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Minor:</strong> Cognitive Science (UG)</li>
+                </ul>
+                <br>
+                <p><strong>Official Website:</strong> <a href="https://www.cgs.iitk.ac.in" target="_blank" style="color:#ffd700;">cgs.iitk.ac.in</a></p>
+                <p><strong>Email:</strong> <a href="mailto:head_cgs@iitk.ac.in" style="color:#ffd700;">head_cgs@iitk.ac.in</a></p>
+                <p><strong>Phone:</strong> +91-512-259-6841</p>
+            </div>
+        </div>
+        <div class="grid-2" style="margin-top:20px;">
+            <div class="card-glass">
+                <span class="icon-large"><i class="fas fa-microscope"></i></span>
+                <h3>Research Areas</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Cognitive Neuroscience</li>
+                    <li><i class="fas fa-check-circle"></i> Psycholinguistics & Multilingualism</li>
+                    <li><i class="fas fa-check-circle"></i> Computational Cognitive Science</li>
+                    <li><i class="fas fa-check-circle"></i> Neurobiology of Learning & Memory</li>
+                    <li><i class="fas fa-check-circle"></i> Human-Computer Interaction</li>
+                    <li><i class="fas fa-check-circle"></i> Philosophy of Mind</li>
                 </ul>
             </div>
             <div class="card-glass">
-                <h3><i class="fas fa-hand-holding-heart"></i> Giving Back</h3>
-                <p>The spirit of Giving Back is reflected in every corner of the institute, be it infrastructure development, scholarships (especially to girl students), financial support to various hobby clubs, set-up of different R&D labs and faculty chairs, donations to various community development sectors, environment etc.</p>
-            </div>
-            <div class="card-glass">
-                <h3><i class="fas fa-trophy"></i> Notable Alumni</h3>
-                <ul>
-                    <li><i class="fas fa-user-tie"></i> <strong>N. R. Narayana Murthy</strong> – Founder, Infosys</li>
-                    <li><i class="fas fa-user-tie"></i> <strong>Prof. Ashutosh Sharma</strong> – Padma Shri 2025, President of INSA</li>
-                    <li><i class="fas fa-user-tie"></i> <strong>Mr. Pankaj Gupta</strong> – MD & CEO, Pramerica Life Insurance</li>
-                    <li><i class="fas fa-user-tie"></i> <strong>Mr. Amit Chaudhary</strong> – COO, Wipro</li>
-                    <li><i class="fas fa-user-tie"></i> <strong>Dr. T. Venkatesan</strong> – Distinguished Alumnus</li>
-                </ul>
+                <span class="icon-large"><i class="fas fa-link"></i></span>
+                <h3>Connect With Us</h3>
+                <div style="text-align:center; margin-top:10px;">
+                    <a href="https://www.cgs.iitk.ac.in" target="_blank" class="social-link"><i class="fas fa-globe"></i> Website</a>
+                    <a href="https://www.linkedin.com/company/iitk-cognitive-science" target="_blank" class="social-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                </div>
+                <br>
+                <a href="../branches.html" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Branches</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ====== OFFICIAL LINKS (Alumni Association) ====== -->
-<section class="content-section" style="padding-top:0;">
-    <div class="container">
-        <h2 class="section-title">Official <span>Links</span></h2>
-        <div class="grid-2">
-            <div class="card-glass">
-                <h3><i class="fas fa-globe"></i> Website</h3>
-                <p><a href="https://iitkalumni.org" target="_blank" style="color:#ffd700;">https://iitkalumni.org</a></p>
-            </div>
-            <div class="card-glass">
-                <h3><i class="fab fa-linkedin"></i> LinkedIn (Bangalore Chapter)</h3>
-                <p><a href="https://www.linkedin.com/company/alumni-association-iit-kanpur---bangalore-chapter" target="_blank" style="color:#ffd700;">Alumni Association IIT Kanpur - Bangalore Chapter</a></p>
-            </div>
-            <div class="card-glass">
-                <h3><i class="fas fa-file-alt"></i> Constitution</h3>
-                <p><a href="https://iitkalumni.org/constitution/" target="_blank" style="color:#ffd700;">AA Constitution</a> </p>
-            </div>
-            <div class="card-glass">
-                <h3><i class="fas fa-users"></i> Life Member Benefits</h3>
-                <p><a href="https://iitkalumni.org/benefits" target="_blank" style="color:#ffd700;">Digital Networking, Events & More</a> </p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ====== FOOTER (All Gymkhana Links) ====== -->
 <footer class="footer">
     <div class="container">
         <div class="social-links">
@@ -191,24 +171,27 @@
             <a href="mailto:gymkhana.iitkanpur@gmail.com"><i class="fas fa-envelope"></i> Email</a>
         </div>
         <div class="footer-links">
-            <a href="../index.html">Home</a>
-            <a href="../gymkhana/gymkhana.html">Gymkhana</a>
-            <a href="../gallery/gallery.html">Gallery</a>
-            <a href="../contact/contact.html">Contact</a>
+            <a href="../../index.html">Home</a>
+            <a href="../../gymkhana/gymkhana.html">Gymkhana</a>
+            <a href="../../councils/councils.html">Councils</a>
+            <a href="../../cells/cells.html">Cells</a>
+            <a href="../../fests/fests.html">Fests</a>
+            <a href="../branches.html">Branches</a>
+            <a href="../../senate/senate.html">Senate</a>
+            <a href="../../gallery/gallery.html">Gallery</a>
+            <a href="../../contact/contact.html">Contact</a>
         </div>
         <div class="copyright">&copy; 2026 Students' Gymkhana — IIT Kanpur. All rights reserved.</div>
     </div>
 </footer>
 
 <script>
-    // ====== PARTICLES BACKGROUND ======
     (function() {
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
         let w, h, particles = [];
         function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
         window.addEventListener('resize', resize); resize();
-
         class Particle {
             constructor() { this.reset(); }
             reset() {
@@ -233,7 +216,6 @@
             }
         }
         for (let i = 0; i < 130; i++) particles.push(new Particle());
-
         function animate() {
             ctx.clearRect(0, 0, w, h);
             particles.forEach(p => { p.update(); p.draw(); });
