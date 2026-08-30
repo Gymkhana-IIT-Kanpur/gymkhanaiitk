@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Students' Senate – IIT Kanpur</title>
+    <title>Gallery – IIT Kanpur</title>
     <link rel="icon" type="image/png" href="../assets/images/wuj.jpg" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -29,7 +29,6 @@
         .hero { min-height: 40vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 0 60px; background: radial-gradient(circle at top, rgba(255,215,0,0.05), transparent 70%); }
         .hero h1 { font-size: 3.5rem; font-weight: 800; background: linear-gradient(135deg, #ffffff 20%, #ffd700 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 60px rgba(255, 215, 0, 0.15); }
         .hero p { color: #a0aac0; font-size: 1.2rem; max-width: 640px; margin: 18px auto 28px; line-height: 1.6; }
-        .hero .badge { display: inline-block; padding: 6px 22px; border-radius: 40px; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-size: 0.85rem; font-weight: 500; }
 
         .section-title { font-size: 2.6rem; font-weight: 700; text-align: center; margin-bottom: 48px; }
         .section-title span { background: linear-gradient(135deg, #ffd700, #ff8c00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -37,16 +36,24 @@
 
         .content-section { padding: 40px 0 60px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 20px; }
         .card-glass { background: rgba(18, 28, 50, 0.65); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 18px; padding: 30px 26px; transition: 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
         .card-glass:hover { border-color: rgba(255, 215, 0, 0.3); transform: translateY(-6px); box-shadow: 0 12px 44px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255,215,0,0.05); }
-        .card-glass h3 { font-size: 1.4rem; font-weight: 700; color: #ffd700; margin-bottom: 14px; }
+        .card-glass h3 { font-size: 1.3rem; font-weight: 700; color: #ffd700; margin-bottom: 12px; }
         .card-glass h3 i { margin-right: 10px; }
-        .card-glass p { color: #b0bcc8; line-height: 1.7; }
-        .card-glass ul { list-style: none; padding: 0; margin-top: 10px; }
-        .card-glass ul li { padding: 8px 0; color: #b8c0d8; border-bottom: 1px solid rgba(255, 255, 255, 0.04); display: flex; align-items: center; gap: 12px; }
-        .card-glass ul li i { color: #ffd700; width: 22px; text-align: center; }
+        .card-glass p { color: #b0bcc8; line-height: 1.6; }
+        .card-glass .icon-large { font-size: 2.5rem; color: #ffd700; margin-bottom: 12px; display: block; }
         .card-glass a { color: #ffd700; transition: 0.2s; }
         .card-glass a:hover { color: #ffffff; text-decoration: underline; }
+
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px; padding: 20px 0; }
+        .gallery-item { position: relative; border-radius: 16px; overflow: hidden; background: rgba(18, 28, 50, 0.65); border: 1px solid rgba(255, 255, 255, 0.06); transition: 0.3s ease; cursor: pointer; }
+        .gallery-item:hover { transform: translateY(-6px); border-color: rgba(255, 215, 0, 0.3); box-shadow: 0 12px 44px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255,215,0,0.05); }
+        .gallery-item img { width: 100%; height: 220px; object-fit: cover; display: block; }
+        .gallery-item .overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 16px; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: #fff; opacity: 0; transition: 0.3s ease; }
+        .gallery-item:hover .overlay { opacity: 1; }
+        .gallery-item .overlay h4 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+        .gallery-item .overlay p { font-size: 0.8rem; color: #b0bcc8; }
 
         .footer { background: rgba(5, 5, 18, 0.95); backdrop-filter: blur(8px); border-top: 1px solid rgba(255, 215, 0, 0.08); padding: 44px 0 24px; margin-top: 60px; }
         .footer .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 24px; margin: 16px 0 24px; }
@@ -56,7 +63,7 @@
         .footer .footer-links a:hover { color: #ffd700; }
         .footer .copyright { text-align: center; color: #556; font-size: 0.8rem; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.04); }
 
-        @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } .grid-2 { grid-template-columns: 1fr; gap: 24px; } .navbar .nav-links { display: none; } }
+        @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } .grid-2, .grid-4 { grid-template-columns: 1fr; gap: 24px; } .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); } .navbar .nav-links { display: none; } }
         @media (max-width: 480px) { .hero h1 { font-size: 1.8rem; } .section-title { font-size: 1.8rem; } }
     </style>
 </head>
@@ -74,8 +81,11 @@
         <ul class="nav-links">
             <li><a href="../index.html">Home</a></li>
             <li><a href="../gymkhana/gymkhana.html">Gymkhana</a></li>
+            <li><a href="../councils/councils.html">Councils</a></li>
+            <li><a href="../cells/cells.html">Cells</a></li>
+            <li><a href="../fests/fests.html">Fests</a></li>
             <li><a href="../senate/senate.html">Senate</a></li>
-            <li><a href="../gallery/gallery.html">Gallery</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
             <li><a href="../contact/contact.html">Contact</a></li>
         </ul>
         <div class="social-icons">
@@ -92,62 +102,80 @@
 <!-- ====== HERO SECTION ====== -->
 <section class="hero">
     <div class="container">
-        <h1>Students' Senate</h1>
-        <p>The Students' Senate is an elected student representative body composed of Senators (batch representatives) elected from each batch and the five Gymkhana executives.</p>
-        <div class="badge"><i class="fas fa-users"></i> Elected Representatives</div>
+        <h1>Gallery</h1>
+        <p>Explore the vibrant life and culture of IIT Kanpur through our collection of images.</p>
     </div>
 </section>
 
-<!-- ====== SENATE SECTION ====== -->
+<!-- ====== GALLERY SECTION ====== -->
 <section class="content-section">
     <div class="container">
-        <h2 class="section-title">About <span>Senate</span></h2>
-        <div class="grid-2">
-            <div class="card-glass">
-                <h3><i class="fas fa-info-circle"></i> Overview</h3>
-                <p>The Students' Senate is an elected student representative body composed of Senators (batch representatives) elected from each batch and the five Gymkhana executives. It keeps a check on the functioning of the executive wings and functions as the central policy making body.</p>
-                <p style="margin-top:12px;">The Senate lays down the guidelines for the functions of the executives, their associated councils, the Gymkhana Festivals and other matters pertaining to the Student body at large.</p>
-            </div>
-            <div class="card-glass">
-                <h3><i class="fas fa-gavel"></i> Key Responsibilities</h3>
-                <ul>
-                    <li><i class="fas fa-check-circle"></i> Institute Education Policy</li>
-                    <li><i class="fas fa-check-circle"></i> Hostels</li>
-                    <li><i class="fas fa-check-circle"></i> Gymkhana Festivals</li>
-                    <li><i class="fas fa-check-circle"></i> Security and Health</li>
-                    <li><i class="fas fa-check-circle"></i> And anything that relates to student life</li>
-                </ul>
-            </div>
-            <div class="card-glass" style="grid-column: 1 / -1;">
-                <h3><i class="fas fa-handshake"></i> Role in Institute</h3>
-                <p>The Students' Senate has a say in the policy and decision making bodies of the institute. The Senate acts on many important issues pertaining to students at IIT Kanpur. On all issues, Students' Senate serves as the forum of expression for the students and the decisions of the Senate represent the voice of the students at all forums.</p>
-            </div>
+        <h2 class="section-title">Image <span>Gallery</span></h2>
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Gallery items will be loaded by JavaScript -->
         </div>
     </div>
 </section>
 
-<!-- ====== OFFICIAL LINKS ====== -->
+<!-- ====== OFFICIAL LINKS SECTION ====== -->
 <section class="content-section" style="padding-top:0;">
     <div class="container">
         <h2 class="section-title">Official <span>Links</span></h2>
         <div class="grid-2">
-            <div class="card-glass">
-                <h3><i class="fas fa-globe"></i> Website</h3>
-                <p><a href="https://students.iitk.ac.in/ss/home" target="_blank" style="color:#ffd700;">students.iitk.ac.in/ss/home</a> </p>
-            </div>
-            <div class="card-glass">
-                <h3><i class="fas fa-file-alt"></i> Constitution</h3>
-                <p><a href="https://students.iitk.ac.in/ss/home/constitution/" target="_blank" style="color:#ffd700;">Students' Senate Constitution</a> </p>
-            </div>
-            <div class="card-glass">
-                <h3><i class="fas fa-envelope"></i> Email</h3>
-                <p><a href="mailto:gymkhana.iitkanpur@gmail.com" style="color:#ffd700;">gymkhana.iitkanpur@gmail.com</a> </p>
-            </div>
+            <a href="https://www.instagram.com/gymkhanaiitk" target="_blank" class="card-glass" style="text-align:center;">
+                <span class="icon-large"><i class="fab fa-instagram"></i></span>
+                <h3>Instagram</h3>
+                <p>Follow us on Instagram<br /><span style="color:#ffd700;">@gymkhanaiitk</span></p>
+            </a>
+            <a href="https://www.facebook.com/IITKGymkhana" target="_blank" class="card-glass" style="text-align:center;">
+                <span class="icon-large"><i class="fab fa-facebook"></i></span>
+                <h3>Facebook</h3>
+                <p>Like our page on Facebook<br /><span style="color:#ffd700;">IITKGymkhana</span></p>
+            </a>
         </div>
     </div>
 </section>
 
-<!-- ====== FOOTER (All Gymkhana Links) ====== -->
+<!-- ====== EXPLORE ORGANIZATION SECTION ====== -->
+<section class="content-section" style="padding-top:0;">
+    <div class="container">
+        <h2 class="section-title">Explore <span>Our Organization</span></h2>
+        <div class="grid-4">
+            <a href="../gymkhana/gymkhana.html" class="card-glass" style="text-align:center;">
+                <span class="icon-large"><i class="fas fa-landmark"></i></span>
+                <h3>Gymkhana</h3>
+                <p>Overview of the student government</p>
+            </a>
+            <a href="../councils/councils.html" class="card-glass" style="text-align:center;">
+                <span class="icon-large"><i class="fas fa-sitemap"></i></span>
+                <h3>Councils</h3>
+                <p>4 Councils, 20+ Clubs</p>
+            </a>
+            <a href="../cells/cells.html" class="card-glass" style="text-align:center;">
+                <span class="icon-large"><i class="fas fa-cubes"></i></span>
+                <h3>Cells</h3>
+                <p>5 Specialized Cells</p>
+            </a>
+            <a href="../fests/fests.html" class="card-glass" style="text-align:center;">
+                <span class="icon-large"><i class="fas fa-calendar-alt"></i></span>
+                <h3>Fests</h3>
+                <p>Antaragni, Techkriti, Udghosh</p>
+            </a>
+            <a href="../senate/senate.html" class="card-glass" style="text-align:center;">
+                <span class="icon-large"><i class="fas fa-users"></i></span>
+                <h3>Senate</h3>
+                <p>Elected Student Representatives</p>
+            </a>
+            <a href="../contact/contact.html" class="card-glass" style="text-align:center;">
+                <span class="icon-large"><i class="fas fa-envelope"></i></span>
+                <h3>Contact</h3>
+                <p>Reach out to us</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
 <footer class="footer">
     <div class="container">
         <div class="social-links">
@@ -171,8 +199,11 @@
         <div class="footer-links">
             <a href="../index.html">Home</a>
             <a href="../gymkhana/gymkhana.html">Gymkhana</a>
+            <a href="../councils/councils.html">Councils</a>
+            <a href="../cells/cells.html">Cells</a>
+            <a href="../fests/fests.html">Fests</a>
             <a href="../senate/senate.html">Senate</a>
-            <a href="../gallery/gallery.html">Gallery</a>
+            <a href="gallery.html">Gallery</a>
             <a href="../contact/contact.html">Contact</a>
         </div>
         <div class="copyright">&copy; 2026 Students' Gymkhana — IIT Kanpur. All rights reserved.</div>
@@ -235,6 +266,50 @@
         }
         animate();
     })();
+
+    // ====== GALLERY DATA ======
+    const galleryItems = [
+        { src: '../assets/images/wuj.jpg', title: 'Gymkhana Logo', category: 'Logo' },
+        { src: '../assets/images/Alumni-AssociationTM.png', title: 'Alumni Association', category: 'Alumni' },
+        { src: '../assets/images/antaragsniiitk.jpg', title: 'Antaragni', category: 'Festival' },
+        { src: '../assets/images/techkriti.jpg', title: 'Techkriti', category: 'Festival' },
+        { src: '../assets/images/udghosiitk.jpg', title: 'Udghosh', category: 'Festival' },
+        { src: '../assets/images/EMC_Logo-TM.jpg', title: 'EMC', category: 'Council' },
+        { src: '../assets/images/smclogoR1-2.png', title: 'SMC', category: 'Council' },
+        { src: '../assets/images/tac-learn.png', title: 'TAC', category: 'Council' },
+        { src: '../assets/images/DoMS_TM.png', title: 'DoMS', category: 'Department' },
+        { src: '../assets/images/ICFMCF.png', title: 'ICFMCF', category: 'Conference' },
+        { src: '../assets/images/Prabandhan_TM.png', title: 'Prabandhan', category: 'Festival' },
+        { src: '../assets/images/siicR.png', title: 'SIIC', category: 'Incubation' },
+        { src: '../assets/images/C3i-r.jpg', title: 'C3i Hub', category: 'Research' },
+        { src: '../assets/images/flexeTM.png', title: 'FLEXE', category: 'Research' },
+        { src: '../assets/images/medtechitk.jpg', title: 'MedTech', category: 'Research' },
+        { src: '../assets/images/National-Blockchain-Project.png', title: 'Blockchain Project', category: 'Project' },
+        { src: '../assets/images/gangvaliitk.jpg', title: 'Gangwal School', category: 'Department' },
+        { src: '../assets/images/SBERTC.png', title: 'SBERTC', category: 'Centre' },
+        { src: '../assets/images/RTS.png', title: 'RTSA', category: 'Project' },
+        { src: '../assets/images/Karma.png', title: 'Karma', category: 'Trademark' },
+        { src: '../assets/images/Paridhi.png', title: 'Paridhi', category: 'Trademark' },
+        { src: '../assets/images/e_ictTM.png', title: 'e-Masters', category: 'Program' },
+        { src: '../assets/images/mookitR.png', title: 'MooKIT', category: 'Product' },
+        { src: '../assets/images/Bhu-Parikshak.jpg', title: 'Bhu-Parikshak', category: 'Product' },
+        { src: '../assets/images/bluelogoR.png', title: 'IITK Blue Logo', category: 'Logo' },
+        { src: '../assets/images/redlogoR.png', title: 'IITK Red Logo', category: 'Logo' }
+    ];
+
+    const grid = document.getElementById('galleryGrid');
+    galleryItems.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'gallery-item';
+        div.innerHTML = `
+            <img src="${item.src}" alt="${item.title}" onerror="this.src='../assets/images/default.png'" />
+            <div class="overlay">
+                <h4>${item.title}</h4>
+                <p>${item.category}</p>
+            </div>
+        `;
+        grid.appendChild(div);
+    });
 </script>
 
 </body>

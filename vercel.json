@@ -1,0 +1,10 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/:path*[A-Z]:path*",
+      "destination": "/:path*",
+      "permanent": true
+    }
+  ]
+}

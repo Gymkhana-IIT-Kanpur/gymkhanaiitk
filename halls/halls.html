@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Students' Senate – IIT Kanpur</title>
+    <title>Hostels – IIT Kanpur</title>
     <link rel="icon" type="image/png" href="../assets/images/wuj.jpg" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -12,7 +12,6 @@
         body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a1a; color: #ffffff; overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
         .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
-
         #particles-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
 
         .navbar { position: sticky; top: 0; z-index: 1000; background: rgba(10, 10, 26, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 215, 0, 0.15); padding: 14px 0; }
@@ -26,27 +25,82 @@
         .navbar .social-icons a { color: #b0b8d0; transition: 0.25s; }
         .navbar .social-icons a:hover { color: #ffd700; transform: translateY(-2px); }
 
-        .hero { min-height: 40vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 0 60px; background: radial-gradient(circle at top, rgba(255,215,0,0.05), transparent 70%); }
+        .hero { min-height: 35vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 0 60px; background: radial-gradient(circle at top, rgba(255,215,0,0.05), transparent 70%); }
         .hero h1 { font-size: 3.5rem; font-weight: 800; background: linear-gradient(135deg, #ffffff 20%, #ffd700 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 60px rgba(255, 215, 0, 0.15); }
         .hero p { color: #a0aac0; font-size: 1.2rem; max-width: 640px; margin: 18px auto 28px; line-height: 1.6; }
         .hero .badge { display: inline-block; padding: 6px 22px; border-radius: 40px; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-size: 0.85rem; font-weight: 500; }
 
-        .section-title { font-size: 2.6rem; font-weight: 700; text-align: center; margin-bottom: 48px; }
+        .section-title { font-size: 2.6rem; font-weight: 700; text-align: center; margin-bottom: 40px; }
         .section-title span { background: linear-gradient(135deg, #ffd700, #ff8c00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .section-title::after { content: ''; display: block; width: 72px; height: 4px; margin: 12px auto 0; background: linear-gradient(90deg, #ffd700, transparent); border-radius: 4px; }
 
-        .content-section { padding: 40px 0 60px; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 20px; }
-        .card-glass { background: rgba(18, 28, 50, 0.65); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 18px; padding: 30px 26px; transition: 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
-        .card-glass:hover { border-color: rgba(255, 215, 0, 0.3); transform: translateY(-6px); box-shadow: 0 12px 44px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255,215,0,0.05); }
-        .card-glass h3 { font-size: 1.4rem; font-weight: 700; color: #ffd700; margin-bottom: 14px; }
-        .card-glass h3 i { margin-right: 10px; }
-        .card-glass p { color: #b0bcc8; line-height: 1.7; }
-        .card-glass ul { list-style: none; padding: 0; margin-top: 10px; }
-        .card-glass ul li { padding: 8px 0; color: #b8c0d8; border-bottom: 1px solid rgba(255, 255, 255, 0.04); display: flex; align-items: center; gap: 12px; }
-        .card-glass ul li i { color: #ffd700; width: 22px; text-align: center; }
-        .card-glass a { color: #ffd700; transition: 0.2s; }
-        .card-glass a:hover { color: #ffffff; text-decoration: underline; }
+        .content-section { padding: 30px 0 60px; }
+        .category-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 40px; }
+        .category-tab { padding: 8px 24px; border-radius: 40px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.08); color: #b0bcc8; font-size: 0.85rem; cursor: pointer; transition: 0.3s; }
+        .category-tab:hover { background: rgba(255, 215, 0, 0.1); border-color: rgba(255, 215, 0, 0.3); color: #ffd700; }
+        .category-tab.active { background: rgba(255, 215, 0, 0.15); border-color: #ffd700; color: #ffd700; }
+
+        .halls-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px; margin-top: 10px; }
+
+        .hall-card {
+            background: rgba(18, 28, 50, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 18px;
+            padding: 24px 20px;
+            transition: 0.35s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .hall-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ffd700, transparent);
+            opacity: 0;
+            transition: 0.4s;
+        }
+        .hall-card:hover::before { opacity: 1; }
+        .hall-card:hover {
+            border-color: rgba(255, 215, 0, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 215, 0, 0.05);
+        }
+
+        .hall-card .icon-wrapper {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: rgba(255, 215, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 1.6rem;
+            color: #ffd700;
+            transition: 0.3s;
+        }
+        .hall-card:hover .icon-wrapper { background: rgba(255, 215, 0, 0.2); transform: scale(1.05); }
+
+        .hall-card h3 { font-size: 1.1rem; font-weight: 700; color: #ffffff; margin-bottom: 4px; }
+        .hall-card .hall-type { font-size: 0.75rem; color: #8899bb; margin-bottom: 8px; }
+        .hall-card .hall-type i { margin-right: 4px; color: #ffd700; }
+
+        .hall-card .hall-tag { display: inline-block; padding: 3px 12px; border-radius: 20px; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.3px; margin-bottom: 10px; text-transform: uppercase; }
+        .hall-tag.boys { background: rgba(68, 130, 255, 0.15); color: #6ba6ff; border: 1px solid rgba(68, 130, 255, 0.2); }
+        .hall-tag.girls { background: rgba(255, 68, 180, 0.15); color: #ff6bcd; border: 1px solid rgba(255, 68, 180, 0.2); }
+
+        .hall-card .btn-explore { display: inline-block; padding: 6px 20px; border-radius: 30px; background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-size: 0.75rem; font-weight: 500; transition: 0.3s; }
+        .hall-card .btn-explore:hover { background: #ffd700; color: #0a0a1a; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255, 215, 0, 0.2); }
+
+        .hall-card .card-number { position: absolute; top: 10px; right: 14px; font-size: 0.6rem; color: rgba(255, 255, 255, 0.06); font-weight: 700; }
+
+        .stats { text-align: center; color: #556; font-size: 0.9rem; margin-top: 30px; }
+        .stats span { color: #ffd700; font-weight: 600; }
 
         .footer { background: rgba(5, 5, 18, 0.95); backdrop-filter: blur(8px); border-top: 1px solid rgba(255, 215, 0, 0.08); padding: 44px 0 24px; margin-top: 60px; }
         .footer .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 24px; margin: 16px 0 24px; }
@@ -56,15 +110,14 @@
         .footer .footer-links a:hover { color: #ffd700; }
         .footer .copyright { text-align: center; color: #556; font-size: 0.8rem; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.04); }
 
-        @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } .grid-2 { grid-template-columns: 1fr; gap: 24px; } .navbar .nav-links { display: none; } }
-        @media (max-width: 480px) { .hero h1 { font-size: 1.8rem; } .section-title { font-size: 1.8rem; } }
+        @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } .halls-grid { grid-template-columns: 1fr 1fr; gap: 16px; } .navbar .nav-links { display: none; } }
+        @media (max-width: 480px) { .hero h1 { font-size: 1.8rem; } .section-title { font-size: 1.8rem; } .halls-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <canvas id="particles-canvas"></canvas>
 
-<!-- ====== NAVBAR ====== -->
 <nav class="navbar">
     <div class="container">
         <a href="../index.html" class="logo">
@@ -74,7 +127,12 @@
         <ul class="nav-links">
             <li><a href="../index.html">Home</a></li>
             <li><a href="../gymkhana/gymkhana.html">Gymkhana</a></li>
+            <li><a href="../councils/councils.html">Councils</a></li>
+            <li><a href="../cells/cells.html">Cells</a></li>
+            <li><a href="../fests/fests.html">Fests</a></li>
+            <li><a href="../branches/branches.html">Branches</a></li>
             <li><a href="../senate/senate.html">Senate</a></li>
+            <li><a href="halls.html">Hostels</a></li>
             <li><a href="../gallery/gallery.html">Gallery</a></li>
             <li><a href="../contact/contact.html">Contact</a></li>
         </ul>
@@ -89,65 +147,30 @@
     </div>
 </nav>
 
-<!-- ====== HERO SECTION ====== -->
 <section class="hero">
     <div class="container">
-        <h1>Students' Senate</h1>
-        <p>The Students' Senate is an elected student representative body composed of Senators (batch representatives) elected from each batch and the five Gymkhana executives.</p>
-        <div class="badge"><i class="fas fa-users"></i> Elected Representatives</div>
+        <h1>Hostels at IIT Kanpur</h1>
+        <p>Explore the vibrant hostel life across 14 residential halls at IIT Kanpur.</p>
+        <div class="badge"><i class="fas fa-home"></i> 11 Boys + 3 Girls Hostels</div>
     </div>
 </section>
 
-<!-- ====== SENATE SECTION ====== -->
 <section class="content-section">
     <div class="container">
-        <h2 class="section-title">About <span>Senate</span></h2>
-        <div class="grid-2">
-            <div class="card-glass">
-                <h3><i class="fas fa-info-circle"></i> Overview</h3>
-                <p>The Students' Senate is an elected student representative body composed of Senators (batch representatives) elected from each batch and the five Gymkhana executives. It keeps a check on the functioning of the executive wings and functions as the central policy making body.</p>
-                <p style="margin-top:12px;">The Senate lays down the guidelines for the functions of the executives, their associated councils, the Gymkhana Festivals and other matters pertaining to the Student body at large.</p>
-            </div>
-            <div class="card-glass">
-                <h3><i class="fas fa-gavel"></i> Key Responsibilities</h3>
-                <ul>
-                    <li><i class="fas fa-check-circle"></i> Institute Education Policy</li>
-                    <li><i class="fas fa-check-circle"></i> Hostels</li>
-                    <li><i class="fas fa-check-circle"></i> Gymkhana Festivals</li>
-                    <li><i class="fas fa-check-circle"></i> Security and Health</li>
-                    <li><i class="fas fa-check-circle"></i> And anything that relates to student life</li>
-                </ul>
-            </div>
-            <div class="card-glass" style="grid-column: 1 / -1;">
-                <h3><i class="fas fa-handshake"></i> Role in Institute</h3>
-                <p>The Students' Senate has a say in the policy and decision making bodies of the institute. The Senate acts on many important issues pertaining to students at IIT Kanpur. On all issues, Students' Senate serves as the forum of expression for the students and the decisions of the Senate represent the voice of the students at all forums.</p>
-            </div>
+        <h2 class="section-title">Our <span>Hostels</span></h2>
+
+        <div class="category-tabs" id="categoryTabs">
+            <span class="category-tab active" data-category="all" onclick="filterCategory('all', this)">All</span>
+            <span class="category-tab" data-category="boys" onclick="filterCategory('boys', this)">Boys Hostels</span>
+            <span class="category-tab" data-category="girls" onclick="filterCategory('girls', this)">Girls Hostels</span>
         </div>
+
+        <div class="halls-grid" id="hallsGrid"></div>
+
+        <div class="stats">Showing <span id="visibleCount">0</span> of <span id="totalCount">0</span> hostels</div>
     </div>
 </section>
 
-<!-- ====== OFFICIAL LINKS ====== -->
-<section class="content-section" style="padding-top:0;">
-    <div class="container">
-        <h2 class="section-title">Official <span>Links</span></h2>
-        <div class="grid-2">
-            <div class="card-glass">
-                <h3><i class="fas fa-globe"></i> Website</h3>
-                <p><a href="https://students.iitk.ac.in/ss/home" target="_blank" style="color:#ffd700;">students.iitk.ac.in/ss/home</a> </p>
-            </div>
-            <div class="card-glass">
-                <h3><i class="fas fa-file-alt"></i> Constitution</h3>
-                <p><a href="https://students.iitk.ac.in/ss/home/constitution/" target="_blank" style="color:#ffd700;">Students' Senate Constitution</a> </p>
-            </div>
-            <div class="card-glass">
-                <h3><i class="fas fa-envelope"></i> Email</h3>
-                <p><a href="mailto:gymkhana.iitkanpur@gmail.com" style="color:#ffd700;">gymkhana.iitkanpur@gmail.com</a> </p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ====== FOOTER (All Gymkhana Links) ====== -->
 <footer class="footer">
     <div class="container">
         <div class="social-links">
@@ -171,7 +194,12 @@
         <div class="footer-links">
             <a href="../index.html">Home</a>
             <a href="../gymkhana/gymkhana.html">Gymkhana</a>
+            <a href="../councils/councils.html">Councils</a>
+            <a href="../cells/cells.html">Cells</a>
+            <a href="../fests/fests.html">Fests</a>
+            <a href="../branches/branches.html">Branches</a>
             <a href="../senate/senate.html">Senate</a>
+            <a href="halls.html">Hostels</a>
             <a href="../gallery/gallery.html">Gallery</a>
             <a href="../contact/contact.html">Contact</a>
         </div>
@@ -235,6 +263,60 @@
         }
         animate();
     })();
+
+    // ====== HALLS DATA ======
+    const halls = [
+        { name: "Hall 1", icon: "fa-building", folder: "hall-1", type: "Boys", tagClass: "boys", number: "01" },
+        { name: "Hall 2", icon: "fa-building", folder: "hall-2", type: "Boys", tagClass: "boys", number: "02" },
+        { name: "Hall 3", icon: "fa-building", folder: "hall-3", type: "Boys", tagClass: "boys", number: "03" },
+        { name: "Hall 4", icon: "fa-building", folder: "hall-4", type: "Girls", tagClass: "girls", number: "04" },
+        { name: "Hall 5", icon: "fa-building", folder: "hall-5", type: "Boys", tagClass: "boys", number: "05" },
+        { name: "Hall 7", icon: "fa-building", folder: "hall-7", type: "Boys", tagClass: "boys", number: "07" },
+        { name: "Hall 8", icon: "fa-building", folder: "hall-8", type: "Boys", tagClass: "boys", number: "08" },
+        { name: "Hall 9", icon: "fa-building", folder: "hall-9", type: "Boys", tagClass: "boys", number: "09" },
+        { name: "Hall 10", icon: "fa-building", folder: "hall-10", type: "Boys", tagClass: "boys", number: "10" },
+        { name: "Hall 11", icon: "fa-building", folder: "hall-11", type: "Boys", tagClass: "boys", number: "11" },
+        { name: "Hall 12", icon: "fa-building", folder: "hall-12", type: "Boys", tagClass: "boys", number: "12" },
+        { name: "Hall 13", icon: "fa-building", folder: "hall-13", type: "Boys", tagClass: "boys", number: "13" },
+        { name: "Girls Hostel 1", icon: "fa-building", folder: "gh-1", type: "Girls", tagClass: "girls", number: "G1" },
+        { name: "GH Tower (Girls Hostel 2)", icon: "fa-building", folder: "gh-tower", type: "Girls", tagClass: "girls", number: "G2" }
+    ];
+
+    // ====== RENDER CARDS ======
+    const grid = document.getElementById('hallsGrid');
+    let currentCategory = 'all';
+
+    function renderHalls() {
+        const filtered = halls.filter(h => currentCategory === 'all' || h.type.toLowerCase() === currentCategory);
+
+        grid.innerHTML = '';
+        filtered.forEach((hall, index) => {
+            const card = document.createElement('div');
+            card.className = 'hall-card';
+            card.innerHTML = `
+                <span class="card-number">${hall.number}</span>
+                <div class="icon-wrapper"><i class="fas ${hall.icon}"></i></div>
+                <h3>${hall.name}</h3>
+                <div class="hall-type"><i class="fas fa-${hall.type === 'Boys' ? 'male' : 'female'}"></i> ${hall.type} Hostel</div>
+                <span class="hall-tag ${hall.tagClass}">${hall.type}</span>
+                <a href="${hall.folder}/${hall.folder}.html" class="btn-explore">Explore →</a>
+            `;
+            grid.appendChild(card);
+        });
+
+        document.getElementById('visibleCount').textContent = filtered.length;
+        document.getElementById('totalCount').textContent = halls.length;
+    }
+
+    // ====== FILTER FUNCTIONS ======
+    function filterCategory(category, el) {
+        currentCategory = category;
+        document.querySelectorAll('.category-tab').forEach(tab => tab.classList.remove('active'));
+        if (el) el.classList.add('active');
+        renderHalls();
+    }
+
+    renderHalls();
 </script>
 
 </body>
