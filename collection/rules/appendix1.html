@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Rules & Procedures I – Students' Gymkhana IITK</title>
+    <link rel="icon" type="image/png" href="../../assets/images/wuj.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a1a; color: #ffffff; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        #particles-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        .navbar { position: sticky; top: 0; z-index: 1000; background: rgba(10, 10, 26, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 215, 0, 0.15); padding: 14px 0; }
+        .navbar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.2rem; color: #fff; }
+        .navbar .logo img { height: 44px; border-radius: 10px; filter: drop-shadow(0 0 12px rgba(255,215,0,0.3)); }
+        .navbar .nav-links { display: flex; flex-wrap: wrap; gap: 6px 18px; list-style: none; }
+        .navbar .nav-links a { color: #b0b8d0; font-size: 0.95rem; font-weight: 500; padding: 6px 0; border-bottom: 2px solid transparent; transition: 0.25s; }
+        .navbar .nav-links a:hover { color: #ffd700; border-bottom-color: #ffd700; }
+        .navbar .social-icons { display: flex; gap: 14px; font-size: 1.15rem; }
+        .navbar .social-icons a { color: #b0b8d0; transition: 0.25s; }
+        .navbar .social-icons a:hover { color: #ffd700; transform: translateY(-2px); }
+        .hero { min-height: 30vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 0 60px; background: radial-gradient(circle at top, rgba(255,215,0,0.05), transparent 70%); }
+        .hero h1 { font-size: 3rem; font-weight: 800; background: linear-gradient(135deg, #ffffff 20%, #ffd700 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 60px rgba(255, 215, 0, 0.15); }
+        .hero p { color: #a0aac0; font-size: 1.1rem; max-width: 640px; margin: 18px auto 28px; line-height: 1.6; }
+        .hero .badge { display: inline-block; padding: 6px 22px; border-radius: 40px; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-size: 0.85rem; font-weight: 500; }
+        .section-title { font-size: 2.2rem; font-weight: 700; text-align: center; margin-bottom: 40px; }
+        .section-title span { background: linear-gradient(135deg, #ffd700, #ff8c00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .section-title::after { content: ''; display: block; width: 72px; height: 4px; margin: 12px auto 0; background: linear-gradient(90deg, #ffd700, transparent); border-radius: 4px; }
+        .content-section { padding: 40px 0 60px; }
+        .card-glass { background: rgba(18, 28, 50, 0.65); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 18px; padding: 30px 26px; transition: 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.2); margin-bottom: 24px; }
+        .card-glass:hover { border-color: rgba(255, 215, 0, 0.3); transform: translateY(-4px); box-shadow: 0 12px 44px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255,215,0,0.05); }
+        .card-glass h2 { font-size: 1.5rem; font-weight: 700; color: #ffd700; margin-bottom: 16px; border-bottom: 1px solid rgba(255, 215, 0, 0.2); padding-bottom: 12px; }
+        .card-glass h3 { font-size: 1.1rem; font-weight: 600; color: #ffd700; margin-top: 20px; margin-bottom: 10px; }
+        .card-glass p, .card-glass li { color: #b0bcc8; line-height: 1.7; font-size: 0.95rem; }
+        .card-glass ul { list-style: none; padding: 0; margin: 10px 0; }
+        .card-glass ul li { padding: 6px 0; padding-left: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); position: relative; }
+        .card-glass ul li::before { content: '▸'; color: #ffd700; position: absolute; left: 0; }
+        .card-glass .section-number { color: #ffd700; font-weight: 700; margin-right: 8px; }
+        .btn-download { display: inline-block; padding: 12px 32px; border-radius: 40px; background: linear-gradient(135deg, #ffd700, #f0a500); color: #0a0a1a; font-weight: 700; font-size: 1rem; transition: 0.3s ease; margin-top: 20px; border: none; cursor: pointer; }
+        .btn-download:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(255, 215, 0, 0.3); }
+        .btn-back { display: inline-block; padding: 10px 28px; border-radius: 40px; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-weight: 600; transition: 0.3s; margin-top: 20px; margin-right: 10px; }
+        .btn-back:hover { background: #ffd700; color: #0a0a1a; transform: scale(1.05); }
+        .footer { background: rgba(5, 5, 18, 0.95); backdrop-filter: blur(8px); border-top: 1px solid rgba(255, 215, 0, 0.08); padding: 44px 0 24px; margin-top: 60px; }
+        .footer .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 24px; margin: 16px 0 24px; }
+        .footer .social-links a { color: #8899bb; font-size: 0.95rem; transition: 0.25s; display: flex; align-items: center; gap: 8px; }
+        .footer .social-links a:hover { color: #ffd700; transform: translateY(-2px); }
+        .footer .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; font-size: 0.85rem; color: #667; }
+        .footer .footer-links a:hover { color: #ffd700; }
+        .footer .copyright { text-align: center; color: #556; font-size: 0.8rem; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.04); }
+        @media (max-width: 768px) { .hero h1 { font-size: 2rem; } .navbar .nav-links { display: none; } }
+        @media (max-width: 480px) { .hero h1 { font-size: 1.6rem; } .card-glass h2 { font-size: 1.3rem; } }
+    </style>
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<nav class="navbar">
+    <div class="container">
+        <a href="../../index.html" class="logo">
+            <img src="../../assets/images/wuj.jpg" alt="Gymkhana IITK" />
+            <span>Gymkhana IITK</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../gymkhana/gymkhana.html">Gymkhana</a></li>
+            <li><a href="../../councils/councils.html">Councils</a></li>
+            <li><a href="../../cells/cells.html">Cells</a></li>
+            <li><a href="../../fests/fests.html">Fests</a></li>
+            <li><a href="../../branches/branches.html">Branches</a></li>
+            <li><a href="../../senate/senate.html">Senate</a></li>
+            <li><a href="../../gallery/gallery.html">Gallery</a></li>
+            <li><a href="../../contact/contact.html">Contact</a></li>
+        </ul>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/gymkhanaiitk" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/IITKGymkhana" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://x.com/gymkhana_iitk" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.youtube.com/@gymkhana_iitk" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://linkedin.com/in/gymkhanaiitk" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.threads.com/@iitk_gymkhana" target="_blank"><i class="fab fa-threads"></i></a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="container">
+        <h1>Rules & Procedures — Appendix I</h1>
+        <p>Rules for Sessions, Sub-Committees, and Standing Committees of the Students' Senate</p>
+        <div class="badge"><i class="fas fa-list"></i> Senate Rules | Procedures</div>
+    </div>
+</section>
+
+<section class="content-section">
+    <div class="container">
+        <div class="card-glass">
+            <h2>Chapter I — Sessions of the Student's Senate</h2>
+            <p><span class="section-number">1.1</span> Introduction: The membership, duties, powers and privileges of the Students' Senate are defined in the Constitution of the Student's Gymkhana. These rules and procedures are in addition to, and in further clarification of the provisions of the Student's Gymkhana.</p>
+            <p><span class="section-number">1.2</span> Frequency: The Student's Senate shall meet at least once a month.</p>
+            <p><span class="section-number">1.3</span> Notification: A minimum notice of twenty four hours shall be given before every session of the Student's Senate to: a. all members of the Student's Senate and b. the General Body of the Students.</p>
+            <p><span class="section-number">1.4</span> Agenda: a. The agenda of the Sessions of the Students Senate shall be finalized by the steering committee of the Student's Senate. The agenda shall be circulated to the members of the Student's Senate and general body of Students by the Convener of Student's Senate at least three days in advance of the sessions. The agenda may be over-ruled by a simple majority in the Students' Senate.</p>
+            <ul><li>The agenda cannot be overruled in a requisition meeting called under Article 7.07 of the Constitution.</li></ul>
+            <p><span class="section-number">1.5</span> Quorum: a. One-half of the total strength of the Students' Senate shall constitute the quorum. If quorum is absent at the beginning of any session, the Convener shall adjourn the session for lack of quorum without transacting any business.</p>
+            <ul><li>For a requisition meeting called under Article 7.07 of the Constitution, adjourned once due to lack of quorum, the Convener will call another meeting within 3 days at the same place at the same time.</li></ul>
+            <p><span class="section-number">1.6</span> Attendance: In case any member of the Students' Senate is unable to attend a session, he shall communicate the reasons to the Convener. Any member who absents himself without explanation from two consecutive or non-consecutive sessions shall be served a show-cause notice.</p>
+            <p><span class="section-number">1.7</span> Presence of the General Body: All sessions of the Students' Senate shall ordinarily be open to the General Body of the Students. However the Students' Senate may resolve to hold a closed door session on the basis of a simple majority.</p>
+            <p><span class="section-number">1.8</span> Code of Conduct during the presence of the General Body: a. Members of the General Body should address the Convener of the Students' Senate during the course of discussion. b. Members of General Body shall have to take the permission of the Convener before expressing a viewpoint. c. Members of the General Body should not make any irrelevant personal comment.</p>
+            <p><span class="section-number">1.9</span> Presence of Counsellors and other special invitees: The Students' Senate may, consensus invite the Counsellors of the Students' Gymkhana or may other special invitees as and when necessary.</p>
+            <p><span class="section-number">1.10</span> Minutes: a. The responsibilities for the recording of the minutes of the sessions of the Students' Senate shall rest with the Convener of the Students' Senate.</p>
+            <ul>
+                <li>Circulation: The draft minutes shall be published and circulated by the Convener amongst: i. Members of the Students' Senate, ii. Counsellors of the Students' Gymkhana, iii. The General Body of the Students.</li>
+                <li>Ratification: When procedure laid down has been followed the draft minutes shall be placed for ratification at the first subsequent session of the Students' Senate.</li>
+            </ul>
+            <p><span class="section-number">1.11</span> Parliamentarian: The Parliamentarian to the Students' Senate shall be the Convener of the Rules and Procedures Committee. He shall advice the Students' Senate on procedural matters, and his interpretation of these rules and procedures shall be final.</p>
+            <p><span class="section-number">1.12</span> Office of the Students' Senate: a. An office of the Students' Senate shall be maintained by the Convener of the Students' Senate, who shall be responsible for the upto date maintenance of: i. The Constitution, ii. Minutes of the sessions, iii. The Rules and Procedures, iv. Reports of the sub-committees, v. All correspondence relating to the convening and functioning of the Students' Senate.</p>
+
+            <h2>Chapter II — Sub-Committees of the Student's Senate</h2>
+            <p><span class="section-number">2.1</span> General Provisions: a. The Student's Senate may appoint as and when necessary an investigative subcommittee to investigate any particular matter and report to it. These sub-committees may be either adhoc or standing. b. No sub-committees of the Student's Senate shall have any executive function whatsoever unless otherwise explicitly specified in the terms of reference. c. Members of all the sub-committees shall ordinarily be senators, but in special circumstances the Senate may, by resolution, also include any other General Body member. d. All adhoc sub-committees shall go out of existence when the outgoing senate hands over charge.</p>
+            <p><span class="section-number">2.2</span> Formation: a. Prior to the appointment of any sub-committee, the Student's Senate shall decide by a simple majority: 1. its terms of reference, 2. its strength, 3. in the case of an adhoc sub-committee, its period of existence. b. The Convener of the Student's Senate shall invite nominations for membership. Senators shall nominate themselves and no seconding shall be necessary.</p>
+            <p><span class="section-number">2.3</span> Duties of Convener: The Convener of Sub-Committee shall be responsible for the proper functioning of the same. He shall: a. convene and preside over all sessions, b. coordinate its activities, c. be responsible for the preparation of the sub-committee's report, d. ensure that an adequate opportunity has been provided to the general body, e. Submit the final report to the Convener of the Student's Senate.</p>
+            <p><span class="section-number">2.4</span> Functions: a. The Convener may ask for a preliminary discussion on the floor of the Student's Senate if he thinks that the same is necessary. b. Ordinarily, all recommendations of a sub-committee shall be on the basis of a consensus. In case of dissent the dissenting members shall attach a note of dissent. c. The Convener shall route all business with other individuals or bodies through the Convener of the Student's Senate.</p>
+
+            <h2>Chapter III — Standing Committees of the Student's Senate</h2>
+            <p><span class="section-number">3.1</span> The Steering Committee: a. The Steering committee shall consist of: 1. The convener of the Student's Senate, who shall be the ex-officio convener, and 2. Two Senators both not from the same year. b. The Steering committee shall be responsible for the optimum utilization of the sessions of the Student's Senate. It shall finalize the agenda for every session. c. The Steering committee shall be responsible for the recording of the sessions. d. The Steering Committee shall also provide any other assistance required by: 1. The Convener of the Student's Senate, 2. The Student's Senate, 3. The sub-committees.</p>
+            <p><span class="section-number">3.2</span> The Rules and Procedures Committee: a. The Rules and Procedures Committee shall consist of: 1. A Senator who shall be the convener, 2. two other senators both not from the same year. b. The Rules and Procedures Committee shall be responsible for the observance of due procedures in the Student's Senate. It shall: 1. Prepare, delete, add amend all rules, 2. Advice the Student's Senate on all matters concerning rules, 3. Study all proposed constitutional amendments, 4. Study all proposed changes in these rules, 5. Advice on all matters relating to the formation and functioning of its sub-committees. c. All recommendations shall be subject to the approval by a simple majority of the Student's Senate.</p>
+
+            <h2>Chapter IV — Procedures</h2>
+            <p><span class="section-number">4.1</span> Changes in Rules and Procedures: a. Inadequacies in the Rules and Procedures shall be referred to the Convener of Rules and Procedures committee for corrections. b. All Rules and Procedures may be amended provided written notice and opinion of the Rules and Procedures committee have been included in the agenda. c. Any such modification shall be subject to a simple majority.</p>
+            <p><span class="section-number">4.2</span> Point of Order: a. A Member may raise a point of order, if: 1. Any constitutional provision or rules or procedure is being transgressed, 2. Any established convention is being transgressed, 3. An objectionable procedure is being followed. b. The Convener shall permit him to do so immediately.</p>
+            <p><span class="section-number">4.3</span> Order of Business: a. The order of business shall be as follows: 1. Ratification of draft minutes, 2. Announcements, 3. Remarks by the Convener and the President, 4. Reports of sub-committees, 5. Unfinished business, 6. New business. b. The order of business may be over-ruled by a simple majority.</p>
+            <p><span class="section-number">4.4</span> Resolution: a. Consensus: A decision may be arrived at by consensus if: 1. does not require a resolution, 2. is not objected to by any member, 3. is not meant to give expression to the opinion of the General Body.</p>
+
+            <div style="text-align:center; margin-top: 30px;">
+                <a href="rules.html" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Rules</a>
+                <a href="appendix1pdf.html" download class="btn-download"><i class="fas fa-download"></i> Download Rules I (PDF)</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="social-links">
+            <a href="https://students.iitk.ac.in/gymkhana" target="_blank"><i class="fas fa-globe"></i> Website</a>
+            <a href="https://iitk.ac.in/gymkhana" target="_blank"><i class="fas fa-globe"></i> IITK</a>
+            <a href="https://linktr.ee/gymkhana.iitk" target="_blank"><i class="fas fa-tree"></i> Linktree</a>
+            <a href="https://www.instagram.com/gymkhanaiitk" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://www.facebook.com/IITKGymkhana" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="https://x.com/gymkhana_iitk" target="_blank"><i class="fab fa-x-twitter"></i> X</a>
+            <a href="https://www.youtube.com/@gymkhana_iitk" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+            <a href="https://linkedin.com/in/gymkhanaiitk" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://www.threads.com/@iitk_gymkhana" target="_blank"><i class="fab fa-threads"></i> Threads</a>
+            <a href="https://www.reddit.com/user/GymkhanaIITK/" target="_blank"><i class="fab fa-reddit-alien"></i> Reddit</a>
+            <a href="https://whatsapp.com/channel/0029VbDCW5I9sBIEOTzQGz3H" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Channel</a>
+            <a href="https://chat.whatsapp.com/HA9MDkZB0XyIjfJ5SofwVU" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Group 1</a>
+            <a href="https://chat.whatsapp.com/D4PaEzAV1L6I6ERlRydVuK" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Group 2</a>
+            <a href="https://t.me/IITKGymkhana" target="_blank"><i class="fab fa-telegram"></i> Telegram 1</a>
+            <a href="https://t.me/GymkhanaIITK" target="_blank"><i class="fab fa-telegram"></i> Telegram 2</a>
+            <a href="mailto:gymkhana.iitkanpur@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        </div>
+        <div class="footer-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../gymkhana/gymkhana.html">Gymkhana</a>
+            <a href="../../councils/councils.html">Councils</a>
+            <a href="../../cells/cells.html">Cells</a>
+            <a href="../../fests/fests.html">Fests</a>
+            <a href="../../branches/branches.html">Branches</a>
+            <a href="../../senate/senate.html">Senate</a>
+            <a href="../../gallery/gallery.html">Gallery</a>
+            <a href="../../contact/contact.html">Contact</a>
+        </div>
+        <div class="copyright">&copy; 2026 Students' Gymkhana — IIT Kanpur. All rights reserved.</div>
+    </div>
+</footer>
+
+<script>
+    (function() {
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let w, h, particles = [];
+        function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize); resize();
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * w;
+                this.y = Math.random() * h;
+                this.size = Math.random() * 2.2 + 0.4;
+                this.speedX = (Math.random() - 0.5) * 0.45;
+                this.speedY = (Math.random() - 0.5) * 0.45;
+                this.opacity = Math.random() * 0.6 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > w) this.speedX *= -1;
+                if (this.y < 0 || this.y > h) this.speedY *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 215, 0, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+        for (let i = 0; i < 130; i++) particles.push(new Particle());
+        function animate() {
+            ctx.clearRect(0, 0, w, h);
+            particles.forEach(p => { p.update(); p.draw(); });
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < 160) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(255, 215, 0, ${0.07 * (1 - dist/160)})`;
+                        ctx.lineWidth = 0.6;
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+    })();
+</script>
+
+</body>
+</html>

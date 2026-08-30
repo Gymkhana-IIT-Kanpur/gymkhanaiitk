@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Constitution – Students' Gymkhana IITK</title>
+    <link rel="icon" type="image/png" href="../../assets/images/wuj.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a1a; color: #ffffff; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        #particles-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        .navbar { position: sticky; top: 0; z-index: 1000; background: rgba(10, 10, 26, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 215, 0, 0.15); padding: 14px 0; }
+        .navbar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.2rem; color: #fff; }
+        .navbar .logo img { height: 44px; border-radius: 10px; filter: drop-shadow(0 0 12px rgba(255,215,0,0.3)); }
+        .navbar .nav-links { display: flex; flex-wrap: wrap; gap: 6px 18px; list-style: none; }
+        .navbar .nav-links a { color: #b0b8d0; font-size: 0.95rem; font-weight: 500; padding: 6px 0; border-bottom: 2px solid transparent; transition: 0.25s; }
+        .navbar .nav-links a:hover { color: #ffd700; border-bottom-color: #ffd700; }
+        .navbar .social-icons { display: flex; gap: 14px; font-size: 1.15rem; }
+        .navbar .social-icons a { color: #b0b8d0; transition: 0.25s; }
+        .navbar .social-icons a:hover { color: #ffd700; transform: translateY(-2px); }
+        .hero { min-height: 30vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 0 60px; background: radial-gradient(circle at top, rgba(255,215,0,0.05), transparent 70%); }
+        .hero h1 { font-size: 3rem; font-weight: 800; background: linear-gradient(135deg, #ffffff 20%, #ffd700 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 60px rgba(255, 215, 0, 0.15); }
+        .hero p { color: #a0aac0; font-size: 1.1rem; max-width: 640px; margin: 18px auto 28px; line-height: 1.6; }
+        .hero .badge { display: inline-block; padding: 6px 22px; border-radius: 40px; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-size: 0.85rem; font-weight: 500; }
+        .section-title { font-size: 2.2rem; font-weight: 700; text-align: center; margin-bottom: 40px; }
+        .section-title span { background: linear-gradient(135deg, #ffd700, #ff8c00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .section-title::after { content: ''; display: block; width: 72px; height: 4px; margin: 12px auto 0; background: linear-gradient(90deg, #ffd700, transparent); border-radius: 4px; }
+        .content-section { padding: 40px 0 60px; }
+        .card-glass { background: rgba(18, 28, 50, 0.65); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 18px; padding: 30px 26px; transition: 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.2); margin-bottom: 24px; }
+        .card-glass:hover { border-color: rgba(255, 215, 0, 0.3); transform: translateY(-4px); box-shadow: 0 12px 44px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255,215,0,0.05); }
+        .card-glass h2 { font-size: 1.5rem; font-weight: 700; color: #ffd700; margin-bottom: 16px; border-bottom: 1px solid rgba(255, 215, 0, 0.2); padding-bottom: 12px; }
+        .card-glass h3 { font-size: 1.1rem; font-weight: 600; color: #ffd700; margin-top: 20px; margin-bottom: 10px; }
+        .card-glass p, .card-glass li { color: #b0bcc8; line-height: 1.7; font-size: 0.95rem; }
+        .card-glass ul { list-style: none; padding: 0; margin: 10px 0; }
+        .card-glass ul li { padding: 6px 0; padding-left: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); position: relative; }
+        .card-glass ul li::before { content: '▸'; color: #ffd700; position: absolute; left: 0; }
+        .card-glass .section-number { color: #ffd700; font-weight: 700; margin-right: 8px; }
+        .btn-download { display: inline-block; padding: 12px 32px; border-radius: 40px; background: linear-gradient(135deg, #ffd700, #f0a500); color: #0a0a1a; font-weight: 700; font-size: 1rem; transition: 0.3s ease; margin-top: 20px; border: none; cursor: pointer; }
+        .btn-download:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(255, 215, 0, 0.3); }
+        .btn-back { display: inline-block; padding: 10px 28px; border-radius: 40px; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-weight: 600; transition: 0.3s; margin-top: 20px; margin-right: 10px; }
+        .btn-back:hover { background: #ffd700; color: #0a0a1a; transform: scale(1.05); }
+        .footer { background: rgba(5, 5, 18, 0.95); backdrop-filter: blur(8px); border-top: 1px solid rgba(255, 215, 0, 0.08); padding: 44px 0 24px; margin-top: 60px; }
+        .footer .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 24px; margin: 16px 0 24px; }
+        .footer .social-links a { color: #8899bb; font-size: 0.95rem; transition: 0.25s; display: flex; align-items: center; gap: 8px; }
+        .footer .social-links a:hover { color: #ffd700; transform: translateY(-2px); }
+        .footer .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; font-size: 0.85rem; color: #667; }
+        .footer .footer-links a:hover { color: #ffd700; }
+        .footer .copyright { text-align: center; color: #556; font-size: 0.8rem; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.04); }
+        @media (max-width: 768px) { .hero h1 { font-size: 2rem; } .navbar .nav-links { display: none; } }
+        @media (max-width: 480px) { .hero h1 { font-size: 1.6rem; } .card-glass h2 { font-size: 1.3rem; } }
+    </style>
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<nav class="navbar">
+    <div class="container">
+        <a href="../../index.html" class="logo">
+            <img src="../../assets/images/wuj.jpg" alt="Gymkhana IITK" />
+            <span>Gymkhana IITK</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../gymkhana/gymkhana.html">Gymkhana</a></li>
+            <li><a href="../../councils/councils.html">Councils</a></li>
+            <li><a href="../../cells/cells.html">Cells</a></li>
+            <li><a href="../../fests/fests.html">Fests</a></li>
+            <li><a href="../../branches/branches.html">Branches</a></li>
+            <li><a href="../../senate/senate.html">Senate</a></li>
+            <li><a href="../../gallery/gallery.html">Gallery</a></li>
+            <li><a href="../../contact/contact.html">Contact</a></li>
+        </ul>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/gymkhanaiitk" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/IITKGymkhana" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://x.com/gymkhana_iitk" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.youtube.com/@gymkhana_iitk" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://linkedin.com/in/gymkhanaiitk" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.threads.com/@iitk_gymkhana" target="_blank"><i class="fab fa-threads"></i></a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="container">
+        <h1>Constitution of Students' Gymkhana</h1>
+        <p>Indian Institute of Technology Kanpur</p>
+        <div class="badge"><i class="fas fa-gavel"></i> Student Governance Document</div>
+    </div>
+</section>
+
+<section class="content-section">
+    <div class="container">
+        <div class="card-glass">
+            <h2>Chapter I — Membership and Advisory Body</h2>
+            <p><span class="section-number">1.01</span> All registered students of the Institute shall be the members of the Gymkhana and shall constitute its general body.</p>
+            <p><span class="section-number">1.02</span> The Director of the Institute shall be the patron of the Gymkhana.</p>
+            <p><span class="section-number">1.03</span> The Patron, from a panel of names suggested by the Student's senate, shall appoint the Chief Counselor, the Games Counselor, the Cultural Counselor, the Films Counselor, the Science and Technology Counselor and Treasurer of the Gymkhana.</p>
+            <p><span class="section-number">1.04</span> The Counselors shall advice the respective wings of the Gymkhana.</p>
+            <p><span class="section-number">1.05</span> All Counselors, other then the Chief Counselor, shall be subordinate to the Chief Counselor, in all decision making powers.</p>
+
+            <h2>Chapter II — Organization and Organizational Principles</h2>
+            <p><span class="section-number">2.01</span> The Gymkhana shall function through the Student's Senate and its five Central Executive wings, namely the Presidential Council, the Games Council, the Cultural Council, the Films Council and the Science and Technology Council.</p>
+            <p><span class="section-number">2.02</span> The Student's Senate (hereafter referred to as the Senate) shall be the central Representative Legislative and Supervisory body of students.</p>
+            <ul>
+                <li>serve as the main forum of expression of student opinion.</li>
+                <li>be in continuous touch with the general body, consult the students and act as a feedback system.</li>
+                <li>act as the central policy making body.</li>
+                <li>guide and check the functioning of the executive wings of the Gymkhana</li>
+            </ul>
+            <p><span class="section-number">2.03</span> The Senate shall comprise of:</p>
+            <ul>
+                <li>the Executives, namely the President, the General Secretary Games, the General Secretary Cultural, the General Secretary Films and the General Secretary Science and Technology Council.</li>
+                <li>Senators representing every undergraduate batch/year, 2-Yr M.Sc and Post-Graduate Students and Girls Hostel representative.</li>
+            </ul>
+            <p><span class="section-number">2.04</span> The President, shall be the Chief Executive of the Gymkhana.</p>
+            <p><span class="section-number">2.05</span> The General Secretary Games, shall be the Chairman of the Games Council.</p>
+            <p><span class="section-number">2.06</span> The General Secretary Cultural, shall be the Chairman of the Cultural Council.</p>
+            <p><span class="section-number">2.07</span> The General Secretary Films, shall be the Chairman of the Films Council.</p>
+            <p><span class="section-number">2.08</span> The General Secretary Science and Technology, shall be the Chairman of the Science and Technology Council.</p>
+            <p><span class="section-number">2.09</span> The Senate meetings shall be convened and presided over by the Convener of the Senate.</p>
+            <p><span class="section-number">2.10</span> The Parliamentarian of the Senate shall advice the Senate on Constitutional and procedural matters.</p>
+            <p><span class="section-number">2.11</span> In all the decision making bodies of the Gymkhana, at all levels, the organizational principles shall be democratic.</p>
+            <p><span class="section-number">2.12</span> a. In matters of general interest of the Students, the executive councils/committees of the Gymkhana shall be subordinate to the Student's Senate, and there Student's Senate shall be subordinate to the General body.</p>
+            <ul><li>The general interest of the Students shall be placed above the interest of any individual student.</li></ul>
+            <p><span class="section-number">2.13</span> Majority decisions shall be binding on all.</p>
+            <p><span class="section-number">2.14</span> The President or Convener shall refer the matter to the general body if so requested by at least 1/3 of the total strength of the Senate.</p>
+            <p><span class="section-number">2.15</span> In case where some decision of the Senate has been passed with a large majority and substantial minority, the President or the Convener of the Senate may refer the matter to the General body.</p>
+            <p><span class="section-number">2.16</span> The President as the Chief Executive of the Gymkhana shall have the power to requisition a meeting of any executive council or senate standing or sub committees.</p>
+            <p><span class="section-number">2.17</span> The Convener of the Senate may requisition and attend as full fledged member meetings of all the standing and ad-hoc committees of the Senate.</p>
+            <p><span class="section-number">2.18</span> During summer and winter vacations, when many of the Senators are not present, the vacation Senate (consisting of all Senators present in Campus) shall normally discuss matters of urgent importance.</p>
+            <p><span class="section-number">2.19</span> In the handing over session which shall be jointly attended by the members of both the outgoing and incoming senate as full fledged members, the President and General Secretaries shall handover the charge.</p>
+            <p><span class="section-number">2.20</span> a. Every Senator is expected to intimate to the Convener the reasons for his inability to attend meeting and take permission prior to the meeting for absenting himself.</p>
+            <ul><li>Every Executive should intimate the Convener the reasons for his inability to attend the meeting and should take permission prior to the meeting.</li></ul>
+
+            <h2>Chapter III — Elections</h2>
+            <p><span class="section-number">3.01</span> Elections shall be conducted by the Chief Election Officer to be appointed by the Senate.</p>
+            <p><span class="section-number">3.02</span> Annual Gymkhana Election shall normally be held around 20 of January every year.</p>
+            <p><span class="section-number">3.03</span> The President and the General Secretaries shall be elected from the general body on the basis of one single transferable preferential voting system.</p>
+            <p><span class="section-number">3.04</span> a. Senators shall be elected from the students of:</p>
+            <ul>
+                <li>Each UG Year other than the final year.</li>
+                <li>M.Tech Students other than those in the final semester.</li>
+                <li>Ph.D students</li>
+                <li>2-Year M.Sc Students</li>
+            </ul>
+            <p><span class="section-number">3.05</span> Mid-term Elections shall be held in the month of August for Senators from the First Year UG and First Semester of M.Tech.</p>
+            <p><span class="section-number">3.06</span> Senators shall be elected on the basis of a preferential voting system. Each voter shall have three preferences.</p>
+            <p><span class="section-number">3.07</span> Senators for each class will be declared elected on the basis of preference points.</p>
+            <p><span class="section-number">3.08</span> The Convener and the Parliamentarian of the Senate will be elected from among the non-executive members of the Senate.</p>
+            <p><span class="section-number">3.09</span> a. For the post of President, General Secretary Games, General Secretary Cultural, General Secretary Films, the candidates should have a guaranteed stay in the Institute from the date of election to February 15 of the following year.</p>
+            <ul><li>For the post of General Secretary Science and Technology the candidate should have a guaranteed stay in the Institute from the date of election to March 15 of the following year.</li></ul>
+
+            <h2>Chapter IV — Standing Committees of the Student's Senate</h2>
+            <p><span class="section-number">4.01</span> The Senate shall discharge its responsibilities mainly through itself and its committees.</p>
+            <p><span class="section-number">4.02</span> The Senate shall have the following standing committees:</p>
+            <ul>
+                <li>The Emergency Committee</li>
+                <li>The Finance Committee</li>
+                <li>The Steering Committee</li>
+                <li>The Rules and Procedures Committee</li>
+                <li>The Nominations Committee</li>
+                <li>The Committee of Students for Hostel Affairs (COSHA)</li>
+                <li>The Under Graduate Students' Academic Affairs Committee (UGSAAC)</li>
+                <li>The Post Graduate Student's Academic Affairs Committee (PGSAAC)</li>
+            </ul>
+            <p><span class="section-number">4.03</span> Emergency Committee (EC): The Primary aim of the Emergency Committee is to represent the Senate in urgent situations.</p>
+            <p><span class="section-number">4.04</span> Finance Committee (FC): The Primary aim of the Finance Committee is to manage the finances of the Student's Gymkhana.</p>
+            <p><span class="section-number">4.05</span> Steering Committee: The steering Committee shall coordinate and assist the Convener in steering senate session's meetings.</p>
+            <p><span class="section-number">4.06</span> Rules and Procedures Committee: The Rules of Procedures Committee shall be responsible for the interpreting and updating the Gymkhana Constitution.</p>
+            <p><span class="section-number">4.07</span> Nominations Committee (NC): The Nominations Committee shall nominate students' representatives to the various Institute bodies.</p>
+            <p><span class="section-number">4.08</span> The Committee of Students for Hostel Affairs (COSHA): The COSHA shall supervise and coordinate matters of common interest to all halls of Residence.</p>
+            <p><span class="section-number">4.09</span> The Undergraduate Student's Academic Affairs Committee (UGSAAC): UGSAAC shall advice and assist the Senate in all matters concerning the Undergraduate academic programme.</p>
+            <p><span class="section-number">4.10</span> The Postgraduate Students' Academic Affairs Committee (PGSAAC): The PGSAAC shall advice and assist the Senate in all matters and concerning the Postgraduate academic programme.</p>
+
+            <h2>Chapter V — Organization of Council</h2>
+            <p><span class="section-number">5.01</span> The President and the General Secretaries shall propose for ratification by the Senate, the names of students to be appointed in their respective positions.</p>
+            <p><span class="section-number">5.02</span> If the Senate feels that a person proposed as a member of a council is not capable enough, it may reject the proposed name.</p>
+            <p><span class="section-number">5.03</span> A maximum no. of 5 members of any council can be members of the Senate at the same time.</p>
+            <p><span class="section-number">5.04</span> Presidential Council: The aim of the Presidential Council shall be to help the President in discharging his duties.</p>
+            <p><span class="section-number">5.05</span> Games Council: The aim of the Games Council is to organize and promote all extra curricular activities in the field of games.</p>
+            <p><span class="section-number">5.06</span> Cultural Council: The aim of the cultural council is to organize and promote all cultural extra-curricular activities.</p>
+            <p><span class="section-number">5.07</span> Films Council: The aim of the Films Council is to organize and promote all Cinematic activities on behalf of the Students' Gymkhana.</p>
+            <p><span class="section-number">5.08</span> Science and Technology Council: The aim of the Science and Technology Council is to organize and promote all scientific and technological activities.</p>
+
+            <h2>Chapter VI — Finance</h2>
+            <p><span class="section-number">6.01</span> The total funds of the Students' Gymkhana shall comprise of:</p>
+            <ul>
+                <li>Contributions made by the Students as annual Gymkhana fees.</li>
+                <li>Regular contribution made by the Institute.</li>
+                <li>Funds from other sources such as membership fees for club, sale of tickets for professional programme, sponsorship, etc.</li>
+            </ul>
+            <p><span class="section-number">6.02</span> Every member of the Students' Gymkhana shall pay a consolidated Gymkhana fee of Rs. 54/-.</p>
+            <p><span class="section-number">6.03</span> The total funds available under (a) and (b) of 6.01 will be determined by every senate as per the Budget scheme.</p>
+            <p><span class="section-number">6.04</span> All fees payable by the students in respect of the Gymkhana shall be collected centrally by the cashier of the Institute.</p>
+            <p><span class="section-number">6.05</span> Similarly the Institute contribution payable to the Gymkhana fund shall also be credited to the bank account.</p>
+            <p><span class="section-number">6.06</span> Each council will finalize its annual budget in consultation with the Finance Committee.</p>
+            <p><span class="section-number">6.07</span> If the Senate advises some changes in the budget of any council, the corresponding executive should meet his council members.</p>
+            <p><span class="section-number">6.08</span> The senate will make all the final adjustment to the budget.</p>
+            <p><span class="section-number">6.09</span> Only Senate will pass the Annual Budget.</p>
+            <p><span class="section-number">6.10</span> All Equipment purchases will be done only with the approval of the Finance Committee.</p>
+            <p><span class="section-number">6.11</span> Normally not even intra-committee budget heads shall be allowed to be exceeded.</p>
+            <p><span class="section-number">6.12</span> Advances, Purchases, Expenditure — The Guiding spirit in the expenditure of the Gymkhana shall be economy.</p>
+            <p><span class="section-number">6.13</span> Advances will be given to the President and the General Secretaries of the Cultural, Games, Films and Science and Technology Councils.</p>
+            <p><span class="section-number">6.14</span> Accounts for any expenditure should be submitted as early as possible after the amount has been withdrawn.</p>
+            <p><span class="section-number">6.15</span> Payments and Accounts: Payment for any bill will be made only after the same has been verified for payment.</p>
+            <p><span class="section-number">6.16</span> Withdrawals from the bank account will be made by cheques signed by the Chief Counselor and Treasurer.</p>
+            <p><span class="section-number">6.17</span> Accounts for all expenditure made from the Gymkhana funds will be maintained by the DOSA Office.</p>
+            <p><span class="section-number">6.18</span> Disciplinary action: The senate shall take disciplinary action against any person(s) against whom a case of gross financial mis-management has been reported.</p>
+            <p><span class="section-number">6.19</span> Proceedings initiated by one senate and not completed during its terms will be continued by the next senate.</p>
+            <p><span class="section-number">6.20</span> However, if the Finance Committee of a particular year fails to point out cases of gross financial mis-management.</p>
+            <p><span class="section-number">6.21</span> Annual Report: The Financial Committee will present its final report before the joint session of the senate.</p>
+            <p><span class="section-number">6.22</span> Written annual report of the treasurer, checked by the audit board, should circulated to the students.</p>
+
+            <h2>Chapter VII — Bylaws</h2>
+            <p><span class="section-number">7.01</span> Amendment of articles of the constitution shall require the support of at least 2/3 of the total strength of the senate.</p>
+            <p><span class="section-number">7.02</span> Amendment of Rules and Procedures of the Senate shall require the support of at least 1/2 of the total strength of the senate.</p>
+            <p><span class="section-number">7.03</span> The senate can remove any executive from the office by passing a non confidence motion supported by at least 1/2 of its total strength.</p>
+            <p><span class="section-number">7.04</span> The senate can remove the Convener of the Senate, the Parliamentarian and the Convener/Members of various Councils/ Committees.</p>
+            <p><span class="section-number">7.05</span> Any executive, senate functionary or member of councils/ committees can be censured for his action.</p>
+            <p><span class="section-number">7.06</span> The President shall call and chair general body meetings.</p>
+            <p><span class="section-number">7.07</span> a) The Convener of the senate shall be obliged to call a meeting of the senate within 48 hrs. if requisitioned by the President or by at least 1/3 of the total strength of the senate.</p>
+            <ul><li>In case a meeting of the Senate is requisitioned with a public notice to take a no-confidence motion against the Convener.</li></ul>
+            <p><span class="section-number">7.08</span> The Chairman/ Convener of any Council/ standing or ad-hoc committee of the Senate shall be obliged to call a meeting.</p>
+            <p><span class="section-number">7.09</span> For general students opinion on a particular issue, the Senate may go for referendum.</p>
+            <p><span class="section-number">7.10</span> Notwithstanding any other provisions for a referendum existing in the Constitution, a referendum to impeach an executive can be held only if:</p>
+            <ul>
+                <li>1/2 or more of the total strength of the senate votes in favor of this, or</li>
+                <li>1/3 or more of the total strength of the Senate votes in favor of this.</li>
+            </ul>
+
+            <div style="text-align:center; margin-top: 30px;">
+                <a href="rules.html" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Rules</a>
+                <a href="constipdf.html" download class="btn-download"><i class="fas fa-download"></i> Download Constitution (PDF)</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="social-links">
+            <a href="https://students.iitk.ac.in/gymkhana" target="_blank"><i class="fas fa-globe"></i> Website</a>
+            <a href="https://iitk.ac.in/gymkhana" target="_blank"><i class="fas fa-globe"></i> IITK</a>
+            <a href="https://linktr.ee/gymkhana.iitk" target="_blank"><i class="fas fa-tree"></i> Linktree</a>
+            <a href="https://www.instagram.com/gymkhanaiitk" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://www.facebook.com/IITKGymkhana" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="https://x.com/gymkhana_iitk" target="_blank"><i class="fab fa-x-twitter"></i> X</a>
+            <a href="https://www.youtube.com/@gymkhana_iitk" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+            <a href="https://linkedin.com/in/gymkhanaiitk" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://www.threads.com/@iitk_gymkhana" target="_blank"><i class="fab fa-threads"></i> Threads</a>
+            <a href="https://www.reddit.com/user/GymkhanaIITK/" target="_blank"><i class="fab fa-reddit-alien"></i> Reddit</a>
+            <a href="https://whatsapp.com/channel/0029VbDCW5I9sBIEOTzQGz3H" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Channel</a>
+            <a href="https://chat.whatsapp.com/HA9MDkZB0XyIjfJ5SofwVU" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Group 1</a>
+            <a href="https://chat.whatsapp.com/D4PaEzAV1L6I6ERlRydVuK" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Group 2</a>
+            <a href="https://t.me/IITKGymkhana" target="_blank"><i class="fab fa-telegram"></i> Telegram 1</a>
+            <a href="https://t.me/GymkhanaIITK" target="_blank"><i class="fab fa-telegram"></i> Telegram 2</a>
+            <a href="mailto:gymkhana.iitkanpur@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        </div>
+        <div class="footer-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../gymkhana/gymkhana.html">Gymkhana</a>
+            <a href="../../councils/councils.html">Councils</a>
+            <a href="../../cells/cells.html">Cells</a>
+            <a href="../../fests/fests.html">Fests</a>
+            <a href="../../branches/branches.html">Branches</a>
+            <a href="../../senate/senate.html">Senate</a>
+            <a href="../../gallery/gallery.html">Gallery</a>
+            <a href="../../contact/contact.html">Contact</a>
+        </div>
+        <div class="copyright">&copy; 2026 Students' Gymkhana — IIT Kanpur. All rights reserved.</div>
+    </div>
+</footer>
+
+<script>
+    (function() {
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let w, h, particles = [];
+        function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize); resize();
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * w;
+                this.y = Math.random() * h;
+                this.size = Math.random() * 2.2 + 0.4;
+                this.speedX = (Math.random() - 0.5) * 0.45;
+                this.speedY = (Math.random() - 0.5) * 0.45;
+                this.opacity = Math.random() * 0.6 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > w) this.speedX *= -1;
+                if (this.y < 0 || this.y > h) this.speedY *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 215, 0, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+        for (let i = 0; i < 130; i++) particles.push(new Particle());
+        function animate() {
+            ctx.clearRect(0, 0, w, h);
+            particles.forEach(p => { p.update(); p.draw(); });
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < 160) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(255, 215, 0, ${0.07 * (1 - dist/160)})`;
+                        ctx.lineWidth = 0.6;
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+    })();
+</script>
+
+</body>
+</html>

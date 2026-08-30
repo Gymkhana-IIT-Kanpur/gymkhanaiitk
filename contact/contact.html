@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Cells – IIT Kanpur</title>
+    <title>Contact – IIT Kanpur</title>
     <link rel="icon" type="image/png" href="../assets/images/wuj.jpg" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -12,7 +12,9 @@
         body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a1a; color: #ffffff; overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
         .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
         #particles-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+
         .navbar { position: sticky; top: 0; z-index: 1000; background: rgba(10, 10, 26, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 215, 0, 0.15); padding: 14px 0; }
         .navbar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
         .navbar .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.2rem; color: #fff; }
@@ -23,15 +25,19 @@
         .navbar .social-icons { display: flex; gap: 14px; font-size: 1.15rem; }
         .navbar .social-icons a { color: #b0b8d0; transition: 0.25s; }
         .navbar .social-icons a:hover { color: #ffd700; transform: translateY(-2px); }
+
         .hero { min-height: 40vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 0 60px; background: radial-gradient(circle at top, rgba(255,215,0,0.05), transparent 70%); }
         .hero h1 { font-size: 3.5rem; font-weight: 800; background: linear-gradient(135deg, #ffffff 20%, #ffd700 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 60px rgba(255, 215, 0, 0.15); }
         .hero p { color: #a0aac0; font-size: 1.2rem; max-width: 640px; margin: 18px auto 28px; line-height: 1.6; }
         .hero .badge { display: inline-block; padding: 6px 22px; border-radius: 40px; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-size: 0.85rem; font-weight: 500; }
+
         .section-title { font-size: 2.6rem; font-weight: 700; text-align: center; margin-bottom: 48px; }
         .section-title span { background: linear-gradient(135deg, #ffd700, #ff8c00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .section-title::after { content: ''; display: block; width: 72px; height: 4px; margin: 12px auto 0; background: linear-gradient(90deg, #ffd700, transparent); border-radius: 4px; }
+
         .content-section { padding: 40px 0 60px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 20px; }
         .card-glass { background: rgba(18, 28, 50, 0.65); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 18px; padding: 30px 26px; transition: 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
         .card-glass:hover { border-color: rgba(255, 215, 0, 0.3); transform: translateY(-6px); box-shadow: 0 12px 44px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255,215,0,0.05); }
         .card-glass h3 { font-size: 1.4rem; font-weight: 700; color: #ffd700; margin-bottom: 14px; }
@@ -42,8 +48,15 @@
         .card-glass ul li i { color: #ffd700; width: 22px; text-align: center; }
         .card-glass a { color: #ffd700; transition: 0.2s; }
         .card-glass a:hover { color: #ffffff; text-decoration: underline; }
-        .btn-cell { display: inline-block; padding: 8px 20px; border-radius: 30px; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-size: 0.85rem; transition: 0.3s; margin-top: 12px; }
-        .btn-cell:hover { background: #ffd700; color: #0a0a1a; transform: translateY(-2px); }
+
+        /* ====== POSITION CARD (No Name/Photo) ====== */
+        .position-card { background: rgba(18, 28, 50, 0.65); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 18px; padding: 24px; text-align: center; transition: 0.3s ease; }
+        .position-card:hover { border-color: rgba(255, 215, 0, 0.3); transform: translateY(-6px); box-shadow: 0 12px 44px rgba(0, 0, 0, 0.4); }
+        .position-card .position-icon { font-size: 2.5rem; color: #ffd700; margin-bottom: 12px; }
+        .position-card h4 { font-size: 1rem; font-weight: 600; color: #ffd700; margin-bottom: 8px; }
+        .position-card .contact-info { font-size: 0.85rem; color: #b0bcc8; }
+        .position-card .contact-info i { color: #ffd700; width: 20px; }
+
         .footer { background: rgba(5, 5, 18, 0.95); backdrop-filter: blur(8px); border-top: 1px solid rgba(255, 215, 0, 0.08); padding: 44px 0 24px; margin-top: 60px; }
         .footer .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 24px; margin: 16px 0 24px; }
         .footer .social-links a { color: #8899bb; font-size: 0.95rem; transition: 0.25s; display: flex; align-items: center; gap: 8px; }
@@ -51,13 +64,16 @@
         .footer .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; font-size: 0.85rem; color: #667; }
         .footer .footer-links a:hover { color: #ffd700; }
         .footer .copyright { text-align: center; color: #556; font-size: 0.8rem; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.04); }
-        @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } .grid-2 { grid-template-columns: 1fr; gap: 24px; } .navbar .nav-links { display: none; } }
+
+        @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 24px; } .navbar .nav-links { display: none; } }
+        @media (max-width: 480px) { .hero h1 { font-size: 1.8rem; } .section-title { font-size: 1.8rem; } }
     </style>
 </head>
 <body>
 
 <canvas id="particles-canvas"></canvas>
 
+<!-- ====== NAVBAR ====== -->
 <nav class="navbar">
     <div class="container">
         <a href="../index.html" class="logo">
@@ -67,12 +83,8 @@
         <ul class="nav-links">
             <li><a href="../index.html">Home</a></li>
             <li><a href="../gymkhana/gymkhana.html">Gymkhana</a></li>
-            <li><a href="../councils/councils.html">Councils</a></li>
-            <li><a href="cells.html">Cells</a></li>
-            <li><a href="../fests/fests.html">Fests</a></li>
-            <li><a href="../senate/senate.html">Senate</a></li>
             <li><a href="../gallery/gallery.html">Gallery</a></li>
-            <li><a href="../contact/contact.html">Contact</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
         <div class="social-icons">
             <a href="https://www.instagram.com/gymkhanaiitk" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -85,56 +97,97 @@
     </div>
 </nav>
 
+<!-- ====== HERO SECTION ====== -->
 <section class="hero">
     <div class="container">
-        <h1>Cells</h1>
-        <p>The five Cells along with Councils carry out the executive responsibilities of the Students' Gymkhana.</p>
-        <div class="badge"><i class="fas fa-cubes"></i> 5 Cells</div>
+        <h1>Contact Us</h1>
+        <p>Get in touch with the Students' Gymkhana team. We're here to help!</p>
+        <div class="badge"><i class="fas fa-envelope"></i> gymkhana.iitkanpur@gmail.com</div>
     </div>
 </section>
 
+<!-- ====== CONTACT INFO ====== -->
 <section class="content-section">
     <div class="container">
-        <h2 class="section-title">Our <span>Cells</span></h2>
+        <h2 class="section-title">Get in <span>Touch</span></h2>
         <div class="grid-2">
-            <!-- Cell 1: CWC -->
             <div class="card-glass">
-                <h3><i class="fas fa-hand-holding-heart"></i> Community Welfare Cell (CWC)</h3>
-                <p>The Community Welfare Cell is a body under the Students' Gymkhana, IIT Kanpur, committed to making a positive impact on the community.</p>
-                <a href="cwc/cwc.html" class="btn-cell">Learn More →</a>
+                <h3><i class="fas fa-map-marker-alt"></i> Address</h3>
+                <p>Students' Gymkhana,<br />Indian Institute of Technology Kanpur,<br />Kanpur, Uttar Pradesh 208016, India</p>
             </div>
-
-            <!-- Cell 2: EC -->
             <div class="card-glass">
-                <h3><i class="fas fa-vote-yea"></i> Election Commission (EC)</h3>
-                <p>Ensuring fair and smooth conduction of Gymkhana elections, upholding the democratic spirit of IIT Kanpur.</p>
-                <a href="ec/ec.html" class="btn-cell">Learn More →</a>
-            </div>
-
-            <!-- Cell 3: E-Cell -->
-            <div class="card-glass">
-                <h3><i class="fas fa-lightbulb"></i> Entrepreneurship Cell (E-Cell)</h3>
-                <p>E-Cell aims to induce an entrepreneurial mindset into the students and air an innovative streak in them.</p>
-                <a href="ecell/ecell.html" class="btn-cell">Learn More →</a>
-            </div>
-
-            <!-- Cell 4: Outreach -->
-            <div class="card-glass">
-                <h3><i class="fas fa-users"></i> Outreach Cell</h3>
-                <p>Works in collaboration with the Dean of Resources and Alumni to strengthen student-alumni relations.</p>
-                <a href="outreach/outreach.html" class="btn-cell">Learn More →</a>
-            </div>
-
-            <!-- Cell 5: Vox -->
-            <div class="card-glass" style="grid-column: 1 / -1; max-width: 600px; margin: 0 auto;">
-                <h3><i class="fas fa-microphone-alt"></i> Vox Populi</h3>
-                <p>Vox is the student media body of IIT Kanpur, acting as a bridge between faculty, students, alumni and other stakeholders.</p>
-                <a href="vox/vox.html" class="btn-cell">Learn More →</a>
+                <h3><i class="fas fa-envelope"></i> Email</h3>
+                <p><a href="mailto:gymkhana.iitkanpur@gmail.com">gymkhana.iitkanpur@gmail.com</a></p>
             </div>
         </div>
     </div>
 </section>
 
+<!-- ====== OFFICIAL POSITIONS (सिर्फ पद और संपर्क, नाम/फोटो नहीं) ====== -->
+<section class="content-section" style="padding-top:0;">
+    <div class="container">
+        <h2 class="section-title">Gymkhana <span>Officials</span></h2>
+        <div class="grid-3" id="positionsGrid">
+            <!-- Positions will be loaded by JavaScript -->
+        </div>
+    </div>
+</section>
+
+<!-- ====== ALL SOCIAL LINKS ====== -->
+<section class="content-section" style="padding-top:0;">
+    <div class="container">
+        <h2 class="section-title">All <span>Links</span></h2>
+        <div class="grid-2">
+            <div class="card-glass">
+                <h3><i class="fas fa-globe"></i> Websites</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> <a href="https://students.iitk.ac.in/gymkhana" target="_blank">students.iitk.ac.in/gymkhana</a></li>
+                    <li><i class="fas fa-check-circle"></i> <a href="https://iitk.ac.in/gymkhana" target="_blank">iitk.ac.in/gymkhana</a></li>
+                    <li><i class="fas fa-check-circle"></i> <a href="https://linktr.ee/gymkhana.iitk" target="_blank">linktr.ee/gymkhana.iitk</a></li>
+                </ul>
+            </div>
+            <div class="card-glass">
+                <h3><i class="fas fa-share-alt"></i> Social Media</h3>
+                <ul>
+                    <li><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/gymkhanaiitk" target="_blank">@gymkhanaiitk</a></li>
+                    <li><i class="fab fa-facebook"></i> <a href="https://www.facebook.com/IITKGymkhana" target="_blank">IITKGymkhana</a></li>
+                    <li><i class="fab fa-x-twitter"></i> <a href="https://x.com/gymkhana_iitk" target="_blank">@gymkhana_iitk</a></li>
+                    <li><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/@gymkhana_iitk" target="_blank">@gymkhana_iitk</a></li>
+                    <li><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/gymkhanaiitk" target="_blank">/in/gymkhanaiitk</a></li>
+                    <li><i class="fab fa-threads"></i> <a href="https://www.threads.com/@iitk_gymkhana" target="_blank">@iitk_gymkhana</a></li>
+                    <li><i class="fab fa-reddit-alien"></i> <a href="https://www.reddit.com/user/GymkhanaIITK/" target="_blank">/user/GymkhanaIITK</a></li>
+                </ul>
+            </div>
+            <div class="card-glass">
+                <h3><i class="fab fa-whatsapp"></i> WhatsApp</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> <a href="https://whatsapp.com/channel/0029VbDCW5I9sBIEOTzQGz3H" target="_blank">WhatsApp Channel</a></li>
+                    <li><i class="fas fa-check-circle"></i> <a href="https://chat.whatsapp.com/HA9MDkZB0XyIjfJ5SofwVU" target="_blank">WhatsApp Group 1</a></li>
+                    <li><i class="fas fa-check-circle"></i> <a href="https://chat.whatsapp.com/D4PaEzAV1L6I6ERlRydVuK" target="_blank">WhatsApp Group 2</a></li>
+                </ul>
+            </div>
+            <div class="card-glass">
+                <h3><i class="fab fa-telegram"></i> Telegram</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> <a href="https://t.me/IITKGymkhana" target="_blank">t.me/IITKGymkhana</a></li>
+                    <li><i class="fas fa-check-circle"></i> <a href="https://t.me/GymkhanaIITK" target="_blank">t.me/GymkhanaIITK</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== MAP ====== -->
+<section class="content-section" style="padding-top:0;">
+    <div class="container">
+        <h2 class="section-title">Find <span>Us</span></h2>
+        <div class="card-glass">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3573.5!2d80.2329!3d26.5123388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x3afbe880abc38436!2sIndian%20Institute%20of%20Technology%20Kanpur!5e0!3m2!1sen!2sin!4v1599501460976!5m2!1sen!2sin" width="100%" height="400" style="border:0; border-radius: 16px;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+</section>
+
+<!-- ====== FOOTER (All Gymkhana Links) ====== -->
 <footer class="footer">
     <div class="container">
         <div class="social-links">
@@ -158,10 +211,6 @@
         <div class="footer-links">
             <a href="../index.html">Home</a>
             <a href="../gymkhana/gymkhana.html">Gymkhana</a>
-            <a href="../councils/councils.html">Councils</a>
-            <a href="cells.html">Cells</a>
-            <a href="../fests/fests.html">Fests</a>
-            <a href="../senate/senate.html">Senate</a>
             <a href="../gallery/gallery.html">Gallery</a>
             <a href="../contact/contact.html">Contact</a>
         </div>
@@ -170,6 +219,7 @@
 </footer>
 
 <script>
+    // ====== PARTICLES ======
     (function() {
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
@@ -224,6 +274,79 @@
         }
         animate();
     })();
+
+    // ====== POSITIONS DATA (सिर्फ पद, फोन, ईमेल – नाम/फोटो नहीं) ======
+    const positions = [
+        {
+            position: "President",
+            phone: "",
+            email: "presidentsg@iitk.ac.in",
+            icon: "fa-user-tie"
+        },
+        {
+            position: "Chairperson, Students' Senate",
+            phone: "",
+            email: "chair_ss@iitk.ac.in",
+            icon: "fa-users"
+        },
+        {
+            position: "UG Secretary, Academics and Career",
+            phone: "",
+            email: "ug_anc@iitk.ac.in",
+            icon: "fa-graduation-cap"
+        },
+        {
+            position: "PG Secretary, Academics and Career",
+            phone: "",
+            email: "pg_anc@iitk.ac.in",
+            icon: "fa-graduation-cap"
+        },
+        {
+            position: "General Secretary, Games and Sports",
+            phone: "",
+            email: "sportsecy@iitk.ac.in",
+            icon: "fa-trophy"
+        },
+        {
+            position: "General Secretary, Media and Cultural",
+            phone: "",
+            email: "mncsecy@iitk.ac.in",
+            icon: "fa-palette"
+        },
+        {
+            position: "General Secretary, Science and Technology",
+            phone: "",
+            email: "sntsecy@iitk.ac.in",
+            icon: "fa-flask"
+        },
+        {
+            position: "DPM, Students Gymkhana Office",
+            phone: "",
+            email: "sac@iitk.ac.in",
+            icon: "fa-building"
+        },
+        {
+            position: "Supervisor, Students Activity Centre",
+            phone: "",
+            email: "saciitk1@gmail.com",
+            icon: "fa-user-cog"
+        }
+    ];
+
+    const grid = document.getElementById('positionsGrid');
+    positions.forEach(pos => {
+        const card = document.createElement('div');
+        card.className = 'position-card';
+        card.innerHTML = `
+            <div class="position-icon"><i class="fas ${pos.icon}"></i></div>
+            <h4>${pos.position}</h4>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> ${pos.phone}</p>
+                <p><i class="fas fa-envelope"></i> ${pos.email}</p>
+            </div>
+        `;
+        grid.appendChild(card);
+    });
 </script>
 
 </body>

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Cells – IIT Kanpur</title>
-    <link rel="icon" type="image/png" href="../assets/images/wuj.jpg" />
+    <title>Economic Sciences – IIT Kanpur</title>
+    <link rel="icon" type="image/png" href="../../assets/images/wuj.jpg" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
@@ -34,16 +34,17 @@
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 20px; }
         .card-glass { background: rgba(18, 28, 50, 0.65); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 18px; padding: 30px 26px; transition: 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
         .card-glass:hover { border-color: rgba(255, 215, 0, 0.3); transform: translateY(-6px); box-shadow: 0 12px 44px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255,215,0,0.05); }
-        .card-glass h3 { font-size: 1.4rem; font-weight: 700; color: #ffd700; margin-bottom: 14px; }
+        .card-glass h3 { font-size: 1.2rem; font-weight: 700; color: #ffd700; margin-bottom: 10px; }
         .card-glass h3 i { margin-right: 10px; }
-        .card-glass p { color: #b0bcc8; line-height: 1.7; }
+        .card-glass p { color: #b0bcc8; line-height: 1.7; font-size: 0.95rem; }
         .card-glass ul { list-style: none; padding: 0; margin-top: 10px; }
         .card-glass ul li { padding: 8px 0; color: #b8c0d8; border-bottom: 1px solid rgba(255, 255, 255, 0.04); display: flex; align-items: center; gap: 12px; }
         .card-glass ul li i { color: #ffd700; width: 22px; text-align: center; }
-        .card-glass a { color: #ffd700; transition: 0.2s; }
-        .card-glass a:hover { color: #ffffff; text-decoration: underline; }
-        .btn-cell { display: inline-block; padding: 8px 20px; border-radius: 30px; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-size: 0.85rem; transition: 0.3s; margin-top: 12px; }
-        .btn-cell:hover { background: #ffd700; color: #0a0a1a; transform: translateY(-2px); }
+        .card-glass .icon-large { font-size: 3rem; color: #ffd700; display: block; text-align: center; margin-bottom: 10px; }
+        .card-glass .btn-back { display: inline-block; padding: 8px 20px; border-radius: 30px; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-size: 0.85rem; transition: 0.3s; margin-top: 12px; }
+        .card-glass .btn-back:hover { background: #ffd700; color: #0a0a1a; transform: translateY(-2px); }
+        .card-glass .social-link { display: inline-block; padding: 6px 14px; border-radius: 20px; background: rgba(255, 255, 255, 0.05); color: #b0bcc8; font-size: 0.8rem; transition: 0.3s; margin: 4px; }
+        .card-glass .social-link:hover { background: rgba(255, 215, 0, 0.15); color: #ffd700; }
         .footer { background: rgba(5, 5, 18, 0.95); backdrop-filter: blur(8px); border-top: 1px solid rgba(255, 215, 0, 0.08); padding: 44px 0 24px; margin-top: 60px; }
         .footer .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 24px; margin: 16px 0 24px; }
         .footer .social-links a { color: #8899bb; font-size: 0.95rem; transition: 0.25s; display: flex; align-items: center; gap: 8px; }
@@ -52,6 +53,7 @@
         .footer .footer-links a:hover { color: #ffd700; }
         .footer .copyright { text-align: center; color: #556; font-size: 0.8rem; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.04); }
         @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } .grid-2 { grid-template-columns: 1fr; gap: 24px; } .navbar .nav-links { display: none; } }
+        @media (max-width: 480px) { .hero h1 { font-size: 1.8rem; } .section-title { font-size: 1.8rem; } }
     </style>
 </head>
 <body>
@@ -60,19 +62,20 @@
 
 <nav class="navbar">
     <div class="container">
-        <a href="../index.html" class="logo">
-            <img src="../assets/images/wuj.jpg" alt="Gymkhana IITK" />
+        <a href="../../index.html" class="logo">
+            <img src="../../assets/images/wuj.jpg" alt="Gymkhana IITK" />
             <span>Gymkhana IITK</span>
         </a>
         <ul class="nav-links">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../gymkhana/gymkhana.html">Gymkhana</a></li>
-            <li><a href="../councils/councils.html">Councils</a></li>
-            <li><a href="cells.html">Cells</a></li>
-            <li><a href="../fests/fests.html">Fests</a></li>
-            <li><a href="../senate/senate.html">Senate</a></li>
-            <li><a href="../gallery/gallery.html">Gallery</a></li>
-            <li><a href="../contact/contact.html">Contact</a></li>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../gymkhana/gymkhana.html">Gymkhana</a></li>
+            <li><a href="../../councils/councils.html">Councils</a></li>
+            <li><a href="../../cells/cells.html">Cells</a></li>
+            <li><a href="../../fests/fests.html">Fests</a></li>
+            <li><a href="../branches.html">Branches</a></li>
+            <li><a href="../../senate/senate.html">Senate</a></li>
+            <li><a href="../../gallery/gallery.html">Gallery</a></li>
+            <li><a href="../../contact/contact.html">Contact</a></li>
         </ul>
         <div class="social-icons">
             <a href="https://www.instagram.com/gymkhanaiitk" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -87,49 +90,61 @@
 
 <section class="hero">
     <div class="container">
-        <h1>Cells</h1>
-        <p>The five Cells along with Councils carry out the executive responsibilities of the Students' Gymkhana.</p>
-        <div class="badge"><i class="fas fa-cubes"></i> 5 Cells</div>
+        <h1>Economic Sciences</h1>
+        <p>Excellence in microeconomics, macroeconomics, and econometrics.</p>
+        <div class="badge"><i class="fas fa-chart-line"></i> Department of Economic Sciences</div>
     </div>
 </section>
 
 <section class="content-section">
     <div class="container">
-        <h2 class="section-title">Our <span>Cells</span></h2>
+        <h2 class="section-title">About <span>Economic Sciences</span></h2>
         <div class="grid-2">
-            <!-- Cell 1: CWC -->
             <div class="card-glass">
-                <h3><i class="fas fa-hand-holding-heart"></i> Community Welfare Cell (CWC)</h3>
-                <p>The Community Welfare Cell is a body under the Students' Gymkhana, IIT Kanpur, committed to making a positive impact on the community.</p>
-                <a href="cwc/cwc.html" class="btn-cell">Learn More →</a>
+                <span class="icon-large"><i class="fas fa-info-circle"></i></span>
+                <h3>Overview</h3>
+                <p>The Department of Economic Sciences at IIT Kanpur was established in 2013. It offers world-class education and research in various fields of economics, with a focus on quantitative and applied economics.</p>
+                <br>
+                <p><strong>Vision:</strong> To be a global leader in economic sciences education and research.</p>
+                <br>
+                <p><strong>Head of Department:</strong> Prof. A.K. Singh</p>
             </div>
-
-            <!-- Cell 2: EC -->
             <div class="card-glass">
-                <h3><i class="fas fa-vote-yea"></i> Election Commission (EC)</h3>
-                <p>Ensuring fair and smooth conduction of Gymkhana elections, upholding the democratic spirit of IIT Kanpur.</p>
-                <a href="ec/ec.html" class="btn-cell">Learn More →</a>
+                <span class="icon-large"><i class="fas fa-graduation-cap"></i></span>
+                <h3>Programs Offered</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> <strong>B.Sc:</strong> Economic Sciences</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>M.Sc:</strong> Economic Sciences</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Ph.D:</strong> Doctoral Programs</li>
+                </ul>
+                <br>
+                <p><strong>Official Website:</strong> <a href="https://iitk.ac.in/eco" target="_blank" style="color:#ffd700;">iitk.ac.in/eco</a></p>
+                <p><strong>Email:</strong> <a href="mailto:head_eco@iitk.ac.in" style="color:#ffd700;">head_eco@iitk.ac.in</a></p>
+                <p><strong>Phone:</strong> +91-512-259-7600</p>
             </div>
-
-            <!-- Cell 3: E-Cell -->
+        </div>
+        <div class="grid-2" style="margin-top:20px;">
             <div class="card-glass">
-                <h3><i class="fas fa-lightbulb"></i> Entrepreneurship Cell (E-Cell)</h3>
-                <p>E-Cell aims to induce an entrepreneurial mindset into the students and air an innovative streak in them.</p>
-                <a href="ecell/ecell.html" class="btn-cell">Learn More →</a>
+                <span class="icon-large"><i class="fas fa-microscope"></i></span>
+                <h3>Research Areas</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Microeconomics & Game Theory</li>
+                    <li><i class="fas fa-check-circle"></i> Macroeconomics & Growth</li>
+                    <li><i class="fas fa-check-circle"></i> Econometrics & Data Science</li>
+                    <li><i class="fas fa-check-circle"></i> Development Economics</li>
+                    <li><i class="fas fa-check-circle"></i> Behavioral & Experimental Economics</li>
+                </ul>
             </div>
-
-            <!-- Cell 4: Outreach -->
             <div class="card-glass">
-                <h3><i class="fas fa-users"></i> Outreach Cell</h3>
-                <p>Works in collaboration with the Dean of Resources and Alumni to strengthen student-alumni relations.</p>
-                <a href="outreach/outreach.html" class="btn-cell">Learn More →</a>
-            </div>
-
-            <!-- Cell 5: Vox -->
-            <div class="card-glass" style="grid-column: 1 / -1; max-width: 600px; margin: 0 auto;">
-                <h3><i class="fas fa-microphone-alt"></i> Vox Populi</h3>
-                <p>Vox is the student media body of IIT Kanpur, acting as a bridge between faculty, students, alumni and other stakeholders.</p>
-                <a href="vox/vox.html" class="btn-cell">Learn More →</a>
+                <span class="icon-large"><i class="fas fa-link"></i></span>
+                <h3>Connect With Us</h3>
+                <div style="text-align:center; margin-top:10px;">
+                    <a href="https://iitk.ac.in/eco" target="_blank" class="social-link"><i class="fas fa-globe"></i> Website</a>
+                    <a href="https://www.facebook.com/IITKEconomics" target="_blank" class="social-link"><i class="fab fa-facebook"></i> Facebook</a>
+                    <a href="https://www.linkedin.com/company/iitk-economics" target="_blank" class="social-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                </div>
+                <br>
+                <a href="../branches.html" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Branches</a>
             </div>
         </div>
     </div>
@@ -156,14 +171,15 @@
             <a href="mailto:gymkhana.iitkanpur@gmail.com"><i class="fas fa-envelope"></i> Email</a>
         </div>
         <div class="footer-links">
-            <a href="../index.html">Home</a>
-            <a href="../gymkhana/gymkhana.html">Gymkhana</a>
-            <a href="../councils/councils.html">Councils</a>
-            <a href="cells.html">Cells</a>
-            <a href="../fests/fests.html">Fests</a>
-            <a href="../senate/senate.html">Senate</a>
-            <a href="../gallery/gallery.html">Gallery</a>
-            <a href="../contact/contact.html">Contact</a>
+            <a href="../../index.html">Home</a>
+            <a href="../../gymkhana/gymkhana.html">Gymkhana</a>
+            <a href="../../councils/councils.html">Councils</a>
+            <a href="../../cells/cells.html">Cells</a>
+            <a href="../../fests/fests.html">Fests</a>
+            <a href="../branches.html">Branches</a>
+            <a href="../../senate/senate.html">Senate</a>
+            <a href="../../gallery/gallery.html">Gallery</a>
+            <a href="../../contact/contact.html">Contact</a>
         </div>
         <div class="copyright">&copy; 2026 Students' Gymkhana — IIT Kanpur. All rights reserved.</div>
     </div>
@@ -176,7 +192,6 @@
         let w, h, particles = [];
         function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
         window.addEventListener('resize', resize); resize();
-
         class Particle {
             constructor() { this.reset(); }
             reset() {
@@ -201,7 +216,6 @@
             }
         }
         for (let i = 0; i < 130; i++) particles.push(new Particle());
-
         function animate() {
             ctx.clearRect(0, 0, w, h);
             particles.forEach(p => { p.update(); p.draw(); });

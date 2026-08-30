@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Cells – IIT Kanpur</title>
+    <title>Collection – IIT Kanpur</title>
     <link rel="icon" type="image/png" href="../assets/images/wuj.jpg" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -32,18 +32,13 @@
         .section-title::after { content: ''; display: block; width: 72px; height: 4px; margin: 12px auto 0; background: linear-gradient(90deg, #ffd700, transparent); border-radius: 4px; }
         .content-section { padding: 40px 0 60px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 20px; }
-        .card-glass { background: rgba(18, 28, 50, 0.65); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 18px; padding: 30px 26px; transition: 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+        .card-glass { background: rgba(18, 28, 50, 0.65); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 18px; padding: 40px 30px; transition: 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.2); text-align: center; }
         .card-glass:hover { border-color: rgba(255, 215, 0, 0.3); transform: translateY(-6px); box-shadow: 0 12px 44px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255,215,0,0.05); }
-        .card-glass h3 { font-size: 1.4rem; font-weight: 700; color: #ffd700; margin-bottom: 14px; }
-        .card-glass h3 i { margin-right: 10px; }
-        .card-glass p { color: #b0bcc8; line-height: 1.7; }
-        .card-glass ul { list-style: none; padding: 0; margin-top: 10px; }
-        .card-glass ul li { padding: 8px 0; color: #b8c0d8; border-bottom: 1px solid rgba(255, 255, 255, 0.04); display: flex; align-items: center; gap: 12px; }
-        .card-glass ul li i { color: #ffd700; width: 22px; text-align: center; }
-        .card-glass a { color: #ffd700; transition: 0.2s; }
-        .card-glass a:hover { color: #ffffff; text-decoration: underline; }
-        .btn-cell { display: inline-block; padding: 8px 20px; border-radius: 30px; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-size: 0.85rem; transition: 0.3s; margin-top: 12px; }
-        .btn-cell:hover { background: #ffd700; color: #0a0a1a; transform: translateY(-2px); }
+        .card-glass .icon-large { font-size: 3.5rem; color: #ffd700; margin-bottom: 16px; display: block; }
+        .card-glass h3 { font-size: 1.5rem; font-weight: 700; color: #ffd700; margin-bottom: 10px; }
+        .card-glass p { color: #b0bcc8; line-height: 1.6; font-size: 1rem; }
+        .card-glass .btn-go { display: inline-block; padding: 10px 30px; border-radius: 40px; background: linear-gradient(135deg, #ffd700, #f0a500); color: #0a0a1a; font-weight: 700; font-size: 0.95rem; transition: 0.3s; margin-top: 16px; }
+        .card-glass .btn-go:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(255,215,0,0.3); }
         .footer { background: rgba(5, 5, 18, 0.95); backdrop-filter: blur(8px); border-top: 1px solid rgba(255, 215, 0, 0.08); padding: 44px 0 24px; margin-top: 60px; }
         .footer .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 24px; margin: 16px 0 24px; }
         .footer .social-links a { color: #8899bb; font-size: 0.95rem; transition: 0.25s; display: flex; align-items: center; gap: 8px; }
@@ -68,8 +63,9 @@
             <li><a href="../index.html">Home</a></li>
             <li><a href="../gymkhana/gymkhana.html">Gymkhana</a></li>
             <li><a href="../councils/councils.html">Councils</a></li>
-            <li><a href="cells.html">Cells</a></li>
+            <li><a href="../cells/cells.html">Cells</a></li>
             <li><a href="../fests/fests.html">Fests</a></li>
+            <li><a href="../branches/branches.html">Branches</a></li>
             <li><a href="../senate/senate.html">Senate</a></li>
             <li><a href="../gallery/gallery.html">Gallery</a></li>
             <li><a href="../contact/contact.html">Contact</a></li>
@@ -87,50 +83,28 @@
 
 <section class="hero">
     <div class="container">
-        <h1>Cells</h1>
-        <p>The five Cells along with Councils carry out the executive responsibilities of the Students' Gymkhana.</p>
-        <div class="badge"><i class="fas fa-cubes"></i> 5 Cells</div>
+        <h1>Collection</h1>
+        <p>Important documents, forms, rules, and resources for Gymkhana operations.</p>
+        <div class="badge"><i class="fas fa-folder-open"></i> Forms | Rules | Constitution</div>
     </div>
 </section>
 
 <section class="content-section">
     <div class="container">
-        <h2 class="section-title">Our <span>Cells</span></h2>
+        <h2 class="section-title">Browse <span>Resources</span></h2>
         <div class="grid-2">
-            <!-- Cell 1: CWC -->
-            <div class="card-glass">
-                <h3><i class="fas fa-hand-holding-heart"></i> Community Welfare Cell (CWC)</h3>
-                <p>The Community Welfare Cell is a body under the Students' Gymkhana, IIT Kanpur, committed to making a positive impact on the community.</p>
-                <a href="cwc/cwc.html" class="btn-cell">Learn More →</a>
-            </div>
-
-            <!-- Cell 2: EC -->
-            <div class="card-glass">
-                <h3><i class="fas fa-vote-yea"></i> Election Commission (EC)</h3>
-                <p>Ensuring fair and smooth conduction of Gymkhana elections, upholding the democratic spirit of IIT Kanpur.</p>
-                <a href="ec/ec.html" class="btn-cell">Learn More →</a>
-            </div>
-
-            <!-- Cell 3: E-Cell -->
-            <div class="card-glass">
-                <h3><i class="fas fa-lightbulb"></i> Entrepreneurship Cell (E-Cell)</h3>
-                <p>E-Cell aims to induce an entrepreneurial mindset into the students and air an innovative streak in them.</p>
-                <a href="ecell/ecell.html" class="btn-cell">Learn More →</a>
-            </div>
-
-            <!-- Cell 4: Outreach -->
-            <div class="card-glass">
-                <h3><i class="fas fa-users"></i> Outreach Cell</h3>
-                <p>Works in collaboration with the Dean of Resources and Alumni to strengthen student-alumni relations.</p>
-                <a href="outreach/outreach.html" class="btn-cell">Learn More →</a>
-            </div>
-
-            <!-- Cell 5: Vox -->
-            <div class="card-glass" style="grid-column: 1 / -1; max-width: 600px; margin: 0 auto;">
-                <h3><i class="fas fa-microphone-alt"></i> Vox Populi</h3>
-                <p>Vox is the student media body of IIT Kanpur, acting as a bridge between faculty, students, alumni and other stakeholders.</p>
-                <a href="vox/vox.html" class="btn-cell">Learn More →</a>
-            </div>
+            <a href="Gymkhana%20Forms/forms.html" class="card-glass">
+                <span class="icon-large"><i class="fas fa-file-pdf"></i></span>
+                <h3>Gymkhana Forms</h3>
+                <p>Download all official Gymkhana forms including advance, honorarium, booking, and payment forms.</p>
+                <span class="btn-go">View Forms →</span>
+            </a>
+            <a href="Rules/rules.html" class="card-glass">
+                <span class="icon-large"><i class="fas fa-gavel"></i></span>
+                <h3>Rules & Constitution</h3>
+                <p>Access the Constitution of Students' Gymkhana and all rules and procedures documents.</p>
+                <span class="btn-go">View Rules →</span>
+            </a>
         </div>
     </div>
 </section>
@@ -159,8 +133,9 @@
             <a href="../index.html">Home</a>
             <a href="../gymkhana/gymkhana.html">Gymkhana</a>
             <a href="../councils/councils.html">Councils</a>
-            <a href="cells.html">Cells</a>
+            <a href="../cells/cells.html">Cells</a>
             <a href="../fests/fests.html">Fests</a>
+            <a href="../branches/branches.html">Branches</a>
             <a href="../senate/senate.html">Senate</a>
             <a href="../gallery/gallery.html">Gallery</a>
             <a href="../contact/contact.html">Contact</a>
@@ -176,7 +151,6 @@
         let w, h, particles = [];
         function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
         window.addEventListener('resize', resize); resize();
-
         class Particle {
             constructor() { this.reset(); }
             reset() {
@@ -201,7 +175,6 @@
             }
         }
         for (let i = 0; i < 130; i++) particles.push(new Particle());
-
         function animate() {
             ctx.clearRect(0, 0, w, h);
             particles.forEach(p => { p.update(); p.draw(); });

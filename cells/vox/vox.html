@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Cells – IIT Kanpur</title>
-    <link rel="icon" type="image/png" href="../assets/images/wuj.jpg" />
+    <title>Vox Populi – IIT Kanpur</title>
+    <link rel="icon" type="image/png" href="../../assets/images/wuj.jpg" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
+        /* Same base styles */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a1a; color: #ffffff; overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
@@ -26,6 +27,7 @@
         .hero { min-height: 40vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 0 60px; background: radial-gradient(circle at top, rgba(255,215,0,0.05), transparent 70%); }
         .hero h1 { font-size: 3.5rem; font-weight: 800; background: linear-gradient(135deg, #ffffff 20%, #ffd700 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 60px rgba(255, 215, 0, 0.15); }
         .hero p { color: #a0aac0; font-size: 1.2rem; max-width: 640px; margin: 18px auto 28px; line-height: 1.6; }
+        .hero .logo-big { width: 150px; height: 150px; object-fit: contain; border-radius: 20px; margin-bottom: 24px; filter: drop-shadow(0 0 40px rgba(255,215,0,0.25)); }
         .hero .badge { display: inline-block; padding: 6px 22px; border-radius: 40px; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-size: 0.85rem; font-weight: 500; }
         .section-title { font-size: 2.6rem; font-weight: 700; text-align: center; margin-bottom: 48px; }
         .section-title span { background: linear-gradient(135deg, #ffd700, #ff8c00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -42,8 +44,6 @@
         .card-glass ul li i { color: #ffd700; width: 22px; text-align: center; }
         .card-glass a { color: #ffd700; transition: 0.2s; }
         .card-glass a:hover { color: #ffffff; text-decoration: underline; }
-        .btn-cell { display: inline-block; padding: 8px 20px; border-radius: 30px; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-size: 0.85rem; transition: 0.3s; margin-top: 12px; }
-        .btn-cell:hover { background: #ffd700; color: #0a0a1a; transform: translateY(-2px); }
         .footer { background: rgba(5, 5, 18, 0.95); backdrop-filter: blur(8px); border-top: 1px solid rgba(255, 215, 0, 0.08); padding: 44px 0 24px; margin-top: 60px; }
         .footer .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 24px; margin: 16px 0 24px; }
         .footer .social-links a { color: #8899bb; font-size: 0.95rem; transition: 0.25s; display: flex; align-items: center; gap: 8px; }
@@ -52,6 +52,7 @@
         .footer .footer-links a:hover { color: #ffd700; }
         .footer .copyright { text-align: center; color: #556; font-size: 0.8rem; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.04); }
         @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } .grid-2 { grid-template-columns: 1fr; gap: 24px; } .navbar .nav-links { display: none; } }
+        @media (max-width: 480px) { .hero h1 { font-size: 1.8rem; } .section-title { font-size: 1.8rem; } }
     </style>
 </head>
 <body>
@@ -60,19 +61,19 @@
 
 <nav class="navbar">
     <div class="container">
-        <a href="../index.html" class="logo">
-            <img src="../assets/images/wuj.jpg" alt="Gymkhana IITK" />
+        <a href="../../index.html" class="logo">
+            <img src="../../assets/images/wuj.jpg" alt="Gymkhana IITK" />
             <span>Gymkhana IITK</span>
         </a>
         <ul class="nav-links">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../gymkhana/gymkhana.html">Gymkhana</a></li>
-            <li><a href="../councils/councils.html">Councils</a></li>
-            <li><a href="cells.html">Cells</a></li>
-            <li><a href="../fests/fests.html">Fests</a></li>
-            <li><a href="../senate/senate.html">Senate</a></li>
-            <li><a href="../gallery/gallery.html">Gallery</a></li>
-            <li><a href="../contact/contact.html">Contact</a></li>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../gymkhana/gymkhana.html">Gymkhana</a></li>
+            <li><a href="../../councils/councils.html">Councils</a></li>
+            <li><a href="../../cells/cells.html">Cells</a></li>
+            <li><a href="../../fests/fests.html">Fests</a></li>
+            <li><a href="../../senate/senate.html">Senate</a></li>
+            <li><a href="../../gallery/gallery.html">Gallery</a></li>
+            <li><a href="../../contact/contact.html">Contact</a></li>
         </ul>
         <div class="social-icons">
             <a href="https://www.instagram.com/gymkhanaiitk" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -87,49 +88,47 @@
 
 <section class="hero">
     <div class="container">
-        <h1>Cells</h1>
-        <p>The five Cells along with Councils carry out the executive responsibilities of the Students' Gymkhana.</p>
-        <div class="badge"><i class="fas fa-cubes"></i> 5 Cells</div>
+        <img src="../../assets/images/vox.jpg" alt="Vox Populi" class="logo-big" />
+        <h1>Vox Populi</h1>
+        <p>Vox is the student media body of IIT Kanpur. We aim to be the voice of campus community, and act as a bridge between faculty, students, alumni and other stakeholders.</p>
+        <div class="badge"><i class="fas fa-microphone-alt"></i> Student Journalism | Media | Campus Voice</div>
     </div>
 </section>
 
 <section class="content-section">
     <div class="container">
-        <h2 class="section-title">Our <span>Cells</span></h2>
+        <h2 class="section-title">About <span>Vox Populi</span></h2>
         <div class="grid-2">
-            <!-- Cell 1: CWC -->
             <div class="card-glass">
-                <h3><i class="fas fa-hand-holding-heart"></i> Community Welfare Cell (CWC)</h3>
-                <p>The Community Welfare Cell is a body under the Students' Gymkhana, IIT Kanpur, committed to making a positive impact on the community.</p>
-                <a href="cwc/cwc.html" class="btn-cell">Learn More →</a>
+                <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                <p>Vox Populi is a pioneering student journalism initiative at IIT Kanpur that illuminates the multifaceted talents of its students. By delving into pressing concerns such as mental health, caste dynamics, and labour exploitation, these student journalists skillfully navigate the complexities of campus life. [citation:7]</p>
+                <p style="margin-top:12px;">As a bridge between faculty, students, alumni, and other stakeholders, Vox Populi offers a platform for students to speak their minds and offer an ear to what others have to say. Its web platform was established on Aug 3, 2015. [citation:7]</p>
             </div>
-
-            <!-- Cell 2: EC -->
             <div class="card-glass">
-                <h3><i class="fas fa-vote-yea"></i> Election Commission (EC)</h3>
-                <p>Ensuring fair and smooth conduction of Gymkhana elections, upholding the democratic spirit of IIT Kanpur.</p>
-                <a href="ec/ec.html" class="btn-cell">Learn More →</a>
+                <h3><i class="fas fa-bullseye"></i> Mission & Vision</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> To report stories that matter and spark meaningful conversations [citation:7]</li>
+                    <li><i class="fas fa-check-circle"></i> To reflect the true pulse of the campus</li>
+                    <li><i class="fas fa-check-circle"></i> To bring grassroots narratives to the forefront</li>
+                    <li><i class="fas fa-check-circle"></i> To foster a more informed and empathetic community</li>
+                </ul>
             </div>
-
-            <!-- Cell 3: E-Cell -->
             <div class="card-glass">
-                <h3><i class="fas fa-lightbulb"></i> Entrepreneurship Cell (E-Cell)</h3>
-                <p>E-Cell aims to induce an entrepreneurial mindset into the students and air an innovative streak in them.</p>
-                <a href="ecell/ecell.html" class="btn-cell">Learn More →</a>
+                <h3><i class="fas fa-cogs"></i> Structure</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> <strong>Writing & Correspondence:</strong> Articles and reporting</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Photo & Video:</strong> Visual storytelling</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Design:</strong> Creative design and layout [citation:7]</li>
+                </ul>
             </div>
-
-            <!-- Cell 4: Outreach -->
             <div class="card-glass">
-                <h3><i class="fas fa-users"></i> Outreach Cell</h3>
-                <p>Works in collaboration with the Dean of Resources and Alumni to strengthen student-alumni relations.</p>
-                <a href="outreach/outreach.html" class="btn-cell">Learn More →</a>
-            </div>
-
-            <!-- Cell 5: Vox -->
-            <div class="card-glass" style="grid-column: 1 / -1; max-width: 600px; margin: 0 auto;">
-                <h3><i class="fas fa-microphone-alt"></i> Vox Populi</h3>
-                <p>Vox is the student media body of IIT Kanpur, acting as a bridge between faculty, students, alumni and other stakeholders.</p>
-                <a href="vox/vox.html" class="btn-cell">Learn More →</a>
+                <h3><i class="fas fa-newspaper"></i> Impact</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Mental health survey (2018) – 1,105 responses [citation:7]</li>
+                    <li><i class="fas fa-check-circle"></i> Coverage of student protests and suicides</li>
+                    <li><i class="fas fa-check-circle"></i> Labour disputes and workers' rights reporting</li>
+                    <li><i class="fas fa-check-circle"></i> Infrastructure reviews</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -156,14 +155,11 @@
             <a href="mailto:gymkhana.iitkanpur@gmail.com"><i class="fas fa-envelope"></i> Email</a>
         </div>
         <div class="footer-links">
-            <a href="../index.html">Home</a>
-            <a href="../gymkhana/gymkhana.html">Gymkhana</a>
-            <a href="../councils/councils.html">Councils</a>
-            <a href="cells.html">Cells</a>
-            <a href="../fests/fests.html">Fests</a>
-            <a href="../senate/senate.html">Senate</a>
-            <a href="../gallery/gallery.html">Gallery</a>
-            <a href="../contact/contact.html">Contact</a>
+            <a href="../../index.html">Home</a>
+            <a href="../../gymkhana/gymkhana.html">Gymkhana</a>
+            <a href="../../councils/councils.html">Councils</a>
+            <a href="../../gallery/gallery.html">Gallery</a>
+            <a href="../../contact/contact.html">Contact</a>
         </div>
         <div class="copyright">&copy; 2026 Students' Gymkhana — IIT Kanpur. All rights reserved.</div>
     </div>
