@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Rules & Procedures II – Students' Gymkhana IITK</title>
+    <link rel="icon" type="image/png" href="../../assets/images/wuj.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a1a; color: #ffffff; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        #particles-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        .navbar { position: sticky; top: 0; z-index: 1000; background: rgba(10, 10, 26, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 215, 0, 0.15); padding: 14px 0; }
+        .navbar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.2rem; color: #fff; }
+        .navbar .logo img { height: 44px; border-radius: 10px; filter: drop-shadow(0 0 12px rgba(255,215,0,0.3)); }
+        .navbar .nav-links { display: flex; flex-wrap: wrap; gap: 6px 18px; list-style: none; }
+        .navbar .nav-links a { color: #b0b8d0; font-size: 0.95rem; font-weight: 500; padding: 6px 0; border-bottom: 2px solid transparent; transition: 0.25s; }
+        .navbar .nav-links a:hover { color: #ffd700; border-bottom-color: #ffd700; }
+        .navbar .social-icons { display: flex; gap: 14px; font-size: 1.15rem; }
+        .navbar .social-icons a { color: #b0b8d0; transition: 0.25s; }
+        .navbar .social-icons a:hover { color: #ffd700; transform: translateY(-2px); }
+        .hero { min-height: 30vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 0 60px; background: radial-gradient(circle at top, rgba(255,215,0,0.05), transparent 70%); }
+        .hero h1 { font-size: 3rem; font-weight: 800; background: linear-gradient(135deg, #ffffff 20%, #ffd700 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 60px rgba(255, 215, 0, 0.15); }
+        .hero p { color: #a0aac0; font-size: 1.1rem; max-width: 640px; margin: 18px auto 28px; line-height: 1.6; }
+        .hero .badge { display: inline-block; padding: 6px 22px; border-radius: 40px; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-size: 0.85rem; font-weight: 500; }
+        .section-title { font-size: 2.2rem; font-weight: 700; text-align: center; margin-bottom: 40px; }
+        .section-title span { background: linear-gradient(135deg, #ffd700, #ff8c00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .section-title::after { content: ''; display: block; width: 72px; height: 4px; margin: 12px auto 0; background: linear-gradient(90deg, #ffd700, transparent); border-radius: 4px; }
+        .content-section { padding: 40px 0 60px; }
+        .card-glass { background: rgba(18, 28, 50, 0.65); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 18px; padding: 30px 26px; transition: 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.2); margin-bottom: 24px; }
+        .card-glass:hover { border-color: rgba(255, 215, 0, 0.3); transform: translateY(-4px); box-shadow: 0 12px 44px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255,215,0,0.05); }
+        .card-glass h2 { font-size: 1.5rem; font-weight: 700; color: #ffd700; margin-bottom: 16px; border-bottom: 1px solid rgba(255, 215, 0, 0.2); padding-bottom: 12px; }
+        .card-glass h3 { font-size: 1.1rem; font-weight: 600; color: #ffd700; margin-top: 20px; margin-bottom: 10px; }
+        .card-glass p, .card-glass li { color: #b0bcc8; line-height: 1.7; font-size: 0.95rem; }
+        .card-glass ul { list-style: none; padding: 0; margin: 10px 0; }
+        .card-glass ul li { padding: 6px 0; padding-left: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); position: relative; }
+        .card-glass ul li::before { content: '▸'; color: #ffd700; position: absolute; left: 0; }
+        .card-glass .section-number { color: #ffd700; font-weight: 700; margin-right: 8px; }
+        .btn-download { display: inline-block; padding: 12px 32px; border-radius: 40px; background: linear-gradient(135deg, #ffd700, #f0a500); color: #0a0a1a; font-weight: 700; font-size: 1rem; transition: 0.3s ease; margin-top: 20px; border: none; cursor: pointer; }
+        .btn-download:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(255, 215, 0, 0.3); }
+        .btn-back { display: inline-block; padding: 10px 28px; border-radius: 40px; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-weight: 600; transition: 0.3s; margin-top: 20px; margin-right: 10px; }
+        .btn-back:hover { background: #ffd700; color: #0a0a1a; transform: scale(1.05); }
+        .footer { background: rgba(5, 5, 18, 0.95); backdrop-filter: blur(8px); border-top: 1px solid rgba(255, 215, 0, 0.08); padding: 44px 0 24px; margin-top: 60px; }
+        .footer .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 24px; margin: 16px 0 24px; }
+        .footer .social-links a { color: #8899bb; font-size: 0.95rem; transition: 0.25s; display: flex; align-items: center; gap: 8px; }
+        .footer .social-links a:hover { color: #ffd700; transform: translateY(-2px); }
+        .footer .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; font-size: 0.85rem; color: #667; }
+        .footer .footer-links a:hover { color: #ffd700; }
+        .footer .copyright { text-align: center; color: #556; font-size: 0.8rem; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.04); }
+        @media (max-width: 768px) { .hero h1 { font-size: 2rem; } .navbar .nav-links { display: none; } }
+        @media (max-width: 480px) { .hero h1 { font-size: 1.6rem; } .card-glass h2 { font-size: 1.3rem; } }
+    </style>
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<nav class="navbar">
+    <div class="container">
+        <a href="../../index.html" class="logo">
+            <img src="../../assets/images/wuj.jpg" alt="Gymkhana IITK" />
+            <span>Gymkhana IITK</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../gymkhana/gymkhana.html">Gymkhana</a></li>
+            <li><a href="../../councils/councils.html">Councils</a></li>
+            <li><a href="../../cells/cells.html">Cells</a></li>
+            <li><a href="../../fests/fests.html">Fests</a></li>
+            <li><a href="../../branches/branches.html">Branches</a></li>
+            <li><a href="../../senate/senate.html">Senate</a></li>
+            <li><a href="../../gallery/gallery.html">Gallery</a></li>
+            <li><a href="../../contact/contact.html">Contact</a></li>
+        </ul>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/gymkhanaiitk" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/IITKGymkhana" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://x.com/gymkhana_iitk" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.youtube.com/@gymkhana_iitk" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://linkedin.com/in/gymkhanaiitk" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.threads.com/@iitk_gymkhana" target="_blank"><i class="fab fa-threads"></i></a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="container">
+        <h1>Rules & Procedures — Appendix II</h1>
+        <p>Finance Committee Rules, Budgeting, and Financial Guidelines</p>
+        <div class="badge"><i class="fas fa-coins"></i> Finance | Budget | Expenditure</div>
+    </div>
+</section>
+
+<section class="content-section">
+    <div class="container">
+        <div class="card-glass">
+            <p><strong>The under mentioned rules and procedures are as per the guidelines laid down in the constitution and clearly spell out the general idea expressed there.</strong></p>
+
+            <p><span class="section-number">1.</span> The Students' senate shall have a five member standing committee known as the Finance Committee (henceforth referred as FC), whose function will be to oversee the effective expenditure of the Gymkhana funds.</p>
+            <p><span class="section-number">2.</span> All members of the FC will be senators and one of them will be elected as Convener of the FC by the Senate.</p>
+            <p><span class="section-number">3.</span> The FC will function as a team, but for administrative convenience the responsibility will be distributed as follows: Convener FC accounts relating to President's fund, Member 1 Cultural Council, Member 2 Games Council, Member 3 SFS, Member 4 Science and Technology.</p>
+            <p><span class="section-number">4.</span> Every FC Member will be an ex-officio member of the Council he is attached to.</p>
+            <p><span class="section-number">5.</span> All remittances towards advertisements/sponsorships will be received at the DOSA Office. The parties for whom the advertisement appear must be informed to remit the amount by cheque / draft drawn in favor of "Students' Gymkhana, IIT Kanpur".</p>
+            <p><span class="section-number">6.</span> a) Sale of tickets for professional programmes must be made only through proper authorized, numbered and preferably printed ticket booklets with at least 3 counterfoils. Each of these ticket booklets should be recorded by the Gymkhana Office (DOSA Office) before issue for sale, and accounted for within a fortnight of the programme. b) The complimentary passes should be of a different color and must have "NOT FOR SALE" and "COMPLIMENTARY PASS" printed on them. c) Articles like T-Shirts etc. must be sold only through the mess bill or through receipts accountable to the DOSA Office. d) Proper contracts must be drawn with the artists or external parties concerned, prior to any programme.</p>
+            <p><span class="section-number">7.</span> The membership fee for any club shall be received against a printed receipt only. The receipt books shall be issued out by the Gymkhana Office and the executive responsible for the collection of membership fee shall submit the account in the Gymkhana office. Money collected may be used for the expenses of the club concerned.</p>
+            <p><span class="section-number">8.</span> Money received from any other source excepting the membership fee of clubs shall not normally be used for expenses directly. All such money must be deposited with the DOSA Office. In exceptional circumstances the money may be spent directly if permitted in writing by the Chief Counsellor.</p>
+            <p><span class="section-number">9.</span> In the budgets presented by the councils, separate heads are to be made for refreshments, Inter IIT Meet, Cultural Festival, maintenance and estimated miscellaneous expenses.</p>
+            <p><span class="section-number">10.</span> Estimated income from all sources should be shown on the budget.</p>
+            <p><span class="section-number">11.</span> The executives must submit proper accounts for any expenditure made as early as possible after the amount has been spent and always earlier than a request for a fresh advance.</p>
+            <p><span class="section-number">12.</span> As far as possible, payments shall be made by cheques by the DOSA Office.</p>
+            <p><span class="section-number">13.</span> Although payments will normally be made if a bill is verified by the executive concerned, the same will not be accepted as a valid and proper expenditure until it has been examined by the FC and approved/accepted.</p>
+            <p><span class="section-number">14.</span> While submitting bills/ vouchers, it is the duty of the executive to specify (on the reverse side of the bill/ voucher) the budget head to which it is to be assigned.</p>
+            <p><span class="section-number">15.</span> Excepting conveyance, there should be a receipt from the recipient of each and every expenditure, conveyance, and TA bills should be submitted only on proper forms available for the purpose (at the DOSA Office). In case of a train journey money receipts should be attached.</p>
+            <p><span class="section-number">16.</span> In all cases of Gymkhana work, the most economical mode of transport is to be used (eg. Institute bus for local trips, bus/ mini-buses in other cities). If this is not done, the executive concerned should offer sufficient justification for the same.</p>
+            <p><span class="section-number">17.</span> Trips to other cities on Gymkhana expenses, prior information is to be given to the FC.</p>
+            <p><span class="section-number">18.</span> In all cases of a person going to another city on Gymkhana expenses, prior information is to be given to the FC.</p>
+            <p><span class="section-number">19.</span> DA will be paid to persons going out of station on Gymkhana work at the rate of Rs.35/- per day.</p>
+            <p><span class="section-number">20.</span> No DA will be paid if boarding is provided for the destination station.</p>
+            <p><span class="section-number">21.</span> a) A maximum commission of 25% of the value received may be paid to the individual responsible for procuring any advertisement for the Gymkhana. The elected executives will not be eligible to receive their commission. b) Commissions must be given during the semester and before the handing over of charge. The list of recipients displayed on Notice Boards.</p>
+            <p><span class="section-number">22.</span> Expenses on cash purchases are to be made out of an advance drawn. Such purchases must have the prior approval of the concerned authorities.</p>
+            <p><span class="section-number">23.</span> The expenses on refreshments and missed meals shall be minimized as far as possible. The upper limit on this item shall be as follows: A: Presidential fund Rs. 600/-, B: Cultural Council i) Festival Rs. 7000/- ii) Others Rs. 500/-, C: Games Council Nil, D: SFS Rs. 1000/-.</p>
+            <p><span class="section-number">24.</span> For the Cultural festival, the Cultural Secretary will be given a predetermined number of refreshments coupons of a fixed value. Additional coupons/ claims will not normally be entertained.</p>
+            <p><span class="section-number">25.</span> When visiting dignitaries are to be entertained the expenditure on "hospitality" may be commensurate with the needs of protocol, but only one or at most two persons of the concerned councils may accompany the dignitaries.</p>
+            <p><span class="section-number">26.</span> Refreshments will normally imply tea, but should in no case exceed one drink (like cold coffee or nimbupani) per person.</p>
+            <p><span class="section-number">27.</span> Refreshments are generally to be discouraged for committee/ council meetings, but tea may be served at the discretion of the person chairing the meeting, specially if the meeting exceeds a certain length of time.</p>
+            <p><span class="section-number">28.</span> Expenditure on refreshments will generally be allowed only to persons involved in doing strenuous/ physical work for their council. In this category will be people like: a) Audio and stage crew after a full fledged cultural council programme, b) Games teams when matches are played with invited visiting teams. In such cases, i) the invited teams, ii) the players of the home team, iii) the persons involved in organizing the game will be eligible for refreshments.</p>
+            <p><span class="section-number">29.</span> Missed meal allowance will be given only as an exceptional measure when a person misses a meal due to unavoidable circumstances while doing Gymkhana work. The maximum allowance will be commensurate with the DA and allowance permitted (ie. Rs. 11/- for lunch/dinner Rs. 8/- for breakfast and Rs. 5/- for tea).</p>
+            <p><span class="section-number">30.</span> Under certain exceptional circumstances the persons involved in the organisation of a major programme, may be rewarded in kind (ie. a small celebration party). For this prior permission of the FC is required.</p>
+            <p><span class="section-number">31.</span> If the bills are in language other than English/ Hindi (i.e. Urdu), an English/ Hindi translation of the same should be attached with the original.</p>
+            <p><span class="section-number">32.</span> A stock register is to be maintained for each council. It is to be regularly checked, updated and officially handed over to the succeeding executives by the present executives (all permanent/ semi-permanent items should be noted).</p>
+            <p><span class="section-number">33.</span> When/ if objectionable procedures/ expenses are detected by the FC, they are to seek explanation, if any is forthcoming, from the executive concerned.</p>
+            <p><span class="section-number">34.</span> A written list of the objections is to be given to the concerned executive, and a copy of it is to left with the dealing assistant at the DOSA Office.</p>
+            <p><span class="section-number">35.</span> If the explanation given by the concerned executives is deemed unsatisfactory, the Counsellor of the committee is to be informed about the matter through the Convener of the Students' Senate.</p>
+            <p><span class="section-number">36.</span> If the objections are based upon the violation of established norms and procedures and the amount involved exceeds Rs. 500/- then the stoppage of further funds may be recommended to the Counsellor concerned by the FC via the convener.</p>
+            <p><span class="section-number">37.</span> If the objections are due to some technicality, the stoppage of funds is not to be requested for, but the lapse must be rectified at the earliest.</p>
+            <p><span class="section-number">38.</span> For persistent disregard and violations of established norms and procedures by an executive while in the office, severe and strict action will be taken by the senate. The action taken may include: a. The introduction to a 'No-Confidence' or 'Censure' motion, b. Information regarding the incident being publicly displayed, c. Monetary fine up to the amount involved, d. Stoppage of Gymkhana clearance, e. Stoppage of provisional and/ or final degree, f. Initiation of legal proceeding against him.</p>
+            <p><span class="section-number">39.</span> Any objections regarding TA/DA expenditure from non-students during Gymkhana work (eg. PTI's) is to be informed to the counsellor of the concerned council for necessary action.</p>
+            <p><span class="section-number">40.</span> The FC will submit regular reports (at least once every 3 months) on the status of Gymkhana finances at the moment.</p>
+            <p><span class="section-number">41.</span> The FC may also recommend adhoc financial measures consistent with the existing framework, which will require a simple majority for sanction and will be presented for approval as "resolutions".</p>
+
+            <div style="text-align:center; margin-top: 30px;">
+                <a href="rules.html" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Rules</a>
+                <a href="appendix2pdf.html" download class="btn-download"><i class="fas fa-download"></i> Download Rules II (PDF)</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="social-links">
+            <a href="https://students.iitk.ac.in/gymkhana" target="_blank"><i class="fas fa-globe"></i> Website</a>
+            <a href="https://iitk.ac.in/gymkhana" target="_blank"><i class="fas fa-globe"></i> IITK</a>
+            <a href="https://linktr.ee/gymkhana.iitk" target="_blank"><i class="fas fa-tree"></i> Linktree</a>
+            <a href="https://www.instagram.com/gymkhanaiitk" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://www.facebook.com/IITKGymkhana" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="https://x.com/gymkhana_iitk" target="_blank"><i class="fab fa-x-twitter"></i> X</a>
+            <a href="https://www.youtube.com/@gymkhana_iitk" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+            <a href="https://linkedin.com/in/gymkhanaiitk" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://www.threads.com/@iitk_gymkhana" target="_blank"><i class="fab fa-threads"></i> Threads</a>
+            <a href="https://www.reddit.com/user/GymkhanaIITK/" target="_blank"><i class="fab fa-reddit-alien"></i> Reddit</a>
+            <a href="https://whatsapp.com/channel/0029VbDCW5I9sBIEOTzQGz3H" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Channel</a>
+            <a href="https://chat.whatsapp.com/HA9MDkZB0XyIjfJ5SofwVU" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Group 1</a>
+            <a href="https://chat.whatsapp.com/D4PaEzAV1L6I6ERlRydVuK" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Group 2</a>
+            <a href="https://t.me/IITKGymkhana" target="_blank"><i class="fab fa-telegram"></i> Telegram 1</a>
+            <a href="https://t.me/GymkhanaIITK" target="_blank"><i class="fab fa-telegram"></i> Telegram 2</a>
+            <a href="mailto:gymkhana.iitkanpur@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        </div>
+        <div class="footer-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../gymkhana/gymkhana.html">Gymkhana</a>
+            <a href="../../councils/councils.html">Councils</a>
+            <a href="../../cells/cells.html">Cells</a>
+            <a href="../../fests/fests.html">Fests</a>
+            <a href="../../branches/branches.html">Branches</a>
+            <a href="../../senate/senate.html">Senate</a>
+            <a href="../../gallery/gallery.html">Gallery</a>
+            <a href="../../contact/contact.html">Contact</a>
+        </div>
+        <div class="copyright">&copy; 2026 Students' Gymkhana — IIT Kanpur. All rights reserved.</div>
+    </div>
+</footer>
+
+<script>
+    (function() {
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let w, h, particles = [];
+        function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize); resize();
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * w;
+                this.y = Math.random() * h;
+                this.size = Math.random() * 2.2 + 0.4;
+                this.speedX = (Math.random() - 0.5) * 0.45;
+                this.speedY = (Math.random() - 0.5) * 0.45;
+                this.opacity = Math.random() * 0.6 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > w) this.speedX *= -1;
+                if (this.y < 0 || this.y > h) this.speedY *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 215, 0, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+        for (let i = 0; i < 130; i++) particles.push(new Particle());
+        function animate() {
+            ctx.clearRect(0, 0, w, h);
+            particles.forEach(p => { p.update(); p.draw(); });
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < 160) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(255, 215, 0, ${0.07 * (1 - dist/160)})`;
+                        ctx.lineWidth = 0.6;
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+    })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Mathematics & Statistics – IIT Kanpur</title>
+    <link rel="icon" type="image/png" href="../../assets/images/wuj.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a1a; color: #ffffff; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        #particles-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        .navbar { position: sticky; top: 0; z-index: 1000; background: rgba(10, 10, 26, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 215, 0, 0.15); padding: 14px 0; }
+        .navbar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.2rem; color: #fff; }
+        .navbar .logo img { height: 44px; border-radius: 10px; filter: drop-shadow(0 0 12px rgba(255,215,0,0.3)); }
+        .navbar .nav-links { display: flex; flex-wrap: wrap; gap: 6px 18px; list-style: none; }
+        .navbar .nav-links a { color: #b0b8d0; font-size: 0.95rem; font-weight: 500; padding: 6px 0; border-bottom: 2px solid transparent; transition: 0.25s; }
+        .navbar .nav-links a:hover { color: #ffd700; border-bottom-color: #ffd700; }
+        .navbar .social-icons { display: flex; gap: 14px; font-size: 1.15rem; }
+        .navbar .social-icons a { color: #b0b8d0; transition: 0.25s; }
+        .navbar .social-icons a:hover { color: #ffd700; transform: translateY(-2px); }
+        .hero { min-height: 40vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 0 60px; background: radial-gradient(circle at top, rgba(255,215,0,0.05), transparent 70%); }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; background: linear-gradient(135deg, #ffffff 20%, #ffd700 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 60px rgba(255, 215, 0, 0.15); }
+        .hero p { color: #a0aac0; font-size: 1.2rem; max-width: 640px; margin: 18px auto 28px; line-height: 1.6; }
+        .hero .badge { display: inline-block; padding: 6px 22px; border-radius: 40px; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-size: 0.85rem; font-weight: 500; }
+        .section-title { font-size: 2.6rem; font-weight: 700; text-align: center; margin-bottom: 48px; }
+        .section-title span { background: linear-gradient(135deg, #ffd700, #ff8c00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .section-title::after { content: ''; display: block; width: 72px; height: 4px; margin: 12px auto 0; background: linear-gradient(90deg, #ffd700, transparent); border-radius: 4px; }
+        .content-section { padding: 40px 0 60px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 20px; }
+        .card-glass { background: rgba(18, 28, 50, 0.65); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 18px; padding: 30px 26px; transition: 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+        .card-glass:hover { border-color: rgba(255, 215, 0, 0.3); transform: translateY(-6px); box-shadow: 0 12px 44px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255,215,0,0.05); }
+        .card-glass h3 { font-size: 1.2rem; font-weight: 700; color: #ffd700; margin-bottom: 10px; }
+        .card-glass h3 i { margin-right: 10px; }
+        .card-glass p { color: #b0bcc8; line-height: 1.7; font-size: 0.95rem; }
+        .card-glass ul { list-style: none; padding: 0; margin-top: 10px; }
+        .card-glass ul li { padding: 8px 0; color: #b8c0d8; border-bottom: 1px solid rgba(255, 255, 255, 0.04); display: flex; align-items: center; gap: 12px; }
+        .card-glass ul li i { color: #ffd700; width: 22px; text-align: center; }
+        .card-glass .icon-large { font-size: 3rem; color: #ffd700; display: block; text-align: center; margin-bottom: 10px; }
+        .card-glass .btn-back { display: inline-block; padding: 8px 20px; border-radius: 30px; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-size: 0.85rem; transition: 0.3s; margin-top: 12px; }
+        .card-glass .btn-back:hover { background: #ffd700; color: #0a0a1a; transform: translateY(-2px); }
+        .card-glass .social-link { display: inline-block; padding: 6px 14px; border-radius: 20px; background: rgba(255, 255, 255, 0.05); color: #b0bcc8; font-size: 0.8rem; transition: 0.3s; margin: 4px; }
+        .card-glass .social-link:hover { background: rgba(255, 215, 0, 0.15); color: #ffd700; }
+        .footer { background: rgba(5, 5, 18, 0.95); backdrop-filter: blur(8px); border-top: 1px solid rgba(255, 215, 0, 0.08); padding: 44px 0 24px; margin-top: 60px; }
+        .footer .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 24px; margin: 16px 0 24px; }
+        .footer .social-links a { color: #8899bb; font-size: 0.95rem; transition: 0.25s; display: flex; align-items: center; gap: 8px; }
+        .footer .social-links a:hover { color: #ffd700; transform: translateY(-2px); }
+        .footer .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; font-size: 0.85rem; color: #667; }
+        .footer .footer-links a:hover { color: #ffd700; }
+        .footer .copyright { text-align: center; color: #556; font-size: 0.8rem; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.04); }
+        @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } .grid-2 { grid-template-columns: 1fr; gap: 24px; } .navbar .nav-links { display: none; } }
+        @media (max-width: 480px) { .hero h1 { font-size: 1.8rem; } .section-title { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<nav class="navbar">
+    <div class="container">
+        <a href="../../index.html" class="logo">
+            <img src="../../assets/images/wuj.jpg" alt="Gymkhana IITK" />
+            <span>Gymkhana IITK</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../gymkhana/gymkhana.html">Gymkhana</a></li>
+            <li><a href="../../councils/councils.html">Councils</a></li>
+            <li><a href="../../cells/cells.html">Cells</a></li>
+            <li><a href="../../fests/fests.html">Fests</a></li>
+            <li><a href="../branches.html">Branches</a></li>
+            <li><a href="../../senate/senate.html">Senate</a></li>
+            <li><a href="../../gallery/gallery.html">Gallery</a></li>
+            <li><a href="../../contact/contact.html">Contact</a></li>
+        </ul>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/gymkhanaiitk" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/IITKGymkhana" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://x.com/gymkhana_iitk" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.youtube.com/@gymkhana_iitk" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://linkedin.com/in/gymkhanaiitk" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.threads.com/@iitk_gymkhana" target="_blank"><i class="fab fa-threads"></i></a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="container">
+        <h1>Mathematics & Statistics</h1>
+        <p>Excellence in pure and applied mathematics, statistics, and data science.</p>
+        <div class="badge"><i class="fas fa-square-root-alt"></i> Department of Mathematics & Statistics</div>
+    </div>
+</section>
+
+<section class="content-section">
+    <div class="container">
+        <h2 class="section-title">About <span>Mathematics & Statistics</span></h2>
+        <div class="grid-2">
+            <div class="card-glass">
+                <span class="icon-large"><i class="fas fa-info-circle"></i></span>
+                <h3>Overview</h3>
+                <p>The Department of Mathematics and Statistics at IIT Kanpur was established in 1960. It offers world-class education and research in various fields of mathematics and statistics, with a focus on both fundamental and applied research.</p>
+                <br>
+                <p><strong>Vision:</strong> To be a global leader in mathematics and statistics education and research.</p>
+                <br>
+                <p><strong>Head of Department:</strong> Prof. A.K. Singh</p>
+            </div>
+            <div class="card-glass">
+                <span class="icon-large"><i class="fas fa-graduation-cap"></i></span>
+                <h3>Programs Offered</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> <strong>B.Sc:</strong> Mathematics & Statistics</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>M.Sc:</strong> Mathematics & Statistics</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Ph.D:</strong> Doctoral Programs</li>
+                </ul>
+                <br>
+                <p><strong>Official Website:</strong> <a href="https://iitk.ac.in/math" target="_blank" style="color:#ffd700;">iitk.ac.in/math</a></p>
+                <p><strong>Email:</strong> <a href="mailto:head_math@iitk.ac.in" style="color:#ffd700;">head_math@iitk.ac.in</a></p>
+                <p><strong>Phone:</strong> +91-512-259-7400</p>
+            </div>
+        </div>
+        <div class="grid-2" style="margin-top:20px;">
+            <div class="card-glass">
+                <span class="icon-large"><i class="fas fa-microscope"></i></span>
+                <h3>Research Areas</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Pure Mathematics (Algebra, Analysis, Topology)</li>
+                    <li><i class="fas fa-check-circle"></i> Applied Mathematics & Computational Methods</li>
+                    <li><i class="fas fa-check-circle"></i> Statistics & Probability</li>
+                    <li><i class="fas fa-check-circle"></i> Data Science & Machine Learning</li>
+                    <li><i class="fas fa-check-circle"></i> Operations Research & Optimization</li>
+                </ul>
+            </div>
+            <div class="card-glass">
+                <span class="icon-large"><i class="fas fa-link"></i></span>
+                <h3>Connect With Us</h3>
+                <div style="text-align:center; margin-top:10px;">
+                    <a href="https://iitk.ac.in/math" target="_blank" class="social-link"><i class="fas fa-globe"></i> Website</a>
+                    <a href="https://www.facebook.com/IITKMath" target="_blank" class="social-link"><i class="fab fa-facebook"></i> Facebook</a>
+                    <a href="https://www.linkedin.com/company/iitk-mathematics" target="_blank" class="social-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                </div>
+                <br>
+                <a href="../branches.html" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Branches</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="social-links">
+            <a href="https://students.iitk.ac.in/gymkhana" target="_blank"><i class="fas fa-globe"></i> Website</a>
+            <a href="https://iitk.ac.in/gymkhana" target="_blank"><i class="fas fa-globe"></i> IITK</a>
+            <a href="https://linktr.ee/gymkhana.iitk" target="_blank"><i class="fas fa-tree"></i> Linktree</a>
+            <a href="https://www.instagram.com/gymkhanaiitk" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://www.facebook.com/IITKGymkhana" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="https://x.com/gymkhana_iitk" target="_blank"><i class="fab fa-x-twitter"></i> X</a>
+            <a href="https://www.youtube.com/@gymkhana_iitk" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+            <a href="https://linkedin.com/in/gymkhanaiitk" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://www.threads.com/@iitk_gymkhana" target="_blank"><i class="fab fa-threads"></i> Threads</a>
+            <a href="https://www.reddit.com/user/GymkhanaIITK/" target="_blank"><i class="fab fa-reddit-alien"></i> Reddit</a>
+            <a href="https://whatsapp.com/channel/0029VbDCW5I9sBIEOTzQGz3H" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Channel</a>
+            <a href="https://chat.whatsapp.com/HA9MDkZB0XyIjfJ5SofwVU" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Group 1</a>
+            <a href="https://chat.whatsapp.com/D4PaEzAV1L6I6ERlRydVuK" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Group 2</a>
+            <a href="https://t.me/IITKGymkhana" target="_blank"><i class="fab fa-telegram"></i> Telegram 1</a>
+            <a href="https://t.me/GymkhanaIITK" target="_blank"><i class="fab fa-telegram"></i> Telegram 2</a>
+            <a href="mailto:gymkhana.iitkanpur@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        </div>
+        <div class="footer-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../gymkhana/gymkhana.html">Gymkhana</a>
+            <a href="../../councils/councils.html">Councils</a>
+            <a href="../../cells/cells.html">Cells</a>
+            <a href="../../fests/fests.html">Fests</a>
+            <a href="../branches.html">Branches</a>
+            <a href="../../senate/senate.html">Senate</a>
+            <a href="../../gallery/gallery.html">Gallery</a>
+            <a href="../../contact/contact.html">Contact</a>
+        </div>
+        <div class="copyright">&copy; 2026 Students' Gymkhana — IIT Kanpur. All rights reserved.</div>
+    </div>
+</footer>
+
+<script>
+    (function() {
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let w, h, particles = [];
+        function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize); resize();
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * w;
+                this.y = Math.random() * h;
+                this.size = Math.random() * 2.2 + 0.4;
+                this.speedX = (Math.random() - 0.5) * 0.45;
+                this.speedY = (Math.random() - 0.5) * 0.45;
+                this.opacity = Math.random() * 0.6 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > w) this.speedX *= -1;
+                if (this.y < 0 || this.y > h) this.speedY *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 215, 0, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+        for (let i = 0; i < 130; i++) particles.push(new Particle());
+        function animate() {
+            ctx.clearRect(0, 0, w, h);
+            particles.forEach(p => { p.update(); p.draw(); });
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < 160) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(255, 215, 0, ${0.07 * (1 - dist/160)})`;
+                        ctx.lineWidth = 0.6;
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+    })();
+</script>
+
+</body>
+</html>

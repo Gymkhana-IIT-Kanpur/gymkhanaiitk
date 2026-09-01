@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Branches – IIT Kanpur</title>
+    <link rel="icon" type="image/png" href="../assets/images/wuj.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a1a; color: #ffffff; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        #particles-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+
+        .navbar { position: sticky; top: 0; z-index: 1000; background: rgba(10, 10, 26, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 215, 0, 0.15); padding: 14px 0; }
+        .navbar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.2rem; color: #fff; }
+        .navbar .logo img { height: 44px; border-radius: 10px; filter: drop-shadow(0 0 12px rgba(255,215,0,0.3)); }
+        .navbar .nav-links { display: flex; flex-wrap: wrap; gap: 6px 18px; list-style: none; }
+        .navbar .nav-links a { color: #b0b8d0; font-size: 0.95rem; font-weight: 500; padding: 6px 0; border-bottom: 2px solid transparent; transition: 0.25s; }
+        .navbar .nav-links a:hover { color: #ffd700; border-bottom-color: #ffd700; }
+        .navbar .social-icons { display: flex; gap: 14px; font-size: 1.15rem; }
+        .navbar .social-icons a { color: #b0b8d0; transition: 0.25s; }
+        .navbar .social-icons a:hover { color: #ffd700; transform: translateY(-2px); }
+
+        .hero { min-height: 40vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 0 60px; background: radial-gradient(circle at top, rgba(255,215,0,0.05), transparent 70%); }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; background: linear-gradient(135deg, #ffffff 20%, #ffd700 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 60px rgba(255, 215, 0, 0.15); }
+        .hero p { color: #a0aac0; font-size: 1.2rem; max-width: 640px; margin: 18px auto 28px; line-height: 1.6; }
+        .hero .badge { display: inline-block; padding: 6px 22px; border-radius: 40px; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.2); color: #ffd700; font-size: 0.85rem; font-weight: 500; }
+        .hero .badge i { margin-right: 6px; }
+
+        .section-title { font-size: 2.6rem; font-weight: 700; text-align: center; margin-bottom: 48px; }
+        .section-title span { background: linear-gradient(135deg, #ffd700, #ff8c00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .section-title::after { content: ''; display: block; width: 72px; height: 4px; margin: 12px auto 0; background: linear-gradient(90deg, #ffd700, transparent); border-radius: 4px; }
+
+        .content-section { padding: 40px 0 60px; }
+
+        /* Category Tabs */
+        .category-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 40px; }
+        .category-tab { padding: 8px 24px; border-radius: 40px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.08); color: #b0bcc8; font-size: 0.85rem; cursor: pointer; transition: 0.3s; }
+        .category-tab:hover { background: rgba(255, 215, 0, 0.1); border-color: rgba(255, 215, 0, 0.3); color: #ffd700; }
+        .category-tab.active { background: rgba(255, 215, 0, 0.15); border-color: #ffd700; color: #ffd700; }
+
+        /* Branch Cards Grid */
+        .branches-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 28px; margin-top: 10px; }
+
+        .branch-card {
+            background: rgba(18, 28, 50, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 28px 24px 24px;
+            transition: 0.35s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            text-align: center;
+        }
+        .branch-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ffd700, transparent);
+            opacity: 0;
+            transition: 0.4s;
+        }
+        .branch-card:hover::before { opacity: 1; }
+        .branch-card:hover {
+            border-color: rgba(255, 215, 0, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 16px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 215, 0, 0.05);
+        }
+
+        .branch-card .icon-wrapper {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: rgba(255, 215, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 14px;
+            font-size: 2rem;
+            color: #ffd700;
+            transition: 0.3s;
+        }
+        .branch-card:hover .icon-wrapper {
+            background: rgba(255, 215, 0, 0.2);
+            transform: scale(1.05);
+        }
+
+        .branch-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .branch-card .branch-desc {
+            font-size: 0.85rem;
+            color: #8899bb;
+            line-height: 1.5;
+            margin-bottom: 14px;
+        }
+
+        .branch-card .branch-tag {
+            display: inline-block;
+            padding: 3px 14px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+        }
+        .branch-tag.core { background: rgba(255, 68, 68, 0.15); color: #ff6b6b; border: 1px solid rgba(255, 68, 68, 0.2); }
+        .branch-tag.interdisciplinary { background: rgba(68, 130, 255, 0.15); color: #6ba6ff; border: 1px solid rgba(68, 130, 255, 0.2); }
+        .branch-tag.school { background: rgba(68, 255, 130, 0.12); color: #6bff9e; border: 1px solid rgba(68, 255, 130, 0.2); }
+        .branch-tag.programme { background: rgba(255, 180, 68, 0.15); color: #ffb86b; border: 1px solid rgba(255, 180, 68, 0.2); }
+        .branch-tag.centre { background: rgba(180, 68, 255, 0.15); color: #b86bff; border: 1px solid rgba(180, 68, 255, 0.2); }
+
+        .branch-card .btn-learn {
+            display: inline-block;
+            padding: 8px 24px;
+            border-radius: 30px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            color: #ffd700;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .branch-card .btn-learn:hover {
+            background: #ffd700;
+            color: #0a0a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .branch-card .card-number {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.08);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-search {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+        .filter-search input {
+            padding: 10px 20px;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-size: 0.9rem;
+            width: 260px;
+            outline: none;
+            transition: 0.3s;
+        }
+        .filter-search input:focus { border-color: rgba(255, 215, 0, 0.3); background: rgba(255, 255, 255, 0.08); }
+        .filter-search input::placeholder { color: #556; }
+
+        .stats { text-align: center; color: #556; font-size: 0.9rem; margin-top: 30px; }
+        .stats span { color: #ffd700; font-weight: 600; }
+
+        .footer { background: rgba(5, 5, 18, 0.95); backdrop-filter: blur(8px); border-top: 1px solid rgba(255, 215, 0, 0.08); padding: 44px 0 24px; margin-top: 60px; }
+        .footer .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 24px; margin: 16px 0 24px; }
+        .footer .social-links a { color: #8899bb; font-size: 0.95rem; transition: 0.25s; display: flex; align-items: center; gap: 8px; }
+        .footer .social-links a:hover { color: #ffd700; transform: translateY(-2px); }
+        .footer .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; font-size: 0.85rem; color: #667; }
+        .footer .footer-links a:hover { color: #ffd700; }
+        .footer .copyright { text-align: center; color: #556; font-size: 0.8rem; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.04); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .branches-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+            .navbar .nav-links { display: none; }
+            .category-tabs { gap: 6px; }
+            .category-tab { padding: 6px 14px; font-size: 0.75rem; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.8rem; }
+            .section-title { font-size: 1.8rem; }
+            .branches-grid { grid-template-columns: 1fr; }
+            .filter-search input { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<nav class="navbar">
+    <div class="container">
+        <a href="../index.html" class="logo">
+            <img src="../assets/images/wuj.jpg" alt="Gymkhana IITK" />
+            <span>Gymkhana IITK</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../gymkhana/gymkhana.html">Gymkhana</a></li>
+            <li><a href="../councils/councils.html">Councils</a></li>
+            <li><a href="../cells/cells.html">Cells</a></li>
+            <li><a href="../fests/fests.html">Fests</a></li>
+            <li><a href="branches.html">Branches</a></li>
+            <li><a href="../senate/senate.html">Senate</a></li>
+            <li><a href="../gallery/gallery.html">Gallery</a></li>
+            <li><a href="../contact/contact.html">Contact</a></li>
+        </ul>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/gymkhanaiitk" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/IITKGymkhana" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://x.com/gymkhana_iitk" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.youtube.com/@gymkhana_iitk" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://linkedin.com/in/gymkhanaiitk" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.threads.com/@iitk_gymkhana" target="_blank"><i class="fab fa-threads"></i></a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="container">
+        <h1>Academic <span style="background:linear-gradient(135deg,#ffd700,#ff8c00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Departments</span></h1>
+        <p>Explore the diverse academic departments, interdisciplinary programmes, and research centres at IIT Kanpur.</p>
+        <div class="badge"><i class="fas fa-university"></i> 24 Departments &amp; Programmes</div>
+    </div>
+</section>
+
+<section class="content-section">
+    <div class="container">
+
+        <!-- Filter & Search -->
+        <div class="filter-search">
+            <input type="text" id="searchInput" placeholder="🔍 Search departments..." onkeyup="filterBranches()" />
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="category-tabs" id="categoryTabs">
+            <span class="category-tab active" data-category="all" onclick="filterCategory('all', this)">All</span>
+            <span class="category-tab" data-category="core" onclick="filterCategory('core', this)">Core Departments</span>
+            <span class="category-tab" data-category="interdisciplinary" onclick="filterCategory('interdisciplinary', this)">Interdisciplinary</span>
+            <span class="category-tab" data-category="school" onclick="filterCategory('school', this)">Schools</span>
+            <span class="category-tab" data-category="programme" onclick="filterCategory('programme', this)">Programmes</span>
+            <span class="category-tab" data-category="centre" onclick="filterCategory('centre', this)">Centres</span>
+        </div>
+
+        <!-- Branches Grid -->
+        <div class="branches-grid" id="branchesGrid"></div>
+
+        <!-- Stats -->
+        <div class="stats" id="statsDisplay">Showing <span id="visibleCount">0</span> of <span id="totalCount">0</span> departments</div>
+
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="social-links">
+            <a href="https://students.iitk.ac.in/gymkhana" target="_blank"><i class="fas fa-globe"></i> Website</a>
+            <a href="https://iitk.ac.in/gymkhana" target="_blank"><i class="fas fa-globe"></i> IITK</a>
+            <a href="https://linktr.ee/gymkhana.iitk" target="_blank"><i class="fas fa-tree"></i> Linktree</a>
+            <a href="https://www.instagram.com/gymkhanaiitk" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://www.facebook.com/IITKGymkhana" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="https://x.com/gymkhana_iitk" target="_blank"><i class="fab fa-x-twitter"></i> X</a>
+            <a href="https://www.youtube.com/@gymkhana_iitk" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+            <a href="https://linkedin.com/in/gymkhanaiitk" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://www.threads.com/@iitk_gymkhana" target="_blank"><i class="fab fa-threads"></i> Threads</a>
+            <a href="https://www.reddit.com/user/GymkhanaIITK/" target="_blank"><i class="fab fa-reddit-alien"></i> Reddit</a>
+            <a href="https://whatsapp.com/channel/0029VbDCW5I9sBIEOTzQGz3H" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Channel</a>
+            <a href="https://chat.whatsapp.com/HA9MDkZB0XyIjfJ5SofwVU" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Group 1</a>
+            <a href="https://chat.whatsapp.com/D4PaEzAV1L6I6ERlRydVuK" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Group 2</a>
+            <a href="https://t.me/IITKGymkhana" target="_blank"><i class="fab fa-telegram"></i> Telegram 1</a>
+            <a href="https://t.me/GymkhanaIITK" target="_blank"><i class="fab fa-telegram"></i> Telegram 2</a>
+            <a href="mailto:gymkhana.iitkanpur@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        </div>
+        <div class="footer-links">
+            <a href="../index.html">Home</a>
+            <a href="../gymkhana/gymkhana.html">Gymkhana</a>
+            <a href="../councils/councils.html">Councils</a>
+            <a href="../cells/cells.html">Cells</a>
+            <a href="../fests/fests.html">Fests</a>
+            <a href="branches.html">Branches</a>
+            <a href="../senate/senate.html">Senate</a>
+            <a href="../gallery/gallery.html">Gallery</a>
+            <a href="../contact/contact.html">Contact</a>
+        </div>
+        <div class="copyright">&copy; 2026 Students' Gymkhana — IIT Kanpur. All rights reserved.</div>
+    </div>
+</footer>
+
+<script>
+    // ====== PARTICLES ======
+    (function() {
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let w, h, particles = [];
+        function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize); resize();
+
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * w;
+                this.y = Math.random() * h;
+                this.size = Math.random() * 2.2 + 0.4;
+                this.speedX = (Math.random() - 0.5) * 0.45;
+                this.speedY = (Math.random() - 0.5) * 0.45;
+                this.opacity = Math.random() * 0.6 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > w) this.speedX *= -1;
+                if (this.y < 0 || this.y > h) this.speedY *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 215, 0, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+        for (let i = 0; i < 130; i++) particles.push(new Particle());
+
+        function animate() {
+            ctx.clearRect(0, 0, w, h);
+            particles.forEach(p => { p.update(); p.draw(); });
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < 160) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(255, 215, 0, ${0.07 * (1 - dist/160)})`;
+                        ctx.lineWidth = 0.6;
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+    })();
+
+    // ====== BRANCHES DATA ======
+    const branches = [
+        // Core Departments (15)
+        { name: "Aerospace Engineering", icon: "fa-rocket", folder: "aerospace", desc: "Aerodynamics, Propulsion & Space Technology", tag: "Core", tagClass: "core" },
+        { name: "Biological Sciences & Bioengineering", icon: "fa-dna", folder: "biological-sciences", desc: "Molecular Biology, Genetics & Bioengineering", tag: "Core", tagClass: "core" },
+        { name: "Chemical Engineering", icon: "fa-flask", folder: "chemical", desc: "Process Engineering, Thermodynamics & Materials", tag: "Core", tagClass: "core" },
+        { name: "Civil Engineering", icon: "fa-building", folder: "civil", desc: "Structural, Geotechnical & Environmental Engineering", tag: "Core", tagClass: "core" },
+        { name: "Computer Science & Engineering", icon: "fa-laptop-code", folder: "computer-science", desc: "Algorithms, AI, ML & Software Systems", tag: "Core", tagClass: "core" },
+        { name: "Electrical Engineering", icon: "fa-bolt", folder: "electrical", desc: "Power Systems, Electronics & Communication", tag: "Core", tagClass: "core" },
+        { name: "Industrial & Management Engineering", icon: "fa-industry", folder: "industrial-management", desc: "Operations Research, Supply Chain & Systems", tag: "Core", tagClass: "core" },
+        { name: "Materials Science & Engineering", icon: "fa-cube", folder: "materials-science", desc: "Metallurgy, Polymers & Nanomaterials", tag: "Core", tagClass: "core" },
+        { name: "Mechanical Engineering", icon: "fa-cogs", folder: "mechanical", desc: "Design, Manufacturing, Thermal Sciences & Robotics", tag: "Core", tagClass: "core" },
+        { name: "Chemistry", icon: "fa-atom", folder: "chemistry", desc: "Organic, Inorganic & Physical Chemistry", tag: "Core", tagClass: "core" },
+        { name: "Earth Sciences", icon: "fa-globe-asia", folder: "earth-sciences", desc: "Geology, Geophysics & Environmental Science", tag: "Core", tagClass: "core" },
+        { name: "Economic Sciences", icon: "fa-chart-line", folder: "economics", desc: "Microeconomics, Macroeconomics & Econometrics", tag: "Core", tagClass: "core" },
+        { name: "Humanities & Social Sciences", icon: "fa-book-open", folder: "humanities", desc: "Philosophy, Psychology, Sociology & Linguistics", tag: "Core", tagClass: "core" },
+        { name: "Mathematics & Statistics", icon: "fa-square-root-alt", folder: "mathematics-statistics", desc: "Pure & Applied Mathematics, Statistics & Data Science", tag: "Core", tagClass: "core" },
+        { name: "Physics", icon: "fa-microscope", folder: "physics", desc: "Condensed Matter, Optics, Quantum Physics & Astronomy", tag: "Core", tagClass: "core" },
+
+        // New Schools, Programmes & Centres (9)
+        { name: "Sustainable Energy Engineering", icon: "fa-solar-panel", folder: "sustainable-energy", desc: "Clean Energy, Storage & Carbon Neutrality", tag: "School", tagClass: "school" },
+        { name: "Space, Planetary & Astronomical Sciences", icon: "fa-rocket", folder: "spase", desc: "Astronomy, Space Missions & Planetary Science", tag: "Programme", tagClass: "programme" },
+        { name: "Cognitive Science", icon: "fa-brain", folder: "cognitive-science", desc: "Mind, Brain, Neuroscience & AI Research", tag: "Programme", tagClass: "programme" },
+        { name: "Design", icon: "fa-paint-brush", folder: "design", desc: "Product Design, UX & Visual Communication", tag: "Programme", tagClass: "programme" },
+        { name: "Gangwal School of Medical Sciences", icon: "fa-hospital", folder: "gangwal-medical", desc: "Medical Research, MedTech & Healthcare Innovation", tag: "School", tagClass: "school" },
+        { name: "Kotak School of Sustainability", icon: "fa-leaf", folder: "kotak-sustainability", desc: "Sustainability Research, Energy & Climate Solutions", tag: "School", tagClass: "school" },
+        { name: "Nuclear Engineering & Technology", icon: "fa-atom", folder: "nuclear-engineering", desc: "Nuclear Reactors, Radiation & Fusion Research", tag: "Programme", tagClass: "programme" },
+        { name: "Photonics Science & Engineering", icon: "fa-lightbulb", folder: "photonics", desc: "Lasers, Optics & Quantum Photonics", tag: "Centre", tagClass: "centre" },
+        { name: "Materials Science Programme", icon: "fa-cubes", folder: "materials-science-programme", desc: "Advanced Materials Research & Nanotechnology", tag: "Programme", tagClass: "programme" }
+    ];
+
+    // ====== RENDER CARDS ======
+    const grid = document.getElementById('branchesGrid');
+    let currentCategory = 'all';
+    let currentSearch = '';
+
+    function renderBranches() {
+        const filtered = branches.filter(b => {
+            const matchCategory = currentCategory === 'all' || b.tag.toLowerCase() === currentCategory;
+            const matchSearch = b.name.toLowerCase().includes(currentSearch.toLowerCase()) ||
+                                b.desc.toLowerCase().includes(currentSearch.toLowerCase());
+            return matchCategory && matchSearch;
+        });
+
+        grid.innerHTML = '';
+        filtered.forEach((b, index) => {
+            const card = document.createElement('div');
+            card.className = 'branch-card';
+            card.setAttribute('data-category', b.tag.toLowerCase());
+            card.innerHTML = `
+                <span class="card-number">${String(index + 1).padStart(2, '0')}</span>
+                <div class="icon-wrapper"><i class="fas ${b.icon}"></i></div>
+                <h3>${b.name}</h3>
+                <span class="branch-tag ${b.tagClass}">${b.tag}</span>
+                <p class="branch-desc">${b.desc}</p>
+                <a href="${b.folder}/${b.folder}.html" class="btn-learn">Explore →</a>
+            `;
+            grid.appendChild(card);
+        });
+
+        document.getElementById('visibleCount').textContent = filtered.length;
+        document.getElementById('totalCount').textContent = branches.length;
+    }
+
+    // ====== FILTER FUNCTIONS ======
+    function filterCategory(category, el) {
+        currentCategory = category;
+        document.querySelectorAll('.category-tab').forEach(tab => tab.classList.remove('active'));
+        if (el) el.classList.add('active');
+        else {
+            document.querySelector('.category-tab[data-category="' + category + '"]')?.classList.add('active');
+        }
+        renderBranches();
+    }
+
+    function filterBranches() {
+        currentSearch = document.getElementById('searchInput').value;
+        renderBranches();
+    }
+
+    // ====== INIT ======
+    renderBranches();
+</script>
+
+</body>
+</html>
