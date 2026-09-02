@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Students' Gymkhana – IIT Kanpur</title>
     <link rel="icon" type="image/png" href="assets/images/wuj.jpg" />
-        <script type="application/ld+json">
+    <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -67,6 +67,148 @@
         @media (max-width: 1024px) { .grid-5 { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } .grid-2, .grid-4, .grid-5 { grid-template-columns: 1fr 1fr; gap: 24px; } .navbar .nav-links { display: none; } }
         @media (max-width: 480px) { .hero h1 { font-size: 1.8rem; } .section-title { font-size: 1.8rem; } .grid-2, .grid-4, .grid-5 { grid-template-columns: 1fr; } }
+
+        /* ====== POPUP STYLES ====== */
+        .popup-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: popupFadeIn 0.3s ease;
+        }
+        .popup-overlay.closing {
+            animation: popupFadeOut 0.3s ease;
+        }
+        .popup-box {
+            background: rgba(18, 28, 50, 0.95);
+            border: 1px solid rgba(255,215,0,0.2);
+            border-radius: 24px;
+            padding: 32px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            animation: popupScaleIn 0.3s ease;
+        }
+        .popup-box .popup-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: rgba(255,255,255,0.05);
+            border: none;
+            color: #b0bcc8;
+            font-size: 1.4rem;
+            cursor: pointer;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+        .popup-box .popup-close:hover {
+            background: rgba(255,68,68,0.2);
+            color: #ff6b6b;
+        }
+        .popup-box .popup-badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .popup-badge.info { background: rgba(68,130,255,0.15); color: #6ba6ff; }
+        .popup-badge.warning { background: rgba(255,180,68,0.15); color: #ffb86b; }
+        .popup-badge.success { background: rgba(68,255,130,0.12); color: #6bff9e; }
+        .popup-badge.event { background: rgba(255,215,0,0.15); color: #ffd700; }
+        .popup-badge.urgent { background: rgba(255,68,68,0.15); color: #ff6b6b; }
+        
+        .popup-box h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+        .popup-box .popup-message {
+            color: #b0bcc8;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin: 12px 0 16px;
+        }
+        .popup-box .popup-image {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            max-height: 200px;
+            object-fit: cover;
+        }
+        .popup-box .popup-btn {
+            display: inline-block;
+            padding: 10px 28px;
+            border-radius: 40px;
+            background: linear-gradient(135deg, #ffd700, #f0a500);
+            color: #0a0a1a;
+            font-weight: 700;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .popup-box .popup-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255,215,0,0.2);
+        }
+        .popup-minimized {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 99998;
+            background: rgba(18, 28, 50, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,215,0,0.2);
+            border-radius: 50px;
+            padding: 10px 18px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            transition: 0.3s;
+            color: #ffd700;
+            font-weight: 500;
+        }
+        .popup-minimized:hover {
+            transform: scale(1.05);
+            border-color: #ffd700;
+        }
+        .popup-minimized i { font-size: 1.2rem; }
+        .popup-minimized .badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ff6b6b;
+            animation: popupPulse 1.5s infinite;
+        }
+        @keyframes popupFadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes popupFadeOut { from { opacity: 1; } to { opacity: 0; } }
+        @keyframes popupScaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        @keyframes popupPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        
+        @media (max-width: 480px) {
+            .popup-box { padding: 24px 20px; }
+            .popup-box h2 { font-size: 1.2rem; }
+        }
     </style>
 </head>
 <body>
@@ -186,7 +328,7 @@
                 <h3>Contact</h3>
                 <p>Reach out to us</p>
             </a>
-            <a href="alumni/alumni.html" class="card-glass">
+            <a href="Alumni/alumni.html" class="card-glass">
                 <span class="icon-large"><i class="fas fa-user-graduate"></i></span>
                 <h3>Alumni</h3>
                 <p>Connect with Alumni</p>
@@ -196,7 +338,7 @@
                 <h3>Collection</h3>
                 <p>Forms, Rules & Resources</p>
             </a>
-            <!-- Portal Links (New) -->
+            <!-- Portal Links -->
             <a href="https://liveiitk.netlify.app" target="_blank" class="card-glass" style="background: rgba(255, 215, 0, 0.1); border-color: #ffd700;">
                 <span class="icon-large"><i class="fas fa-bolt"></i></span>
                 <h3>Live IITK</h3>
@@ -216,25 +358,25 @@
     <div class="container">
         <h2 class="section-title">Research & <span>Projects</span></h2>
         <div class="grid-5">
-            <a href="others/emc.html" class="card-glass"><span class="icon-large"><i class="fas fa-bolt"></i></span><h3>EMC</h3><p>EMI/EMC Test Facility</p></a>
-            <a href="others/smc.html" class="card-glass"><span class="icon-large"><i class="fas fa-rocket"></i></span><h3>SMC</h3><p>Startup Master Class</p></a>
-            <a href="others/tac.html" class="card-glass"><span class="icon-large"><i class="fas fa-microchip"></i></span><h3>TAC</h3><p>Technical Activity Club</p></a>
-            <a href="others/doms.html" class="card-glass"><span class="icon-large"><i class="fas fa-chart-bar"></i></span><h3>DoMS</h3><p>Management Sciences</p></a>
-            <a href="others/icfmcf.html" class="card-glass"><span class="icon-large"><i class="fas fa-university"></i></span><h3>ICFMCF</h3><p>Finance Conference</p></a>
-            <a href="others/prabandhan.html" class="card-glass"><span class="icon-large"><i class="fas fa-handshake"></i></span><h3>Prabandhan</h3><p>Management Fest</p></a>
-            <a href="others/siic.html" class="card-glass"><span class="icon-large"><i class="fas fa-lightbulb"></i></span><h3>SIIC</h3><p>Startup Incubation</p></a>
-            <a href="others/c3i.html" class="card-glass"><span class="icon-large"><i class="fas fa-shield-alt"></i></span><h3>C3i Hub</h3><p>Cyber Security</p></a>
-            <a href="others/flexe.html" class="card-glass"><span class="icon-large"><i class="fas fa-mobile-alt"></i></span><h3>FLEXE</h3><p>Flexible Electronics</p></a>
-            <a href="others/medtech.html" class="card-glass"><span class="icon-large"><i class="fas fa-heartbeat"></i></span><h3>MedTech</h3><p>Medical Technology</p></a>
-            <a href="others/blockchain.html" class="card-glass"><span class="icon-large"><i class="fas fa-link"></i></span><h3>Blockchain</h3><p>National Project</p></a>
-            <a href="others/gangwal.html" class="card-glass"><span class="icon-large"><i class="fas fa-hospital"></i></span><h3>Gangwal</h3><p>Medical School</p></a>
-            <a href="others/sbertc.html" class="card-glass"><span class="icon-large"><i class="fas fa-graduation-cap"></i></span><h3>SBERTC</h3><p>Entrepreneurship Centre</p></a>
-            <a href="others/rts.html" class="card-glass"><span class="icon-large"><i class="fas fa-industry"></i></span><h3>RTSA</h3><p>Real-Time Source Apportionment</p></a>
-            <a href="others/karma.html" class="card-glass"><span class="icon-large"><i class="fas fa-hand-holding-heart"></i></span><h3>Karma</h3><p>Circle of Life</p></a>
-            <a href="others/paridhi.html" class="card-glass"><span class="icon-large"><i class="fas fa-circle"></i></span><h3>Paridhi</h3><p>Trademark</p></a>
-            <a href="others/e-masters.html" class="card-glass"><span class="icon-large"><i class="fas fa-laptop"></i></span><h3>e-Masters</h3><p>Online Programs</p></a>
-            <a href="others/mookit.html" class="card-glass"><span class="icon-large"><i class="fas fa-code"></i></span><h3>MooKIT</h3><p>Open Source LMS</p></a>
-            <a href="others/bhu-parikshak.html" class="card-glass"><span class="icon-large"><i class="fas fa-leaf"></i></span><h3>Bhu-Parikshak</h3><p>Soil Testing</p></a>
+            <a href="Others/emc.html" class="card-glass"><span class="icon-large"><i class="fas fa-bolt"></i></span><h3>EMC</h3><p>EMI/EMC Test Facility</p></a>
+            <a href="Others/smc.html" class="card-glass"><span class="icon-large"><i class="fas fa-rocket"></i></span><h3>SMC</h3><p>Startup Master Class</p></a>
+            <a href="Others/tac.html" class="card-glass"><span class="icon-large"><i class="fas fa-microchip"></i></span><h3>TAC</h3><p>Technical Activity Club</p></a>
+            <a href="Others/doms.html" class="card-glass"><span class="icon-large"><i class="fas fa-chart-bar"></i></span><h3>DoMS</h3><p>Management Sciences</p></a>
+            <a href="Others/icfmcf.html" class="card-glass"><span class="icon-large"><i class="fas fa-university"></i></span><h3>ICFMCF</h3><p>Finance Conference</p></a>
+            <a href="Others/prabandhan.html" class="card-glass"><span class="icon-large"><i class="fas fa-handshake"></i></span><h3>Prabandhan</h3><p>Management Fest</p></a>
+            <a href="Others/siic.html" class="card-glass"><span class="icon-large"><i class="fas fa-lightbulb"></i></span><h3>SIIC</h3><p>Startup Incubation</p></a>
+            <a href="Others/c3i.html" class="card-glass"><span class="icon-large"><i class="fas fa-shield-alt"></i></span><h3>C3i Hub</h3><p>Cyber Security</p></a>
+            <a href="Others/flexe.html" class="card-glass"><span class="icon-large"><i class="fas fa-mobile-alt"></i></span><h3>FLEXE</h3><p>Flexible Electronics</p></a>
+            <a href="Others/medtech.html" class="card-glass"><span class="icon-large"><i class="fas fa-heartbeat"></i></span><h3>MedTech</h3><p>Medical Technology</p></a>
+            <a href="Others/blockchain.html" class="card-glass"><span class="icon-large"><i class="fas fa-link"></i></span><h3>Blockchain</h3><p>National Project</p></a>
+            <a href="Others/gangwal.html" class="card-glass"><span class="icon-large"><i class="fas fa-hospital"></i></span><h3>Gangwal</h3><p>Medical School</p></a>
+            <a href="Others/sbertc.html" class="card-glass"><span class="icon-large"><i class="fas fa-graduation-cap"></i></span><h3>SBERTC</h3><p>Entrepreneurship Centre</p></a>
+            <a href="Others/rts.html" class="card-glass"><span class="icon-large"><i class="fas fa-industry"></i></span><h3>RTSA</h3><p>Real-Time Source Apportionment</p></a>
+            <a href="Others/karma.html" class="card-glass"><span class="icon-large"><i class="fas fa-hand-holding-heart"></i></span><h3>Karma</h3><p>Circle of Life</p></a>
+            <a href="Others/paridhi.html" class="card-glass"><span class="icon-large"><i class="fas fa-circle"></i></span><h3>Paridhi</h3><p>Trademark</p></a>
+            <a href="Others/e-masters.html" class="card-glass"><span class="icon-large"><i class="fas fa-laptop"></i></span><h3>e-Masters</h3><p>Online Programs</p></a>
+            <a href="Others/mookit.html" class="card-glass"><span class="icon-large"><i class="fas fa-code"></i></span><h3>MooKIT</h3><p>Open Source LMS</p></a>
+            <a href="Others/bhu-parikshak.html" class="card-glass"><span class="icon-large"><i class="fas fa-leaf"></i></span><h3>Bhu-Parikshak</h3><p>Soil Testing</p></a>
         </div>
     </div>
 </section>
@@ -271,9 +413,8 @@
             <a href="halls/halls.html">Hostels</a>
             <a href="gallery/gallery.html">Gallery</a>
             <a href="contact/contact.html">Contact</a>
-            <a href="alumni/alumni.html">Alumni</a>
+            <a href="Alumni/alumni.html">Alumni</a>
             <a href="collection/collection.html">Collection</a>
-            <!-- Portal Links in Footer -->
             <a href="https://liveiitk.netlify.app" target="_blank">Live IITK</a>
             <a href="https://awaaziitk.netlify.app" target="_blank">Awaaz IITK</a>
         </div>
@@ -281,7 +422,17 @@
     </div>
 </footer>
 
+<!-- ====== POPUP SYSTEM ====== -->
+<div id="popupMinimized" class="popup-minimized" onclick="restorePopup()">
+    <span class="badge-dot"></span>
+    <i class="fas fa-bullhorn"></i>
+    <span id="minimizedTitle">New Announcement</span>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 <script>
+    // ====== PARTICLES ======
     (function() {
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
@@ -336,6 +487,131 @@
         }
         animate();
     })();
+
+    // ====== FIREBASE POPUP SYSTEM ======
+    const firebaseConfig = {
+        apiKey: "AIzaSyDdr1WNCA-DPYo5N1Ea0uH_hA9PfkRYyX8",
+        authDomain: "gymkhanaiitk.firebaseapp.com",
+        databaseURL: "https://gymkhanaiitk-default-rtdb.firebaseio.com",
+        projectId: "gymkhanaiitk",
+        storageBucket: "gymkhanaiitk.firebasestorage.app",
+        messagingSenderId: "389270259342",
+        appId: "1:389270259342:web:65e918f934c8cc83b6ebdf",
+        measurementId: "G-4619G68V49"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    let currentPopupData = null;
+    let currentPopupId = null;
+
+    function showPopup(data, id) {
+        if (document.getElementById('popupOverlay')) return;
+        
+        const type = data.type || 'info';
+        const badgeMap = { info: 'ℹ️ Info', warning: '⚠️ Warning', success: '✅ Success', event: '🎉 Event', urgent: '🚨 Urgent' };
+        
+        const overlay = document.createElement('div');
+        overlay.id = 'popupOverlay';
+        overlay.className = 'popup-overlay';
+        overlay.innerHTML = `
+            <div class="popup-box">
+                <button class="popup-close" onclick="closePopup(true)">✕</button>
+                <span class="popup-badge ${type}">${badgeMap[type] || '📢 Announcement'}</span>
+                ${data.image ? '<img src="' + data.image + '" alt="Banner" class="popup-image" />' : ''}
+                <h2>${escapeHtml(data.title)}</h2>
+                <div class="popup-message">${escapeHtml(data.message)}</div>
+                ${data.link ? '<a href="' + data.link + '" target="_blank" class="popup-btn">' + (data.btnText || 'Learn More') + '</a>' : ''}
+            </div>
+        `;
+        document.body.appendChild(overlay);
+        
+        currentPopupData = data;
+        currentPopupId = id;
+        document.getElementById('popupMinimized').style.display = 'none';
+    }
+
+    function closePopup(minimize = false) {
+        const overlay = document.getElementById('popupOverlay');
+        if (overlay) {
+            overlay.classList.add('closing');
+            setTimeout(() => {
+                overlay.remove();
+                if (minimize && currentPopupData) {
+                    const minimized = document.getElementById('popupMinimized');
+                    minimized.style.display = 'flex';
+                    document.getElementById('minimizedTitle').textContent = currentPopupData.title || 'New Announcement';
+                }
+            }, 300);
+        }
+    }
+
+    function restorePopup() {
+        document.getElementById('popupMinimized').style.display = 'none';
+        if (currentPopupData) {
+            showPopup(currentPopupData, currentPopupId);
+        }
+    }
+
+    function escapeHtml(text) {
+        if (!text) return '';
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    // Listen for active popups
+    db.collection('popups')
+        .where('status', '==', 'active')
+        .orderBy('createdAt', 'desc')
+        .limit(1)
+        .onSnapshot((snapshot) => {
+            if (snapshot.empty) {
+                document.getElementById('popupMinimized').style.display = 'none';
+                return;
+            }
+            const doc = snapshot.docs[0];
+            const data = doc.data();
+            
+            // Check expiry
+            if (data.expiry) {
+                const today = new Date().toISOString().split('T')[0];
+                if (data.expiry < today) {
+                    document.getElementById('popupMinimized').style.display = 'none';
+                    return;
+                }
+            }
+            
+            // Check start date
+            if (data.startDate) {
+                const today = new Date().toISOString().split('T')[0];
+                if (data.startDate > today) {
+                    document.getElementById('popupMinimized').style.display = 'none';
+                    return;
+                }
+            }
+            
+            // Show popup if not already shown in this session
+            if (!document.getElementById('popupOverlay') && !sessionStorage.getItem('popup_' + doc.id)) {
+                showPopup(data, doc.id);
+                sessionStorage.setItem('popup_' + doc.id, 'shown');
+            }
+            
+            // Update minimized title
+            if (document.getElementById('popupMinimized').style.display !== 'flex') {
+                document.getElementById('minimizedTitle').textContent = data.title || 'New Announcement';
+            }
+        });
+        
+    // Close popup on ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closePopup(true);
+    });
+
+    // Global functions for inline onclick
+    window.closePopup = closePopup;
+    window.restorePopup = restorePopup;
 </script>
 
 </body>
