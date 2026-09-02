@@ -68,7 +68,7 @@
         @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } .grid-2, .grid-4, .grid-5 { grid-template-columns: 1fr 1fr; gap: 24px; } .navbar .nav-links { display: none; } }
         @media (max-width: 480px) { .hero h1 { font-size: 1.8rem; } .section-title { font-size: 1.8rem; } .grid-2, .grid-4, .grid-5 { grid-template-columns: 1fr; } }
 
-        /* ====== POPUP STYLES ====== */
+        /* Popup Styles */
         .popup-overlay {
             position: fixed;
             top: 0; left: 0;
@@ -234,7 +234,7 @@
     </div>
 </nav>
 
-<!-- ====== HERO SECTION ====== -->
+<!-- ====== HERO ====== -->
 <section class="hero">
     <div class="container">
         <img src="assets/images/wuj.jpg" alt="Gymkhana IITK" class="logo-big" />
@@ -244,7 +244,7 @@
     </div>
 </section>
 
-<!-- ====== ABOUT SECTION ====== -->
+<!-- ====== ABOUT ====== -->
 <section id="about" class="content-section">
     <div class="container">
         <h2 class="section-title">About <span>Gymkhana</span></h2>
@@ -267,7 +267,7 @@
     </div>
 </section>
 
-<!-- ====== QUICK LINKS SECTION ====== -->
+<!-- ====== QUICK LINKS ====== -->
 <section class="content-section" style="padding-top:0;">
     <div class="container">
         <h2 class="section-title">Explore <span>Our Organization</span></h2>
@@ -341,7 +341,7 @@
     </div>
 </section>
 
-<!-- ====== RESEARCH & PROJECTS SECTION ====== -->
+<!-- ====== RESEARCH & PROJECTS ====== -->
 <section class="content-section" style="padding-top:0;">
     <div class="container">
         <h2 class="section-title">Research & <span>Projects</span></h2>
@@ -476,7 +476,7 @@
         animate();
     })();
 
-    // ====== FIREBASE POPUP SYSTEM ======
+    // ====== FIREBASE POPUP ======
     const firebaseConfig = {
         apiKey: "AIzaSyDdr1WNCA-DPYo5N1Ea0uH_hA9PfkRYyX8",
         authDomain: "gymkhanaiitk.firebaseapp.com",
@@ -497,7 +497,7 @@
     function showPopup(data, id) {
         if (document.getElementById('popupOverlay')) return;
         
-        const type = data.type || 'info';
+        const type = data.type || 'event';
         const badgeMap = { info: 'ℹ️ Info', warning: '⚠️ Warning', success: '✅ Success', event: '🎉 Event', urgent: '🚨 Urgent' };
         
         const overlay = document.createElement('div');
@@ -548,7 +548,9 @@
         return div.innerHTML;
     }
 
-    // ====== CHECK AND SHOW POPUP ======
+    // ====== MAIN: Page Load Par Popup Check ======
+    console.log('🔥 Checking popups on page load...');
+
     function checkAndShowPopup() {
         db.collection('popups')
             .where('status', '==', 'active')
@@ -557,17 +559,20 @@
             .get()
             .then((snapshot) => {
                 if (snapshot.empty) {
+                    console.log('❌ No active popups');
                     document.getElementById('popupMinimized').style.display = 'none';
                     return;
                 }
                 
                 const doc = snapshot.docs[0];
                 const data = doc.data();
+                console.log('📢 Popup Data:', data);
                 
                 // Check expiry
                 if (data.expiry) {
                     const today = new Date().toISOString().split('T')[0];
                     if (data.expiry < today) {
+                        console.log('⏰ Popup expired');
                         document.getElementById('popupMinimized').style.display = 'none';
                         return;
                     }
@@ -577,24 +582,32 @@
                 if (data.startDate) {
                     const today = new Date().toISOString().split('T')[0];
                     if (data.startDate > today) {
+                        console.log('📅 Popup not started yet');
                         document.getElementById('popupMinimized').style.display = 'none';
                         return;
                     }
                 }
                 
-                // Show popup if not already shown
-                if (!document.getElementById('popupOverlay') && !sessionStorage.getItem('popup_' + doc.id)) {
+                // Show popup
+                if (!sessionStorage.getItem('popup_' + doc.id)) {
+                    console.log('✅ Showing popup:', data.title);
                     showPopup(data, doc.id);
                     sessionStorage.setItem('popup_' + doc.id, 'shown');
+                } else {
+                    console.log('ℹ️ Popup already shown this session');
                 }
             })
             .catch((error) => {
-                console.error('Firestore Error:', error);
+                console.error('❌ Error:', error);
             });
     }
 
-    // Page load par check
-    checkAndShowPopup();
+    // DOM ready hone ke baad check karein
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', checkAndShowPopup);
+    } else {
+        checkAndShowPopup();
+    }
 
     // Real-time listener
     db.collection('popups')
