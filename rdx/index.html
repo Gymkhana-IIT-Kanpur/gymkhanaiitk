@@ -13,7 +13,7 @@
 <div class="dashboard-container">
     <div class="dashboard-card">
 
-        <!-- ====== HEADER ====== -->
+        <!-- HEADER -->
         <div class="dashboard-header">
             <div>
                 <h1>📢 Popup <span>Manager</span></h1>
@@ -53,6 +53,13 @@
                 <textarea id="popupMessage" placeholder="Enter popup message..." required></textarea>
             </div>
 
+            <!-- ====== NEW: Code Banner Field ====== -->
+            <div class="form-group" style="margin-bottom:12px;">
+                <label for="popupCode">📝 Custom HTML / Banner Code (Optional)</label>
+                <textarea id="popupCode" placeholder="<div style='background:red; padding:10px;'>Custom Banner</div>" style="min-height:80px;"></textarea>
+                <small style="color:#556; font-size:0.7rem;">Paste any HTML code here (banner, countdown, video, etc.)</small>
+            </div>
+
             <div class="form-row">
                 <div class="form-group">
                     <label for="popupLink">Button Link</label>
@@ -75,17 +82,44 @@
                 </div>
             </div>
 
+            <!-- ====== NEW: Time Fields ====== -->
             <div class="form-row">
                 <div class="form-group">
                     <label for="popupStartDate">Start Date</label>
                     <input type="date" id="popupStartDate" />
                 </div>
                 <div class="form-group">
+                    <label for="popupStartTime">Start Time (Optional)</label>
+                    <input type="time" id="popupStartTime" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="popupEndDate">End Date</label>
+                    <input type="date" id="popupEndDate" />
+                </div>
+                <div class="form-group">
+                    <label for="popupEndTime">End Time (Optional)</label>
+                    <input type="time" id="popupEndTime" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
                     <label for="popupStatus">Status</label>
                     <select id="popupStatus">
                         <option value="active">✅ Active</option>
                         <option value="inactive">❌ Inactive</option>
                         <option value="scheduled">📅 Scheduled</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="popupPriority">Priority</label>
+                    <select id="popupPriority">
+                        <option value="normal">Normal</option>
+                        <option value="high">🔥 High</option>
+                        <option value="urgent">🚨 Urgent</option>
                     </select>
                 </div>
             </div>
