@@ -68,7 +68,7 @@
         @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } .grid-2, .grid-4, .grid-5 { grid-template-columns: 1fr 1fr; gap: 24px; } .navbar .nav-links { display: none; } }
         @media (max-width: 480px) { .hero h1 { font-size: 1.8rem; } .section-title { font-size: 1.8rem; } .grid-2, .grid-4, .grid-5 { grid-template-columns: 1fr; } }
 
-        /* Popup Styles */
+        /* ====== POPUP STYLES ====== */
         .popup-overlay {
             position: fixed;
             top: 0; left: 0;
@@ -161,6 +161,11 @@
             font-size: 0.9rem;
         }
         .popup-box .popup-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(255,215,0,0.2); }
+        .popup-box .popup-code-banner {
+            margin: 12px 0 16px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
         .popup-minimized {
             position: fixed;
             bottom: 24px;
@@ -234,7 +239,7 @@
     </div>
 </nav>
 
-<!-- ====== HERO ====== -->
+<!-- ====== HERO SECTION ====== -->
 <section class="hero">
     <div class="container">
         <img src="assets/images/wuj.jpg" alt="Gymkhana IITK" class="logo-big" />
@@ -244,7 +249,7 @@
     </div>
 </section>
 
-<!-- ====== ABOUT ====== -->
+<!-- ====== ABOUT SECTION ====== -->
 <section id="about" class="content-section">
     <div class="container">
         <h2 class="section-title">About <span>Gymkhana</span></h2>
@@ -267,7 +272,7 @@
     </div>
 </section>
 
-<!-- ====== QUICK LINKS ====== -->
+<!-- ====== QUICK LINKS SECTION ====== -->
 <section class="content-section" style="padding-top:0;">
     <div class="container">
         <h2 class="section-title">Explore <span>Our Organization</span></h2>
@@ -341,7 +346,7 @@
     </div>
 </section>
 
-<!-- ====== RESEARCH & PROJECTS ====== -->
+<!-- ====== RESEARCH & PROJECTS SECTION ====== -->
 <section class="content-section" style="padding-top:0;">
     <div class="container">
         <h2 class="section-title">Research & <span>Projects</span></h2>
@@ -503,16 +508,28 @@
         const overlay = document.createElement('div');
         overlay.id = 'popupOverlay';
         overlay.className = 'popup-overlay';
-        overlay.innerHTML = `
+        
+        let content = `
             <div class="popup-box">
                 <button class="popup-close" onclick="closePopup(true)">✕</button>
                 <span class="popup-badge ${type}">${badgeMap[type] || '📢 Announcement'}</span>
                 ${data.image ? '<img src="' + data.image + '" alt="Banner" class="popup-image" />' : ''}
                 <h2>${escapeHtml(data.title)}</h2>
-                <div class="popup-message">${escapeHtml(data.message)}</div>
-                ${data.link ? '<a href="' + data.link + '" target="_blank" class="popup-btn">' + (data.btnText || 'Learn More') + '</a>' : ''}
-            </div>
         `;
+        
+        // Custom Code Banner
+        if (data.code && data.code.trim() !== '') {
+            content += `<div class="popup-code-banner">${data.code}</div>`;
+        } else {
+            content += `<div class="popup-message">${escapeHtml(data.message)}</div>`;
+        }
+        
+        if (data.link) {
+            content += `<a href="${data.link}" target="_blank" class="popup-btn">${data.btnText || 'Learn More'}</a>`;
+        }
+        
+        content += `</div>`;
+        overlay.innerHTML = content;
         document.body.appendChild(overlay);
         
         currentPopupData = data;
@@ -548,9 +565,48 @@
         return div.innerHTML;
     }
 
-    // ====== MAIN: Page Load Par Popup Check ======
-    console.log('🔥 Checking popups on page load...');
+    // ====== TIME CHECK ======
+    function isPopupActive(data) {
+        const now = new Date();
+        const today = now.toISOString().split('T')[0];
+        const currentTime = now.toTimeString().slice(0, 5);
+        
+        if (data.status !== 'active') return false;
+        
+        // Expiry
+        if (data.expiry && data.expiry < today) {
+            console.log('⏰ Expired:', data.expiry);
+            return false;
+        }
+        
+        // Start Date + Time
+        if (data.startDate) {
+            if (data.startDate > today) {
+                console.log('📅 Start date not reached:', data.startDate);
+                return false;
+            }
+            if (data.startTime && data.startTime > currentTime && data.startDate === today) {
+                console.log('⏰ Start time not reached:', data.startTime);
+                return false;
+            }
+        }
+        
+        // End Date + Time
+        if (data.endDate) {
+            if (data.endDate < today) {
+                console.log('📅 End date passed:', data.endDate);
+                return false;
+            }
+            if (data.endTime && data.endTime < currentTime && data.endDate === today) {
+                console.log('⏰ End time passed:', data.endTime);
+                return false;
+            }
+        }
+        
+        return true;
+    }
 
+    // ====== CHECK AND SHOW ======
     function checkAndShowPopup() {
         db.collection('popups')
             .where('status', '==', 'active')
@@ -559,64 +615,38 @@
             .get()
             .then((snapshot) => {
                 if (snapshot.empty) {
-                    console.log('❌ No active popups');
                     document.getElementById('popupMinimized').style.display = 'none';
                     return;
                 }
                 
                 const doc = snapshot.docs[0];
                 const data = doc.data();
-                console.log('📢 Popup Data:', data);
                 
-                // Check expiry
-                if (data.expiry) {
-                    const today = new Date().toISOString().split('T')[0];
-                    if (data.expiry < today) {
-                        console.log('⏰ Popup expired');
-                        document.getElementById('popupMinimized').style.display = 'none';
-                        return;
-                    }
+                if (!isPopupActive(data)) {
+                    document.getElementById('popupMinimized').style.display = 'none';
+                    return;
                 }
                 
-                // Check start date
-                if (data.startDate) {
-                    const today = new Date().toISOString().split('T')[0];
-                    if (data.startDate > today) {
-                        console.log('📅 Popup not started yet');
-                        document.getElementById('popupMinimized').style.display = 'none';
-                        return;
-                    }
-                }
-                
-                // Show popup
                 if (!sessionStorage.getItem('popup_' + doc.id)) {
-                    console.log('✅ Showing popup:', data.title);
                     showPopup(data, doc.id);
                     sessionStorage.setItem('popup_' + doc.id, 'shown');
-                } else {
-                    console.log('ℹ️ Popup already shown this session');
                 }
             })
-            .catch((error) => {
-                console.error('❌ Error:', error);
-            });
+            .catch((error) => console.error('Firestore Error:', error));
     }
 
-    // DOM ready hone ke baad check karein
+    // Page load + listener
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', checkAndShowPopup);
     } else {
         checkAndShowPopup();
     }
 
-    // Real-time listener
     db.collection('popups')
         .where('status', '==', 'active')
-        .onSnapshot(() => {
-            checkAndShowPopup();
-        });
+        .onSnapshot(() => checkAndShowPopup());
 
-    // Close on ESC
+    // ESC key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closePopup(true);
     });
