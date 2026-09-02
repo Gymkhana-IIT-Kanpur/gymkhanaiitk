@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Popup Manager Login – Gymkhana IITK</title>
+    <title>Login – Popup Manager</title>
     <link rel="icon" type="image/png" href="../assets/images/wuj.jpg" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -12,11 +12,9 @@
 
 <div class="login-container">
     <div class="login-card">
-        <div class="login-header">
-            <img src="../assets/images/wuj.jpg" alt="Logo" class="login-logo" />
-            <h1>📢 Popup Manager</h1>
-            <p>Students' Gymkhana IIT Kanpur</p>
-        </div>
+        <img src="../assets/images/wuj.jpg" alt="Logo" class="login-logo" />
+        <h1>Popup Manager</h1>
+        <p>Students' Gymkhana IIT Kanpur</p>
         
         <div id="loginMessage" class="login-message"></div>
         
@@ -34,11 +32,12 @@
     </div>
 </div>
 
-<!-- Firebase SDKs -->
+<!-- ====== FIREBASE SDK ====== -->
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 
 <script>
+    // ====== FIREBASE CONFIG ======
     const firebaseConfig = {
         apiKey: "AIzaSyDdr1WNCA-DPYo5N1Ea0uH_hA9PfkRYyX8",
         authDomain: "gymkhanaiitk.firebaseapp.com",
@@ -54,7 +53,9 @@
     const auth = firebase.auth();
     const provider = new firebase.auth.GoogleAuthProvider();
 
+    // ====== ALLOWED EMAIL (SIRF YEHI LOGIN KAR SAKTA HAI) ======
     const ALLOWED_EMAIL = "gymkhana.iitkanpur@gmail.com";
+
     const loginMessage = document.getElementById('loginMessage');
     const googleBtn = document.getElementById('googleLoginBtn');
     const loadingSpinner = document.getElementById('loadingSpinner');
@@ -64,17 +65,24 @@
         loginMessage.className = 'login-message ' + type;
     }
 
+    function hideMessage() {
+        loginMessage.className = 'login-message';
+        loginMessage.textContent = '';
+    }
+
     googleBtn.addEventListener('click', () => {
+        hideMessage();
         googleBtn.disabled = true;
         loadingSpinner.classList.remove('hidden');
-        loginMessage.className = 'login-message';
 
         auth.signInWithPopup(provider)
             .then((result) => {
                 const user = result.user;
                 if (user.email === ALLOWED_EMAIL) {
                     showMessage('✅ Login successful! Redirecting...', 'success');
-                    setTimeout(() => window.location.href = 'index.html', 1000);
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1000);
                 } else {
                     showMessage('❌ Access Denied! Only authorized admins can access this portal.', 'error');
                     auth.signOut();
@@ -91,6 +99,7 @@
             });
     });
 
+    // ====== CHECK AUTH STATE ======
     auth.onAuthStateChanged((user) => {
         if (user && user.email === ALLOWED_EMAIL) {
             window.location.href = 'index.html';
