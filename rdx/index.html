@@ -13,11 +13,11 @@
 <div class="dashboard-container">
     <div class="dashboard-card">
 
-        <!-- HEADER -->
+        <!-- ====== HEADER ====== -->
         <div class="dashboard-header">
             <div>
                 <h1>📢 Popup <span>Manager</span></h1>
-                <p style="color:#8899bb; font-size:0.85rem; margin-top:2px;">Create, manage & schedule website popups</p>
+                <p style="color:#8899bb; font-size:0.8rem;">Create, manage & schedule website popups</p>
             </div>
             <div class="user-info">
                 <span id="userInfo"></span>
@@ -27,17 +27,17 @@
             </div>
         </div>
 
-        <!-- ====== POPUP FORM ====== -->
+        <!-- ====== FORM ====== -->
         <form id="popupForm" class="cms-form">
-            <h3 id="formTitle" style="color:#ffd700; margin-bottom:16px;">📝 Create New Popup</h3>
+            <h3 id="formTitle" style="color:#ffd700; font-size:1.1rem; margin-bottom:12px;">📝 Create New Popup</h3>
             
             <div class="form-row">
                 <div class="form-group">
-                    <label for="popupTitle">📌 Title *</label>
-                    <input type="text" id="popupTitle" placeholder="e.g. Techkriti 2026 Registration Open" required />
+                    <label for="popupTitle">Title *</label>
+                    <input type="text" id="popupTitle" placeholder="e.g. Techkriti 2026" required />
                 </div>
                 <div class="form-group">
-                    <label for="popupType">🎯 Type</label>
+                    <label for="popupType">Type</label>
                     <select id="popupType">
                         <option value="info">ℹ️ Information</option>
                         <option value="warning">⚠️ Warning</option>
@@ -48,41 +48,40 @@
                 </div>
             </div>
 
-            <div class="form-group" style="margin-bottom:16px;">
-                <label for="popupMessage">📝 Message *</label>
+            <div class="form-group" style="margin-bottom:12px;">
+                <label for="popupMessage">Message *</label>
                 <textarea id="popupMessage" placeholder="Enter popup message..." required></textarea>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
-                    <label for="popupLink">🔗 Button Link (Optional)</label>
+                    <label for="popupLink">Button Link</label>
                     <input type="url" id="popupLink" placeholder="https://..." />
                 </div>
                 <div class="form-group">
-                    <label for="popupBtnText">🔘 Button Text</label>
+                    <label for="popupBtnText">Button Text</label>
                     <input type="text" id="popupBtnText" placeholder="Learn More" value="Learn More" />
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
-                    <label for="popupImage">🖼️ Image URL (Optional)</label>
+                    <label for="popupImage">Image URL</label>
                     <input type="url" id="popupImage" placeholder="https://example.com/banner.jpg" />
-                    <small style="color:#556; font-size:0.7rem;">Upload image and paste URL here</small>
                 </div>
                 <div class="form-group">
-                    <label for="popupExpiry">📅 Expiry Date (Optional)</label>
+                    <label for="popupExpiry">Expiry Date</label>
                     <input type="date" id="popupExpiry" />
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
-                    <label for="popupStartDate">📅 Start Date (Optional)</label>
+                    <label for="popupStartDate">Start Date</label>
                     <input type="date" id="popupStartDate" />
                 </div>
                 <div class="form-group">
-                    <label for="popupStatus">📌 Status</label>
+                    <label for="popupStatus">Status</label>
                     <select id="popupStatus">
                         <option value="active">✅ Active</option>
                         <option value="inactive">❌ Inactive</option>
@@ -96,12 +95,12 @@
                     <i class="fas fa-bullhorn"></i> Publish Popup
                 </button>
                 <button type="button" id="popupCancelBtn" class="btn-cancel hidden-form" onclick="cancelPopupEdit()">
-                    <i class="fas fa-times"></i> Cancel
+                    Cancel
                 </button>
             </div>
         </form>
 
-        <!-- ====== POPUPS LIST ====== -->
+        <!-- ====== LIST ====== -->
         <div class="sections-list">
             <h2><i class="fas fa-list"></i> All Popups</h2>
             <div id="popupsContainer">
@@ -115,13 +114,12 @@
     </div>
 </div>
 
-<!-- Firebase SDKs -->
+<!-- ====== FIREBASE SDK ====== -->
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 
 <script>
-    // ====== CANCEL POPUP EDIT ======
     function cancelPopupEdit() {
         document.getElementById('popupForm').reset();
         document.getElementById('formTitle').textContent = '📝 Create New Popup';
@@ -130,7 +128,6 @@
         document.getElementById('popupCancelBtn').classList.add('hidden-form');
         editingPopupId = null;
     }
-
     window.cancelPopupEdit = cancelPopupEdit;
 </script>
 
