@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Popup Manager – Gymkhana IITK</title>
+    <link rel="icon" type="image/png" href="../assets/images/wuj.jpg" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+<div class="dashboard-container">
+    <div class="dashboard-card">
+
+        <!-- HEADER -->
+        <div class="dashboard-header">
+            <div>
+                <h1>📢 Popup <span>Manager</span></h1>
+                <p style="color:#8899bb; font-size:0.85rem; margin-top:2px;">Create, manage & schedule website popups</p>
+            </div>
+            <div class="user-info">
+                <span id="userInfo"></span>
+                <button id="logoutBtn" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- ====== POPUP FORM ====== -->
+        <form id="popupForm" class="cms-form">
+            <h3 id="formTitle" style="color:#ffd700; margin-bottom:16px;">📝 Create New Popup</h3>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="popupTitle">📌 Title *</label>
+                    <input type="text" id="popupTitle" placeholder="e.g. Techkriti 2026 Registration Open" required />
+                </div>
+                <div class="form-group">
+                    <label for="popupType">🎯 Type</label>
+                    <select id="popupType">
+                        <option value="info">ℹ️ Information</option>
+                        <option value="warning">⚠️ Warning</option>
+                        <option value="success">✅ Success</option>
+                        <option value="event">🎉 Event</option>
+                        <option value="urgent">🚨 Urgent</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom:16px;">
+                <label for="popupMessage">📝 Message *</label>
+                <textarea id="popupMessage" placeholder="Enter popup message..." required></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="popupLink">🔗 Button Link (Optional)</label>
+                    <input type="url" id="popupLink" placeholder="https://..." />
+                </div>
+                <div class="form-group">
+                    <label for="popupBtnText">🔘 Button Text</label>
+                    <input type="text" id="popupBtnText" placeholder="Learn More" value="Learn More" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="popupImage">🖼️ Image URL (Optional)</label>
+                    <input type="url" id="popupImage" placeholder="https://example.com/banner.jpg" />
+                    <small style="color:#556; font-size:0.7rem;">Upload image and paste URL here</small>
+                </div>
+                <div class="form-group">
+                    <label for="popupExpiry">📅 Expiry Date (Optional)</label>
+                    <input type="date" id="popupExpiry" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="popupStartDate">📅 Start Date (Optional)</label>
+                    <input type="date" id="popupStartDate" />
+                </div>
+                <div class="form-group">
+                    <label for="popupStatus">📌 Status</label>
+                    <select id="popupStatus">
+                        <option value="active">✅ Active</option>
+                        <option value="inactive">❌ Inactive</option>
+                        <option value="scheduled">📅 Scheduled</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" id="popupSubmitBtn" class="btn-submit">
+                    <i class="fas fa-bullhorn"></i> Publish Popup
+                </button>
+                <button type="button" id="popupCancelBtn" class="btn-cancel hidden-form" onclick="cancelPopupEdit()">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+            </div>
+        </form>
+
+        <!-- ====== POPUPS LIST ====== -->
+        <div class="sections-list">
+            <h2><i class="fas fa-list"></i> All Popups</h2>
+            <div id="popupsContainer">
+                <div class="empty-state">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading...</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
+<script>
+    // ====== CANCEL POPUP EDIT ======
+    function cancelPopupEdit() {
+        document.getElementById('popupForm').reset();
+        document.getElementById('formTitle').textContent = '📝 Create New Popup';
+        document.getElementById('popupSubmitBtn').textContent = 'Publish Popup';
+        document.getElementById('popupSubmitBtn').disabled = false;
+        document.getElementById('popupCancelBtn').classList.add('hidden-form');
+        editingPopupId = null;
+    }
+
+    window.cancelPopupEdit = cancelPopupEdit;
+</script>
+
+<script src="app.js"></script>
+
+</body>
+</html>
