@@ -81,9 +81,7 @@
             justify-content: center;
             animation: popupFadeIn 0.3s ease;
         }
-        .popup-overlay.closing {
-            animation: popupFadeOut 0.3s ease;
-        }
+        .popup-overlay.closing { animation: popupFadeOut 0.3s ease; }
         .popup-box {
             background: rgba(18, 28, 50, 0.95);
             border: 1px solid rgba(255,215,0,0.2);
@@ -114,10 +112,7 @@
             justify-content: center;
             transition: 0.3s;
         }
-        .popup-box .popup-close:hover {
-            background: rgba(255,68,68,0.2);
-            color: #ff6b6b;
-        }
+        .popup-box .popup-close:hover { background: rgba(255,68,68,0.2); color: #ff6b6b; }
         .popup-box .popup-badge {
             display: inline-block;
             padding: 4px 14px;
@@ -165,10 +160,7 @@
             text-decoration: none;
             font-size: 0.9rem;
         }
-        .popup-box .popup-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(255,215,0,0.2);
-        }
+        .popup-box .popup-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(255,215,0,0.2); }
         .popup-minimized {
             position: fixed;
             bottom: 24px;
@@ -188,10 +180,7 @@
             color: #ffd700;
             font-weight: 500;
         }
-        .popup-minimized:hover {
-            transform: scale(1.05);
-            border-color: #ffd700;
-        }
+        .popup-minimized:hover { transform: scale(1.05); border-color: #ffd700; }
         .popup-minimized i { font-size: 1.2rem; }
         .popup-minimized .badge-dot {
             width: 8px;
@@ -338,7 +327,6 @@
                 <h3>Collection</h3>
                 <p>Forms, Rules & Resources</p>
             </a>
-            <!-- Portal Links -->
             <a href="https://liveiitk.netlify.app" target="_blank" class="card-glass" style="background: rgba(255, 215, 0, 0.1); border-color: #ffd700;">
                 <span class="icon-large"><i class="fas fa-bolt"></i></span>
                 <h3>Live IITK</h3>
@@ -539,8 +527,7 @@
             setTimeout(() => {
                 overlay.remove();
                 if (minimize && currentPopupData) {
-                    const minimized = document.getElementById('popupMinimized');
-                    minimized.style.display = 'flex';
+                    document.getElementById('popupMinimized').style.display = 'flex';
                     document.getElementById('minimizedTitle').textContent = currentPopupData.title || 'New Announcement';
                 }
             }, 300);
@@ -561,55 +548,66 @@
         return div.innerHTML;
     }
 
-    // Listen for active popups
+    // ====== CHECK AND SHOW POPUP ======
+    function checkAndShowPopup() {
+        db.collection('popups')
+            .where('status', '==', 'active')
+            .orderBy('createdAt', 'desc')
+            .limit(1)
+            .get()
+            .then((snapshot) => {
+                if (snapshot.empty) {
+                    document.getElementById('popupMinimized').style.display = 'none';
+                    return;
+                }
+                
+                const doc = snapshot.docs[0];
+                const data = doc.data();
+                
+                // Check expiry
+                if (data.expiry) {
+                    const today = new Date().toISOString().split('T')[0];
+                    if (data.expiry < today) {
+                        document.getElementById('popupMinimized').style.display = 'none';
+                        return;
+                    }
+                }
+                
+                // Check start date
+                if (data.startDate) {
+                    const today = new Date().toISOString().split('T')[0];
+                    if (data.startDate > today) {
+                        document.getElementById('popupMinimized').style.display = 'none';
+                        return;
+                    }
+                }
+                
+                // Show popup if not already shown
+                if (!document.getElementById('popupOverlay') && !sessionStorage.getItem('popup_' + doc.id)) {
+                    showPopup(data, doc.id);
+                    sessionStorage.setItem('popup_' + doc.id, 'shown');
+                }
+            })
+            .catch((error) => {
+                console.error('Firestore Error:', error);
+            });
+    }
+
+    // Page load par check
+    checkAndShowPopup();
+
+    // Real-time listener
     db.collection('popups')
         .where('status', '==', 'active')
-        .orderBy('createdAt', 'desc')
-        .limit(1)
-        .onSnapshot((snapshot) => {
-            if (snapshot.empty) {
-                document.getElementById('popupMinimized').style.display = 'none';
-                return;
-            }
-            const doc = snapshot.docs[0];
-            const data = doc.data();
-            
-            // Check expiry
-            if (data.expiry) {
-                const today = new Date().toISOString().split('T')[0];
-                if (data.expiry < today) {
-                    document.getElementById('popupMinimized').style.display = 'none';
-                    return;
-                }
-            }
-            
-            // Check start date
-            if (data.startDate) {
-                const today = new Date().toISOString().split('T')[0];
-                if (data.startDate > today) {
-                    document.getElementById('popupMinimized').style.display = 'none';
-                    return;
-                }
-            }
-            
-            // Show popup if not already shown in this session
-            if (!document.getElementById('popupOverlay') && !sessionStorage.getItem('popup_' + doc.id)) {
-                showPopup(data, doc.id);
-                sessionStorage.setItem('popup_' + doc.id, 'shown');
-            }
-            
-            // Update minimized title
-            if (document.getElementById('popupMinimized').style.display !== 'flex') {
-                document.getElementById('minimizedTitle').textContent = data.title || 'New Announcement';
-            }
+        .onSnapshot(() => {
+            checkAndShowPopup();
         });
-        
-    // Close popup on ESC
+
+    // Close on ESC
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closePopup(true);
     });
 
-    // Global functions for inline onclick
     window.closePopup = closePopup;
     window.restorePopup = restorePopup;
 </script>
