@@ -1,6 +1,5 @@
 // ============================================================
-// GYMKHANA POPUP MANAGER - MAIN LOGIC
-// Firebase Auth + Firestore CRUD
+// GYMKHANA POPUP MANAGER - WITH TIME + CODE BANNER
 // ============================================================
 
 const firebaseConfig = {
@@ -82,6 +81,7 @@ function loadPopups() {
                             <div>
                                 <span class="section-id" style="color:${statusColor};">${typeMap[data.type] || '📢'} ${escapeHtml(data.title)}</span>
                                 <span class="section-page" style="color:${statusColor};">● ${data.status || 'active'}</span>
+                                ${data.priority === 'urgent' ? '<span style="color:#ff6b6b; font-size:0.7rem;">🚨 URGENT</span>' : ''}
                             </div>
                             <div>
                                 <button class="btn-edit" onclick="editPopup('${doc.id}')"><i class="fas fa-edit"></i></button>
@@ -89,8 +89,11 @@ function loadPopups() {
                             </div>
                         </div>
                         <div class="section-content">${escapeHtml(data.message || '')}</div>
+                        ${data.code ? `<div style="margin:4px 0; background:rgba(255,255,255,0.03); padding:8px; border-radius:6px; font-size:0.7rem; color:#8899bb;">📝 Custom Code</div>` : ''}
                         ${data.image ? `<div style="margin:4px 0;"><img src="${data.image}" alt="Banner" style="max-width:120px; border-radius:6px; max-height:60px; object-fit:cover;" /></div>` : ''}
                         ${data.link ? `<div class="section-link">🔗 <a href="${data.link}" target="_blank">${data.btnText || 'Learn More'}</a></div>` : ''}
+                        ${data.startTime ? `<div style="color:#556; font-size:0.7rem;">⏰ Starts: ${data.startTime}</div>` : ''}
+                        ${data.endTime ? `<div style="color:#556; font-size:0.7rem;">⏰ Ends: ${data.endTime}</div>` : ''}
                     </div>
                 `;
             });
@@ -116,9 +119,14 @@ function handlePopupSubmit(e) {
     const link = document.getElementById('popupLink').value.trim();
     const btnText = document.getElementById('popupBtnText').value.trim() || 'Learn More';
     const image = document.getElementById('popupImage').value.trim();
+    const code = document.getElementById('popupCode').value.trim();
     const expiry = document.getElementById('popupExpiry').value;
     const startDate = document.getElementById('popupStartDate').value;
+    const startTime = document.getElementById('popupStartTime').value;
+    const endDate = document.getElementById('popupEndDate').value;
+    const endTime = document.getElementById('popupEndTime').value;
     const status = document.getElementById('popupStatus').value;
+    const priority = document.getElementById('popupPriority').value;
     const submitBtn = document.getElementById('popupSubmitBtn');
 
     if (!title || !message) {
@@ -129,7 +137,12 @@ function handlePopupSubmit(e) {
     submitBtn.disabled = true;
     submitBtn.textContent = editingPopupId ? 'Updating...' : 'Publishing...';
 
-    const data = { title, message, type, link, btnText, image, expiry, startDate, status, updatedAt: firebase.firestore.FieldValue.serverTimestamp() };
+    const data = {
+        title, message, type, link, btnText, image, code,
+        expiry, startDate, startTime, endDate, endTime,
+        status, priority,
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
 
     let promise = editingPopupId ?
         db.collection('popups').doc(editingPopupId).update(data) :
@@ -167,9 +180,14 @@ function editPopup(id) {
         document.getElementById('popupLink').value = data.link || '';
         document.getElementById('popupBtnText').value = data.btnText || 'Learn More';
         document.getElementById('popupImage').value = data.image || '';
+        document.getElementById('popupCode').value = data.code || '';
         document.getElementById('popupExpiry').value = data.expiry || '';
         document.getElementById('popupStartDate').value = data.startDate || '';
+        document.getElementById('popupStartTime').value = data.startTime || '';
+        document.getElementById('popupEndDate').value = data.endDate || '';
+        document.getElementById('popupEndTime').value = data.endTime || '';
         document.getElementById('popupStatus').value = data.status || 'active';
+        document.getElementById('popupPriority').value = data.priority || 'normal';
         document.getElementById('popupSubmitBtn').textContent = 'Update Popup';
         document.getElementById('popupCancelBtn').classList.remove('hidden-form');
         document.querySelector('.cms-form').scrollIntoView({ behavior: 'smooth' });
